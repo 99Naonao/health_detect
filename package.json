@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "vuex": "^4.1.0",
     "xy-health-measurement-wx": "^1.0.1"
   }
 }
