@@ -8,8 +8,9 @@
 						<view class="avatar_bg">
 							<image v-if="hasLogin" class="avatar" :src="userInfo.avatar || '/static/default-avatar.png'"
 								@click="navTo('/pages/my/set/userInfo')"></image>
-							<image v-else class="avatar" :src="userInfo.avatar || '/static/default-avatar.png'"
-								@click="clickWxLogin"></image>
+							<image v-else class="avatar"
+								:src="userInfo&&userInfo.avatar || '/static/default-avatar.png'" @click="clickWxLogin">
+							</image>
 						</view>
 						<view class="usernameInfo">
 							<view class="userNickNameInfo" v-if="nickNameInputFlag">
@@ -25,7 +26,6 @@
 				<view class="score_part">
 					<view class="score_info">
 						<view class="sub_score_info">
-							<image class="icon" src="../../static/score/SY_13_IconJF.png"></image>
 							<view>我的积分</view>
 						</view>
 						<view class="score_txt">{{score}}</view>
@@ -47,12 +47,21 @@
 	import {
 		mapActions,
 		mapState,
+		mapGetters,
 		mapMutations
 	} from 'vuex'
 	import {
 		autoLogin
 	} from '@/utils/miniapp.js'
 	export default {
+		data() {
+			return {
+				hasLogin: false
+			}
+		},
+		computed: {
+			...mapGetters(['token'])
+		},
 		components: {
 			tabbar
 		},
@@ -68,6 +77,9 @@
 				autoLogin((res) => {
 					console.log('success')
 				})
+			},
+			go2Use() {
+				console.log('this.token:', this.token)
 			}
 		}
 	}

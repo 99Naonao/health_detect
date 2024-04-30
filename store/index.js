@@ -8,22 +8,24 @@ import {
 const store = createStore({
 	state: {
 		type: '1',
-		token: '', // 密钥
+		measureToken: '', // 密钥
 	},
 	mutations: {
 
 	},
 	actions: {
-		$login() {
-			console.log('login')
+		$login(stateAll) {
+			console.log('login', stateAll.state)
 			getToken().then(res => {
-				console.log(res)
-				this.token = res
+				console.log('$login:', res)
+				stateAll.state.measureToken = res
 			})
 		}
 	},
 	getters: {
-
+		measureToken(state) {
+			return state.measureToken
+		}
 	}
 })
 export default store;

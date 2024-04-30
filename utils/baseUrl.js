@@ -1,6 +1,6 @@
 let baseUrl = "";
 let socketUrl = "";
-let appId = 'wx43c54dcd8642d95b'; // 眠加家居枕头
+let appId = 'wx76c212f7b90dae73'; // 眠加AI检测
 let monkUrl = ""; //模拟数据地址
 if (process.env.NODE_ENV === 'development') {
 	// 开发环境
