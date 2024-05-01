@@ -67,7 +67,6 @@ export function autoLogin(callback) {
 			// });
 
 			//更新用户信息
-
 			uni.showToast({
 				title: '登录成功',
 				duration: 2000,
@@ -76,16 +75,11 @@ export function autoLogin(callback) {
 						callback()
 				}
 			});
-
-
-			// socket.init();
-			// userInfo.token = userInfo.token;
 		})
 	})
 }
 
 function setUserInfo(userInfo) {
-
 	//请求前加入token
 	uni.setStorageSync("userInfo", userInfo);
 }

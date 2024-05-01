@@ -37,6 +37,11 @@
 					<view class="subtitle">如何活动</view>
 					<view>眠加积分是眠加健康睡眠中心</view>
 				</view>
+				<view class="score_part">
+					<view class="score_info">
+						<view class="btn" @click="measureHandler">开始测量</view>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -51,16 +56,22 @@
 		mapMutations
 	} from 'vuex'
 	import {
+		Measurement,
+		MeasurementCategory
+	} from 'xy-health-measurement-wx'
+	import {
 		autoLogin
 	} from '@/utils/miniapp.js'
 	export default {
 		data() {
 			return {
-				hasLogin: false
+				hasLogin: false,
+				measurement: '',
+				measurementId: 0,
 			}
 		},
 		computed: {
-			...mapGetters(['token'])
+			...mapGetters(['measureToken'])
 		},
 		components: {
 			tabbar
@@ -73,13 +84,51 @@
 		},
 		methods: {
 			...mapActions(['$login']),
+			measureHandler() {
+
+			},
 			clickWxLogin() {
 				autoLogin((res) => {
 					console.log('success')
 				})
 			},
 			go2Use() {
-				console.log('this.token:', this.token)
+				console.log('this.measureToken:', this.measureToken)
+				this.measurement = new Measurement(this.measureToken, this.measureToken, MeasurementCategory.ALL)
+				console.log('this.measureToke123n:', measure)
+
+				//监听异常事件
+				this.measurement.addEventListener("crashed", (sender, exception) => {
+					const {
+						errorMessage
+					} = exception
+					console.log(errorMessage)
+				})
+
+				//监听启动测量事件
+				this.measurement.addEventListener("started", (sender, measurementId) => {
+					this.measurementId = measurementId
+					this.queneMeasure()
+					console.log('suck:', measurementId)
+				})
+
+
+				this.measurement.start("base64_frame")
+			},
+			queneMeasure() {
+				//监听视频帧采集完成事件
+				this.measurement.addEventListener("collected", sender => {
+					//停止采集视频帧
+				})
+				this.measurement.enqueue({
+					base64_frame: "base64_frame"
+				})
+
+				// //入队视频帧
+				// this.measurement.enqueue({
+				// 	"base64_frame",
+				// 	1709151805475
+				// })
 			}
 		}
 	}

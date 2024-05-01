@@ -25,6 +25,10 @@ const store = createStore({
 	getters: {
 		measureToken(state) {
 			return state.measureToken
+		},
+		userInfo(state) {
+			let userInfo = uni.getStorageSync("userInfo");
+			return userInfo
 		}
 	}
 })
