@@ -5,12 +5,12 @@
 			<view class='kv' ref="cccc">
 				<image class="kv-img" src='@/static/JK_02_Bg01.png' mode="widthFix"></image>
 			</view>
-			<view class="law">
+			<view class="law flex just-align-center align-center">
 				<checkbox-group ref="ggg" @change="groupChange">
-					<label>
-						<checkbox :checked="sure" value="sure" />我已经阅读同意<text class="line">用户使用条款</text>
-					</label>
-				</checkbox-group>
+					<view class="flex just-align-center align-center">
+						<checkbox :checked="sure" value="sure" /><text>我已经阅读同意</text>
+					</view>
+				</checkbox-group><text class="line" @click="navLink">用户使用条款</text>
 			</view>
 			<view class="opt1 flex just-align-center" @click="checkHandler">
 				<view class="opt">
@@ -64,6 +64,11 @@
 
 		},
 		methods: {
+			navLink() {
+				uni.navigateTo({
+					url: '/pages/health/userProtocal'
+				})
+			},
 			groupChange(e) {
 				if (e.detail.value.length > 0) {
 					this.sure = true
@@ -72,7 +77,15 @@
 				}
 			},
 			goCheck() {
+				console.log(this.userInfo)
+				if (this.userInfo.score >= this.cost) {
 
+				} else {
+					uni.showToast({
+						title: '当前积分不够',
+						icon: 'error'
+					})
+				}
 			},
 			checkHandler() {
 				if (this.sure) {
@@ -102,7 +115,12 @@
 	}
 
 	.container {
+		.check-label {
+			line-height: 30rpx;
+		}
+
 		.law {
+
 			text-align: center;
 			padding-top: 50rpx;
 			line-height: 40rpx;
