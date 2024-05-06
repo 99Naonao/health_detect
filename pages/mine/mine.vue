@@ -59,9 +59,18 @@
 		Measurement,
 		MeasurementCategory
 	} from 'xy-health-measurement-wx'
+	# // #ifdef MP-WEIXIN
+
 	import {
 		autoLogin
 	} from '@/utils/miniapp.js'
+	// #endif
+	# // #ifdef H5
+	import {
+		autoLogin
+	} from '@/utils/h5app.js'
+	// #endif
+
 	export default {
 		data() {
 			return {

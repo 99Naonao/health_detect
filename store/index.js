@@ -1,10 +1,20 @@
 import {
 	createStore
 } from 'vuex'
+
+// #ifdef H5
+import {
+	getToken,
+	autoLogin
+} from '@/utils/h5app.js'
+// #endif
+
+// #ifdef MP-WEIXIN
 import {
 	getToken,
 	autoLogin
 } from '@/utils/miniapp.js'
+// #endif
 const store = createStore({
 	state: {
 		type: '1',
