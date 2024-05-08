@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'development') {
 	// 开发环境
 	// baseUrl = "http://192.168.7.221:8001/api"; // 此配置无需改动
 	baseUrl = "http://192.168.7.221:8081/"; // 此配置无需改动
-	// baseUrl = "https://sleep.zsyl.cc/api"
+	baseUrl = "https://sleep.zsyl.cc/api"
 	monkUrl = "http://localhost:8001";
 	// monkUrl = "/";
 	// #ifdef H5

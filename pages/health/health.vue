@@ -38,14 +38,23 @@
 		mapGetters,
 		mapMutations
 	} from 'vuex'
+	import {
+		Measurement,
+		MeasurementCategory
+	} from 'xy-health-measurement'
+	// #ifdef H5
 
-
+	import {
+		autoLogin,
+		getToken
+	} from '../../utils/h5app.js'
+	// #endif
 	export default {
 		components: {
 			tabbar
 		},
 		computed: {
-			...mapGetters(['userInfo'])
+			...mapGetters(['measureToken', 'userInfo'])
 		},
 		onLoad() {
 			uni.hideTabBar()
@@ -54,20 +63,82 @@
 			return {
 				cost: 100,
 				sure: false,
+				measureIns: null,
+				video: null,
 			}
 		},
 		onShow() {
 			this.sure = false
 			// this.$refs.ppp.open('bottom')
+			let userInfo = uni.getStorageSync('userInfo')
+			if (!userInfo) {
+				this.login()
+			} else {
+				this.$login()
+			}
 		},
 		setup() {
 
 		},
 		methods: {
+			...mapActions(['$login']),
+			login() {
+				autoLogin((res) => {
+					this.$login()
+				})
+			},
 			navLink() {
 				uni.navigateTo({
 					url: '/pages/health/userProtocal'
 				})
+			},
+			async startCamera() {
+				// 获取设备媒体的设置，通常就video和audio
+				// ....
+				// 将宽高设置成容器大小
+				const pageSize = document.width
+				let constraints = {
+					video: {
+						height: 500,
+						width: 500,
+						// facingMode: {
+						// 	exact: "environment"
+						// },
+					},
+					audio: false
+				};
+				this.video = document.getElementById("video");
+				console.log('window.navigator:', window.navigator.mediaDevices)
+				// 使用getUserMedia获取媒体流
+				// 媒体流赋值给srcObject
+				this.video.srcObject = await window.navigator.mediaDevices.getUserMedia(constraints);
+				// 直接播放就行了
+				this.video.play();
+			},
+			// 截图拍照
+			takePhoto() {
+				const video = document.getElementById("video");
+				// 借助canvas绘制视频的一帧
+				const canvas = document.getElementById("canvas");
+				const ctx = canvas.getContext('2d');
+				ctx.drawImage(this.video, 0, 0, 500, 500);
+				let base64 = canvas.toDataUrl("image/jpeg")
+
+				let base64_new = 'data:image/jpeg;base64,' + base64;
+				//打印出base64字符串，可复制到网页校验一下是否是你选择的原图片呢
+				console.log(base64);
+				return base64
+			},
+			// 停止
+			stopMedia() {
+				// 获取媒体流
+				const stream = this.video.srcObject;
+				const tracks = stream.getTracks();
+				// 停止所有轨道
+				tracks.forEach(function(track) {
+					track.stop();
+				})
+				this.video.srcObject = null;
 			},
 			groupChange(e) {
 				if (e.detail.value.length > 0) {
@@ -76,11 +147,28 @@
 					this.sure = false
 				}
 			},
+			addListener() {
+				this.measureIns = new Measurement(this.measureToken, MeasurementCategory.ALL)
+				const measurement = this.measureIns
+				//监听启动测量事件
+				measurement.addEventListener("started", (sender, measurementId) => {
+					console.log(measurementId)
+					// measurement.enqueue({
+					// 	"base64_frame",
+					// 	1709151805475
+					// })
+				})
+				measurement.start("base64_frame")
+			},
 			goCheck() {
 				console.log(this.userInfo)
 				if (this.userInfo.score >= this.cost) {
 
 				} else {
+					uni.navigateTo({
+						url: '/pages/health/healthRunning'
+					})
+
 					uni.showToast({
 						title: '当前积分不够',
 						icon: 'error'
@@ -134,8 +222,8 @@
 		.icon1 {
 			width: 44rpx;
 			height: 30rpx;
-			padding-right: 10rpx;
-			padding-left: 10rpx;
+			/* 			padding-right: 10rpx;
+			padding-left: 10rpx; */
 		}
 
 
@@ -171,7 +259,7 @@
 		.icon {
 			width: 35rpx;
 			height: 25rpx;
-			padding-right: 20rpx;
+			/* padding-right: 20rpx; */
 		}
 	}
 </style>

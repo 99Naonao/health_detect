@@ -15,7 +15,7 @@
 						<view class="usernameInfo">
 							<view class="userNickNameInfo" v-if="nickNameInputFlag">
 								<text class="username">{{ userInfo.nickName || '未知用户' }}</text>
-								<image src="../../static/icon/edit.png"></image>
+								<!-- <image src="../../static/icon/edit.png"></image> -->
 							</view>
 							<view class="username" v-else>
 
@@ -59,13 +59,13 @@
 		Measurement,
 		MeasurementCategory
 	} from 'xy-health-measurement-wx'
-	# // #ifdef MP-WEIXIN
+	// #ifdef MP-WEIXIN
 
 	import {
 		autoLogin
 	} from '@/utils/miniapp.js'
 	// #endif
-	# // #ifdef H5
+	// #ifdef H5
 	import {
 		autoLogin
 	} from '@/utils/h5app.js'

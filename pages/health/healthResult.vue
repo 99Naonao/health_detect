@@ -61,9 +61,9 @@
 
 		.tabitem {
 			text-align: center;
-			padding-top: 10rpx;
+			margin-top: 30rpx;
 			padding-bottom: 10rpx;
-			height: 88rpx;
+			height: 68rpx;
 			color: white;
 			background-color: #46647d;
 			border-top-right-radius: 20rpx;
@@ -82,6 +82,9 @@
 		.active {
 			font-weight: bold;
 			color: #616169;
+			height: 88rpx;
+			margin-top: 0rpx;
+			padding-top: 10rpx;
 			background-color: white;
 			border-bottom: solid 1rpx skyblue;
 		}

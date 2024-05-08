@@ -2,7 +2,7 @@
 import base from '@/utils/baseUrl';
 // import store from '@/store';
 const api = {
-	login: '/ybLoginWx',
+	login: '/ybLoginH5',
 	cardList: '/card/serList',
 	wxLogin: '/ybLoginWx',
 	drawList: '/ybUserWithdrawList',
@@ -12,7 +12,8 @@ const api = {
 	qrCode: '/getWxQrCode',
 	fenxiaoRule: '/ybDictFenxiao/detail',
 	withDrawListApi: '/user/fenxiao/yongjin/detail/page',
-	token: 'ybHealthAccessToken',
+	token: '/ybHealthAccessToken',
+	add: '/ybUserHealthReport/add',
 }
 
 export function getWxUserInfo() {
@@ -39,43 +40,50 @@ export function getWxUserInfo() {
 	})
 }
 /**
+ * 保存结果
+ **/
+export function addReport(desc) {
+	return request_(base.baseUrl + api.add, {
+		desc: desc
+	})
+}
+/**
  * 自动登录
  **/
 export function autoLogin(callback) {
-	onGetCode().then((code) => {
-		console.log('onGetcode:', code)
-		let data = {
-			'code': code,
-			'appId': base.publicAppId, // 眠加家居
-			'userName': code
-		}
-		wxLogin(data).then((res) => {
-			uni.showToast({
-				title: "登录成功"
-			});
-			let userInfo = res
-			console.log('wxlogin:', userInfo)
-			setUserInfo(userInfo);
-			// uni.showToast({
-			// 	title: '登录成功',
-			// 	duration: 2000,
-			// 	success() {
+	var code = window.getCode()
+	console.log('onGetcode:', code)
+	let data = {
+		'code': code,
+		'appId': 'wx1ac2da77b1e55f42', // 眠加家居
+		'userName': code
+	}
+	h5Login(data).then((res) => {
+		uni.showToast({
+			title: "登录成功"
+		});
+		let userInfo = res
+		console.log('wxlogin:', userInfo)
+		setUserInfo(userInfo);
+		// uni.showToast({
+		// 	title: '登录成功',
+		// 	duration: 2000,
+		// 	success() {
 
-			// 		if (callback)
-			// 			callback()
-			// 	}
-			// });
+		// 		if (callback)
+		// 			callback()
+		// 	}
+		// });
 
-			//更新用户信息
-			uni.showToast({
-				title: '登录成功',
-				duration: 2000,
-				success() {
-					if (callback)
-						callback()
-				}
-			});
-		})
+		//更新用户信息
+		uni.showToast({
+			title: '登录成功',
+			duration: 2000,
+			success() {
+				if (callback)
+					callback()
+			}
+		});
 	})
 }
 
@@ -122,10 +130,10 @@ export async function onGetCode() {
  * @param {String} data.encryptedData - 微信加密的用户数据
  * @param {String} data.iv - 偏移量
  */
-export function wxLogin(data) {
+export function h5Login(data) {
 	// const fromId = store.getters.fromUid
 	// data.fromId = fromId
-	return request_(base.baseUrl + api.wxLogin, data)
+	return request_(base.baseUrl + api.login, data)
 }
 /** 列表**/
 export function cardList() {
@@ -315,7 +323,7 @@ function request_(url, sortData) {
 		}
 
 		// console.log("token", storeUserInfo.token)
-		if (storeUserInfo.token) {
+		if (storeUserInfo && storeUserInfo.token) {
 			header['Authorization'] = storeUserInfo.token;
 			// options.header['Cookie'] = '';  
 		};
@@ -343,6 +351,12 @@ function request_(url, sortData) {
 
 				if ([601, 40098].includes(code)) {
 					return resolve(code)
+				}
+				if (['A10019'].includes(code)) {
+					uni.showToast({
+						title: message
+					})
+					return reject(code)
 				}
 				// if ([200].includes(code)) {
 				return resolve(data)
