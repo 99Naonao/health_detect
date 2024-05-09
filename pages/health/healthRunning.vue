@@ -1,8 +1,8 @@
 <template>
-	<z-nav-bar backState="1000" fontColor='#000' title='健康检测'></z-nav-bar>
+	<!-- <z-nav-bar backState="1000" fontColor='#000' title='健康检测'></z-nav-bar> -->
 	<view class="container">
-		<image class="imgmask" src="../../static/JK_03_Mask00.png" mode="widthFix"></image>
-		<canvas id="canvas" class="canvas-c" canvas-id="canvas"></canvas>
+		<!-- <image class="imgmask" src="../../static/JK_03_Mask00.png" mode="widthFix"></image> -->
+		<canvas id="canvas" class="canvas-c" :style="backBtnStyle" canvas-id="canvas"></canvas>
 	</view>
 </template>
 
@@ -33,6 +33,10 @@
 				canvas: null,
 				equeneId: 0,
 				intervalId: 0,
+				backBtnStyle: {
+					'--canvasWdith': '30px',
+					'--canvasHeight': '30px',
+				},
 			}
 		},
 		computed: {
@@ -82,7 +86,7 @@
 				//监听视频帧采集完成事件
 				measurement.addEventListener("collected", sender => {
 					//停止采集视频帧
-					console.log('停止采集视频')
+					console.log('正常停止采集视频')
 					that.stopMedia()
 				})
 
@@ -104,11 +108,11 @@
 				//监听完整报告
 				measurement.addEventListener("wholeReportGenerated", (sender, report) => {
 					const {
-						afReport,
+						afreport,
 						bpReport,
 						essentialReport,
 						healthScoreReport,
-						hrReport,
+						hrreport,
 						riskReport,
 						spo2HReport,
 						calculatedReport
@@ -124,7 +128,6 @@
 				// 3秒后开始
 				setTimeout(() => {
 					let result123 = document.getElementsByClassName('uni-canvas-canvas')
-					console.log('result', result123.length, result123[0]);
 					let base645 = this.takePhoto();
 					let result = measurement.start(this.canvas)
 					console.log('takephoto result!', result)
@@ -132,13 +135,12 @@
 			},
 			// 截图拍照
 			takePhoto() {
-				const video = document.getElementById("video");
 				// 借助canvas绘制视频的一帧
 				// if (!this.canvas) {
 				// 	this.canvas = document.createElement("canvas");
 				// }
-
 				let result123 = document.getElementsByClassName('uni-canvas-canvas')
+				let result123_container = document.getElementsByClassName('uni-canvas')
 				// console.log('result', result123.length, result123[0]);
 				this.canvas = result123[0]
 				if (!this.canvas) {
@@ -153,14 +155,18 @@
 				const ctx = canvas.getContext('2d');
 				// console.log('takephotoing,', this.video)
 				// 将宽高设置成容器大小
+				let deviceInfo = uni.getWindowInfo()
 				const pageSize = {
-					width: document.body.clientWidth,
-					height: document.body.clientHeight
+					width: deviceInfo.screenWidth,
+					height: deviceInfo.screenHeight
 				}
 				this.canvas.width = pageSize.width;
 				this.canvas.height = pageSize.height;
+				this.$set(this.backBtnStyle, '--canvasWidth', (pageSize.width) + 'px')
+				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.height) + 'px')
+				ctx.drawImage(this.video, 0, 0, pageSize.width / deviceInfo.pixelRatio, pageSize.height / deviceInfo
+					.pixelRatio);
 				return ''
-				ctx.drawImage(this.video, 0, 0, pageSize.height, pageSize.width);
 				let base64 = canvas.toDataURL("image/jpeg")
 				// console.log('takephotoing base64,', base64)
 				// let base64_new = 'data:image/jpeg;base64,' + base64;
@@ -177,8 +183,8 @@
 					track.stop();
 				})
 				this.video.srcObject = null;
-				clearInterval(that.equeneId)
-				clearInterval(that.intervalId)
+				clearInterval(this.equeneId)
+				clearInterval(this.intervalId)
 				// if (this.video) {
 				// 	document.body.removeChild(this.video)
 				// }
@@ -187,29 +193,32 @@
 				// 获取设备媒体的设置，通常就video和audio
 				// ....
 				// 将宽高设置成容器大小
+				// 将宽高设置成容器大小
+				let deviceInfo = uni.getWindowInfo()
 				const pageSize = {
-					width: document.body.clientWidth,
-					height: document.body.clientHeight
+					width: deviceInfo.screenWidth,
+					height: deviceInfo.screenHeight
 				}
+				// video的横竖的宽高是反的，所以要切换
 				let constraints = {
 					video: {
 						height: pageSize.width,
 						width: pageSize.height,
 						// facingMode: {
-						// 	exact: "environment"
+						// 	exact: "user", // environment --后置  user --前置
 						// },
 					},
 					audio: false
 				};
-				// if (this.video) {
-				// 	document.body.removeChild(this.video)
-				// }
+				console.log('startCamera', deviceInfo)
+
 				this.video = document.getElementById("video");
-				this.video.width = pageSize.height;
-				this.video.height = pageSize.width;
+				this.video.width = pageSize.width;
+				this.video.height = pageSize.height;
+				// console.log('startCameravideo', this.video)
 
 				// this.video = document.getElementById("video");
-				console.log('window.navigator:', window.navigator.mediaDevices)
+				// console.log('window.navigator:', window.navigator.mediaDevices)
 				// 使用getUserMedia获取媒体流
 				// 媒体流赋值给srcObject
 				this.video.srcObject = await window.navigator.mediaDevices.getUserMedia(constraints);
@@ -220,7 +229,7 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.container {
 		position: relative;
 
@@ -231,14 +240,14 @@
 			left: 0;
 			top: 0;
 		}
+	}
 
-		.canvas-c {
-			width: 100%;
-			/* height: 100%; */
-			left: 0;
-			top: 0;
-			position: absolute;
-			z-index: 1;
-		}
+	.canvas-c {
+		width: var(--canvasWidth);
+		height: var(--canvasHeight);
+		left: 0;
+		top: 0;
+		position: relative;
+		z-index: 1;
 	}
 </style>
