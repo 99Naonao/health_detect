@@ -106,7 +106,7 @@
 					} = report
 					console.log('chunkReportGenerated', report)
 
-					addReport(report)
+					addReport(JSON.stringify(report))
 				})
 
 				//监听完整报告
@@ -171,6 +171,8 @@
 				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.height) * 0.8 + 'px')
 				this.$set(this.backBtnStyle, '--canvasLeft', (pageSize.width) * 0.1 + 'px')
 				this.$set(this.backBtnStyle, '--canvasTop', (pageSize.height) * 0.1 + 'px')
+				ctx.scale(-1, 1)
+				ctx.translate(-pageSize.width / deviceInfo.pixelRatio, 0);
 				ctx.drawImage(this.video, 0, 0, pageSize.width / deviceInfo.pixelRatio, pageSize.height / deviceInfo
 					.pixelRatio);
 				return ''
