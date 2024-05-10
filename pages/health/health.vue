@@ -74,7 +74,10 @@
 			if (!userInfo) {
 				this.login()
 			} else {
-				this.$login()
+				console.log('登录2成功')
+				this.$login().then((res) => {
+					console.log('获取token2成功')
+				})
 			}
 		},
 		setup() {
@@ -84,7 +87,17 @@
 			...mapActions(['$login']),
 			login() {
 				autoLogin((res) => {
-					this.$login()
+					uni.showToast({
+						title: '登录成功'
+					})
+					console.log('登录成功')
+					this.$login().then((res) => {
+
+						uni.showToast({
+							title: '获取token成功'
+						})
+						console.log('获取token1成功')
+					})
 				})
 			},
 			navLink() {

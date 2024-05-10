@@ -1,12 +1,13 @@
 <template>
 	<!-- <z-nav-bar backState="1000" fontColor='#000' title='健康检测'></z-nav-bar> -->
 	<view class="container">
-		<!-- <image class="imgmask" src="../../static/JK_03_Mask00.png" mode="widthFix"></image> -->
+		<image class="imgmask" src="../../static/JK_03_Mask00.png" mode="widthFix"></image>
 		<canvas id="canvas" class="canvas-c" :style="backBtnStyle" canvas-id="canvas"></canvas>
 	</view>
 </template>
 
 <script>
+	import data from '@/static/xy.json'
 	import {
 		mapActions,
 		mapState,
@@ -36,6 +37,8 @@
 				backBtnStyle: {
 					'--canvasWdith': '30px',
 					'--canvasHeight': '30px',
+					'--canvasLeft': '30px',
+					'--canvasTop': '30px',
 				},
 			}
 		},
@@ -45,6 +48,7 @@
 		onShow() {
 			this.addListener()
 			this.startCamera()
+			console.log('data:', data)
 		},
 		onHide() {
 			this.stopMedia()
@@ -118,7 +122,7 @@
 						calculatedReport
 					} = report
 					console.log('wholeReportGenerated', report)
-					addReport(report)
+					addReport(JSON.string(report))
 				})
 
 				console.log('measurement:', measurement)
@@ -162,8 +166,11 @@
 				}
 				this.canvas.width = pageSize.width;
 				this.canvas.height = pageSize.height;
-				this.$set(this.backBtnStyle, '--canvasWidth', (pageSize.width) + 'px')
-				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.height) + 'px')
+				// ctx.scale(-1, 1)
+				this.$set(this.backBtnStyle, '--canvasWidth', (pageSize.width) * 0.8 + 'px')
+				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.height) * 0.8 + 'px')
+				this.$set(this.backBtnStyle, '--canvasLeft', (pageSize.width) * 0.1 + 'px')
+				this.$set(this.backBtnStyle, '--canvasTop', (pageSize.height) * 0.1 + 'px')
 				ctx.drawImage(this.video, 0, 0, pageSize.width / deviceInfo.pixelRatio, pageSize.height / deviceInfo
 					.pixelRatio);
 				return ''
@@ -185,6 +192,7 @@
 				this.video.srcObject = null;
 				clearInterval(this.equeneId)
 				clearInterval(this.intervalId)
+				addReport(JSON.stringify(data))
 				// if (this.video) {
 				// 	document.body.removeChild(this.video)
 				// }
@@ -245,8 +253,8 @@
 	.canvas-c {
 		width: var(--canvasWidth);
 		height: var(--canvasHeight);
-		left: 0;
-		top: 0;
+		left: var(--canvasLeft);
+		top: var(--canvasTop);
 		position: relative;
 		z-index: 1;
 	}
