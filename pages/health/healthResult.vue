@@ -23,7 +23,8 @@
 						<view class="bigtitle">
 							综合心健康风险
 						</view>
-						<view class="circle">{{physiologyscorereport.data}}</view>
+						<div ref="charts1" style="width: 200px;height: 200px;"></div>
+						<!-- <view class="circle">{{physiologyscorereport.data}}</view> -->
 					</view>
 					<image class="topimg" src="../../static/SY_04_Pic01.png" mode="widthFix"></image>
 				</view>
@@ -217,8 +218,14 @@
 				<view class="explanation content">
 					{{riskreport.explanation.bpheartattack.introductionList.join('')}}
 				</view>
-				<view class="age">
-					超越{{(riskreport.explanation.bpheartattack.ranking * 100).toFixed(2) + '%'}}同龄人
+				<view class="border-line"></view>
+				<view class="age flex">
+					<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
+					<text class="icon-title">同龄人对比</text>
+				</view>
+				<view class="age content">
+					超越<text
+						class="focusnum">{{(riskreport.explanation.bpheartattack.ranking * 100).toFixed(2) + '%'}}</text>同龄人
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
@@ -246,8 +253,14 @@
 				<view class="explanation content">
 					{{riskreport.explanation.bpstroke.introductionList.join('')}}
 				</view>
-				<view class="age">
-					超越{{(riskreport.explanation.bpstroke.ranking * 100).toFixed(2) + '%'}}同龄人
+				<view class="border-line"></view>
+				<view class="age flex">
+					<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
+					<text class="icon-title">同龄人对比</text>
+				</view>
+				<view class="age content">
+					超越<text
+						class="focusnum">{{(riskreport.explanation.bpstroke.ranking * 100).toFixed(2) + '%'}}</text>同龄人
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
@@ -275,8 +288,13 @@
 				<view class="explanation content">
 					{{riskreport.explanation.bpcvd.introductionList.join('')}}
 				</view>
-				<view class="age">
-					超越{{(riskreport.explanation.bpcvd.ranking * 100).toFixed(2) + '%'}}同龄人
+				<view class="border-line"></view>
+				<view class="age flex">
+					<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
+					<text class="icon-title">同龄人对比</text>
+				</view>
+				<view class="age content">
+					超越<text class="focusnum">{{(riskreport.explanation.bpcvd.ranking * 100).toFixed(2) + '%'}}</text>同龄人
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
@@ -304,8 +322,13 @@
 				<view class="explanation content">
 					{{riskreport.explanation.bppp.introductionList.join('')}}
 				</view>
-				<view class="age">
-					超越{{(riskreport.explanation.bppp.ranking * 100).toFixed(2) + '%'}}同龄人
+				<view class="border-line"></view>
+				<view class="age flex">
+					<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
+					<text class="icon-title">同龄人对比</text>
+				</view>
+				<view class="age content">
+					超越<text class="focusnum">{{(riskreport.explanation.bppp.ranking * 100).toFixed(2) + '%'}}</text>同龄人
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
@@ -333,8 +356,13 @@
 				<view class="explanation content">
 					{{riskreport.explanation.bptau.introductionList.join('')}}
 				</view>
-				<view class="age">
-					超越{{(riskreport.explanation.bptau.ranking * 100).toFixed(2) + '%'}}同龄人
+				<view class="border-line"></view>
+				<view class="age flex">
+					<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
+					<text class="icon-title">同龄人对比</text>
+				</view>
+				<view class="age content">
+					超越<text class="focusnum">{{(riskreport.explanation.bptau.ranking * 100).toFixed(2) + '%'}}</text>同龄人
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
@@ -362,8 +390,14 @@
 				<view class="explanation content">
 					{{essentialreport.explanation.age.introductionList.join('')}}
 				</view>
-				<view class="age">
-					超越{{(essentialreport.explanation.age.ranking * 100).toFixed(2) + '%'}}同龄人
+				<view class="border-line"></view>
+				<view class="age flex">
+					<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
+					<text class="icon-title">同龄人对比</text>
+				</view>
+				<view class="age content">
+					超越<text
+						class="focusnum">{{(essentialreport.explanation.age.ranking * 100).toFixed(2) + '%'}}</text>同龄人
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
@@ -391,8 +425,14 @@
 				<view class="explanation content">
 					{{essentialreport.explanation.bmi.introductionList.join('')}}
 				</view>
-				<view class="age">
-					超越{{(essentialreport.explanation.bmi.ranking * 100).toFixed(2) + '%'}}同龄人
+				<view class="border-line"></view>
+				<view class="age flex">
+					<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
+					<text class="icon-title">同龄人对比</text>
+				</view>
+				<view class="age content">
+					超越<text
+						class="focusnum">{{(essentialreport.explanation.bmi.ranking * 100).toFixed(2) + '%'}}</text>同龄人
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
@@ -414,14 +454,101 @@
 </template>
 
 <script>
+	import {
+		ref
+	} from 'vue';
+	import * as echarts from 'echarts';
 	import data_ from '@/static/xy.json'
 	export default {
 		data() {
 			return {
 				current: 0,
 				showInfo: false,
-				hrreport: {}
+				hrreport: {},
+				gaugeData: [{
+					value: 60,
+					name: '',
+					title: {
+						offsetCenter: ['0%', '10%']
+					},
+					detail: {
+						valueAnimation: true,
+						offsetCenter: ['0%', '00%']
+					}
+				}],
+				totalOption: {
+					series: [{
+						type: 'gauge',
+						startAngle: 0,
+						endAngle: -360,
+						pointer: {
+							show: false
+						},
+						progress: {
+							show: true,
+							overlap: false,
+							roundCap: true,
+							clip: false,
+							itemStyle: {
+								color: '#ffaa00',
+								borderWidth: 1,
+								borderColor: '#ffaa00'
+							}
+						},
+						axisLine: {
+							lineStyle: {
+								width: 15
+							}
+						},
+						splitLine: {
+							show: false,
+							distance: 0,
+							length: 10
+						},
+						axisTick: {
+							show: true
+						},
+						axisLabel: {
+							show: false,
+							distance: 50
+						},
+						data: {},
+						title: {
+							fontSize: 14
+						},
+						detail: {
+							width: 50,
+							height: 14,
+							fontSize: 34,
+							color: 'inherit',
+							borderColor: 'inherit',
+							borderRadius: 20,
+							borderWidth: 0,
+							formatter: '{value}'
+						}
+					}]
+				}
+
 			}
+		},
+		onShow() {
+			this.$nextTick(() => {
+				// 使用 Canvas 渲染器（默认）
+				var chart = echarts.init(this.$refs.charts1);
+				this.totalOption.series[0].data = this.gaugeData
+				this.gaugeData[0].value = this.physiologyscorereport.data
+				// this.totalOption.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+				// chart.setOption({
+				// 	series: [{
+				// 		data: this.gaugeData,
+				// 		pointer: {
+				// 			show: false
+				// 		}
+				// 	}]
+				// }, true);
+				chart.setOption(this.totalOption);
+				console.log('chart:', chart)
+			})
 		},
 		mounted() {
 			const {
@@ -443,8 +570,6 @@
 			this.essentialreport = essentialreport
 			this.physiologyscorereport = physiologyscorereport
 			this.showInfo = true;
-			console.log('wholeReportGenerated', this.essentialreport)
-			console.log('wholeReportGenerated', this.physiologyscorereport)
 		},
 		methods: {
 			swipeTab(index) {
