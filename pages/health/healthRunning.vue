@@ -7,7 +7,6 @@
 </template>
 
 <script>
-	import data from '@/static/xy.json'
 	import {
 		mapActions,
 		mapState,
@@ -34,6 +33,7 @@
 				canvas: null,
 				equeneId: 0,
 				intervalId: 0,
+				start: 0,
 				backBtnStyle: {
 					'--canvasWdith': '30px',
 					'--canvasHeight': '30px',
@@ -48,11 +48,10 @@
 		onShow() {
 			this.addListener()
 			this.startCamera()
-			console.log('data:', data)
 		},
 		onHide() {
 			this.stopMedia()
-			clearInterval(that.equeneId)
+			// cancelAnimationFrame(that.equeneId)
 		},
 		methods: {
 			addListener() {
@@ -69,13 +68,10 @@
 					let canvas = that.canvas
 					console.log('measurementId canvas:', canvas)
 					if (canvas && canvas.width) {
-						that.equeneId = setInterval(() => {
-							let now = Date.now()
-							measurement.enqueue({
-								frame: canvas,
-								timestamp: now
-							})
-						}, 60)
+						requestAnimationFrame((timestamp) => {
+							that.start = timestamp
+							that.equenId(measurement)
+						})
 					} else {
 						uni.showToast({
 							title: 'canvas width error'
@@ -106,43 +102,61 @@
 					} = report
 					console.log('chunkReportGenerated', report)
 
-					addReport(JSON.stringify(report))
+					// addReport(JSON.stringify(report))
 				})
 
 				//监听完整报告
 				measurement.addEventListener("wholeReportGenerated", (sender, report) => {
-					const {
-						afreport,
-						bpReport,
-						essentialReport,
-						healthScoreReport,
-						hrreport,
-						riskReport,
-						spo2HReport,
-						calculatedReport
-					} = report
+					// const {
+					// 	afreport,
+					// 	bpReport,
+					// 	essentialReport,
+					// 	healthScoreReport,
+					// 	hrreport,
+					// 	riskReport,
+					// 	spo2HReport,
+					// 	calculatedReport
+					// } = report
 					console.log('wholeReportGenerated', report)
-					addReport(JSON.string(report))
+					addReport(JSON.stringify(report))
 				})
 
 				console.log('measurement:', measurement)
-				this.intervalId = setInterval(() => {
+
+				setTimeout(() => {
 					this.takePhoto()
-				}, 60)
+				}, 100)
+
 				// 3秒后开始
 				setTimeout(() => {
-					let result123 = document.getElementsByClassName('uni-canvas-canvas')
-					let base645 = this.takePhoto();
+					// let result123 = document.getElementsByClassName('uni-canvas-canvas')
+					// let base645 = this.takePhoto();
 					let result = measurement.start(this.canvas)
-					console.log('takephoto result!', result)
+					// console.log('takephoto result!', result)
 				}, 3000)
 			},
+			equenId(measurement) {
+				// if (timestamp - this.start >= 4000) {
+				// 	cancelAnimationFrame(this.equeneId)
+				// 	this.start = timestamp
+				// } else {
+				// let now = Date.now()
+				measurement.enqueue({
+					frame: this.canvas,
+					timestamp: Date.now()
+				})
+				this.equeneId = requestAnimationFrame((timestamp) => {
+					this.equenId(measurement)
+				})
+				// }
+			},
 			// 截图拍照
-			takePhoto() {
+			takePhoto(timestamp) {
 				// 借助canvas绘制视频的一帧
 				// if (!this.canvas) {
 				// 	this.canvas = document.createElement("canvas");
 				// }
+
 				let result123 = document.getElementsByClassName('uni-canvas-canvas')
 				let result123_container = document.getElementsByClassName('uni-canvas')
 				// console.log('result', result123.length, result123[0]);
@@ -164,17 +178,21 @@
 					width: deviceInfo.screenWidth,
 					height: deviceInfo.screenHeight
 				}
+				// console.log('this.canvas.width:', deviceInfo)
 				this.canvas.width = pageSize.width;
-				this.canvas.height = pageSize.height;
-				// ctx.scale(-1, 1)
-				this.$set(this.backBtnStyle, '--canvasWidth', (pageSize.width) * 0.8 + 'px')
-				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.height) * 0.8 + 'px')
-				this.$set(this.backBtnStyle, '--canvasLeft', (pageSize.width) * 0.1 + 'px')
-				this.$set(this.backBtnStyle, '--canvasTop', (pageSize.height) * 0.1 + 'px')
+				this.canvas.height = pageSize.width;
+				this.$set(this.backBtnStyle, '--canvasWidth', (pageSize.width) + 'px')
+				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.width) + 'px')
+				this.$set(this.backBtnStyle, '--canvasLeft', '0px')
+				this.$set(this.backBtnStyle, '--canvasTop', (pageSize.width) * 0.1 + 'px')
 				ctx.scale(-1, 1)
 				ctx.translate(-pageSize.width / deviceInfo.pixelRatio, 0);
-				ctx.drawImage(this.video, 0, 0, pageSize.width / deviceInfo.pixelRatio, pageSize.height / deviceInfo
-					.pixelRatio);
+				// 截取一部分
+				ctx.drawImage(this.video, 0, 0, pageSize.width, pageSize.width, 0, 0, pageSize.width / deviceInfo
+					.pixelRatio, pageSize.width / deviceInfo.pixelRatio);
+				this.intervalId = requestAnimationFrame((timestamp) => {
+					this.takePhoto(timestamp)
+				});
 				return ''
 				let base64 = canvas.toDataURL("image/jpeg")
 				// console.log('takephotoing base64,', base64)
@@ -192,9 +210,8 @@
 					track.stop();
 				})
 				this.video.srcObject = null;
-				clearInterval(this.equeneId)
-				clearInterval(this.intervalId)
-				addReport(JSON.stringify(data))
+				cancelAnimationFrame(this.equeneId)
+				cancelAnimationFrame(this.intervalId)
 				// if (this.video) {
 				// 	document.body.removeChild(this.video)
 				// }
@@ -210,15 +227,38 @@
 					height: deviceInfo.screenHeight
 				}
 				// video的横竖的宽高是反的，所以要切换
-				let constraints = {
+				// let constraints = {
+				// 	video: {
+				// 		height: pageSize.width,
+				// 		width: pageSize.height,
+				// 		// facingMode: {
+				// 		// 	exact: "user", // environment --后置  user --前置
+				// 		// },
+				// 	},
+				// 	audio: false
+				// };
+
+				const _videoConstraints = {
+					audio: false,
 					video: {
-						height: pageSize.width,
-						width: pageSize.height,
-						// facingMode: {
-						// 	exact: "user", // environment --后置  user --前置
-						// },
-					},
-					audio: false
+						width: {
+							ideal: deviceInfo.screenWidth,
+							min: deviceInfo.screenWidth,
+							max: 1920
+						},
+						height: {
+							ideal: deviceInfo.screenWidth,
+							min: deviceInfo.screenWidth,
+							max: 1080
+						},
+						frameRate: {
+							ideal: 30,
+							max: 30
+						},
+						facingMode: {
+							ideal: 'user'
+						}
+					}
 				};
 				console.log('startCamera', deviceInfo)
 
@@ -231,9 +271,11 @@
 				// console.log('window.navigator:', window.navigator.mediaDevices)
 				// 使用getUserMedia获取媒体流
 				// 媒体流赋值给srcObject
-				this.video.srcObject = await window.navigator.mediaDevices.getUserMedia(constraints);
+				this.video.srcObject = await window.navigator.mediaDevices.getUserMedia(_videoConstraints);
 				// 直接播放就行了
 				this.video.play();
+				this.start = 0;
+				console.log('startCamera success')
 			},
 		}
 	}

@@ -46,7 +46,8 @@
 
 	import {
 		autoLogin,
-		getToken
+		getToken,
+		addReport
 	} from '../../utils/h5app.js'
 	// #endif
 	export default {
@@ -70,15 +71,17 @@
 		onShow() {
 			this.sure = false
 			// this.$refs.ppp.open('bottom')
-			let userInfo = uni.getStorageSync('userInfo')
-			if (!userInfo) {
-				this.login()
-			} else {
-				console.log('登录2成功')
-				this.$login().then((res) => {
-					console.log('获取token2成功')
-				})
-			}
+			uni.clearStorageSync('userInfo')
+			this.login()
+			// let userInfo = uni.getStorageSync('userInfo')
+			// if (!userInfo) {
+			// 	this.login()
+			// } else {
+			// 	console.log('登录2成功')
+			// 	this.$login().then((res) => {
+			// 		console.log('获取token2成功')
+			// 	})
+			// }
 		},
 		setup() {
 
@@ -92,7 +95,6 @@
 					})
 					console.log('登录成功')
 					this.$login().then((res) => {
-
 						uni.showToast({
 							title: '获取token成功'
 						})

@@ -43,9 +43,7 @@ export function getWxUserInfo() {
  * 保存结果
  **/
 export function addReport(desc) {
-	return request_(base.baseUrl + api.add, {
-		desc: desc
-	})
+	return request_(base.baseUrl + api.add, desc)
 }
 /**
  * 自动登录
@@ -352,7 +350,7 @@ function request_(url, sortData) {
 				if ([601, 40098].includes(code)) {
 					return resolve(code)
 				}
-				if (['A10019'].includes(code)) {
+				if (['A10019', 'B0301'].includes(code)) {
 					uni.showToast({
 						title: message
 					})
