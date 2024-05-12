@@ -14,6 +14,7 @@ const api = {
 	withDrawListApi: '/user/fenxiao/yongjin/detail/page',
 	token: '/ybHealthAccessToken',
 	add: '/ybUserHealthReport/add',
+	last: '/ybUserHealthReport/last',
 }
 
 export function getWxUserInfo() {
@@ -44,6 +45,12 @@ export function getWxUserInfo() {
  **/
 export function addReport(desc) {
 	return request_(base.baseUrl + api.add, desc)
+}
+/**
+ * 获取最近一条测量记录
+ **/
+export function lastReport() {
+	return request_(base.baseUrl + api.last, {})
 }
 /**
  * 自动登录
@@ -320,11 +327,16 @@ function request_(url, sortData) {
 			'Content-Type': 'application/json;charset=UTF-8'
 		}
 
-		// console.log("token", storeUserInfo.token)
+		// let token =
+		// 	"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjMyLCJhY2NvdW50Ijoib1d2Vno2Y19UTDhzWXJ0RWxLU18ycVM2UjFfdyIsInV1aWQiOiI4ODY5OThjMC03ZDgyLTQwMDgtYjM5Yy1kZDc5MjZiMzg1NDUiLCJyZW1lbWJlck1lIjp0cnVlLCJleHBpcmF0aW9uRGF0ZSI6MTcxNjA5MzM5NzYzMSwiY2FUb2tlbiI6bnVsbCwib3RoZXJzIjpudWxsLCJzdWIiOiIzMiIsImlhdCI6MTcxNTQ4ODU5NywiZXhwIjoxNzE2MDkzMzk3fQ.dc4QTPBT_MV6ZUPidFFjkuZRWVZiAKbbvCgivjgIB0L9y3Zw9050VZfLRy2IAN3tYJnpGwQ8aZRDjQzJgd99rw"
+
+		// console.log("token", token)
 		if (storeUserInfo && storeUserInfo.token) {
 			header['Authorization'] = storeUserInfo.token;
 			// options.header['Cookie'] = '';  
-		};
+		} else {
+			// header['Authorization'] = token;
+		}
 		console.log('header', header)
 		uni.showLoading({
 			title: '加载中'
@@ -354,6 +366,9 @@ function request_(url, sortData) {
 					uni.showToast({
 						title: message
 					})
+					//重新登录刷新网页
+					window.location.href =
+						'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.zsyl.cc/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
 					return reject(code)
 				}
 				// if ([200].includes(code)) {
