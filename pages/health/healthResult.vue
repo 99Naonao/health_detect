@@ -33,6 +33,72 @@
 				</view>
 				<view class="desc">{{physiologyscorereport.explanation.introductionList.join('')}}</view>
 			</view>
+			<view class="border">
+				<view class="age flex">
+					<image class="icon-risk" src="../../static/icon/JK_04_IconFXQJ_Y.png"></image>
+					<text class="icon-title">风险区间</text>
+				</view>
+				<view class="progress-container">
+					<view class="progress-bar flex">
+						<view class="progress-layer first">
+
+						</view>
+						<view class="progress-layer second">
+
+						</view>
+						<view class="progress-layer third">
+
+						</view>
+						<view class="progress-layer forth">
+
+						</view>
+						<view class="progress-layer fifth">
+
+						</view>
+					</view>
+					<view class="tick">
+						<view class="tick-item" style="width: 20px;">
+							0
+						</view>
+						<view class="tick-item" style="width: 20px;left: 58%;">
+							60
+						</view>
+						<view class="tick-item" style="width: 20px;left: 68%;">
+							70
+						</view>
+						<view class="tick-item" style="width: 20px;left: 78%;">
+							80
+						</view>
+						<view class="tick-item" style="width: 20px;left: 87%;text-align: center;">
+							90
+						</view>
+						<view class="tick-item" style="width: 20px;left: 95%;text-align: center;">
+							100
+						</view>
+					</view>
+				</view>
+				<view class="age flex">
+					<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
+					<text class="icon-title">同龄人对比</text>
+				</view>
+				<view class="content">超越<text
+						class="focusnum">{{(physiologyscorereport.explanation.ranking * 100).toFixed(2) + '%'}}</text>同龄人
+				</view>
+				<view class="border-line"></view>
+				<view class="flex">
+					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+						class="icon-title">健康建议</text>
+				</view>
+				<view class="content">{{physiologyscorereport.explanation.advicesList[0].valuesList.join('')}}
+				</view>
+				<view class="border-line"></view>
+				<view class="flex">
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
+						class="icon-title">概念解释</text>
+				</view>
+				<view class="content">{{physiologyscorereport.explanation.detailsList[0].valuesList.join('')}}
+				</view>
+			</view>
 			<view class="heart border">
 				<view class="title">心率</view>
 				<view>{{hrreport.data.hrbpm}}</view>
@@ -59,7 +125,7 @@
 				<view class="content">{{hrreport.explanation.hrbpm.advicesList[0].valuesList.join('')}}</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')}}</view>
@@ -91,7 +157,7 @@
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{hrreport.explanation.hrv.detailsList[0].valuesList.join('')}}</view>
@@ -115,7 +181,7 @@
 				<view class="content">{{afreport.explanation.advicesList[0].valuesList.join('')}}</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{afreport.explanation.detailsList[0].valuesList.join('')}}</view>
@@ -148,7 +214,7 @@
 				<view class="content">{{bpreport.explanation.bpdiastolic.advicesList[0].valuesList.join('')}}</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{bpreport.explanation.bpdiastolic.detailsList[0].valuesList.join('')}}</view>
@@ -176,7 +242,7 @@
 				<view class="content">{{bpreport.explanation.bpsystolic.advicesList[0].valuesList.join('')}}</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{bpreport.explanation.bpsystolic.detailsList[0].valuesList.join('')}}</view>
@@ -202,7 +268,7 @@
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{spo2hreport.explanation.detailsList[0].valuesList.join('')}}</view>
@@ -237,7 +303,7 @@
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{riskreport.explanation.bpheartattack.detailsList[0].valuesList.join('')}}</view>
@@ -272,7 +338,7 @@
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{riskreport.explanation.bpstroke.detailsList[0].valuesList.join('')}}</view>
@@ -306,7 +372,7 @@
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{riskreport.explanation.bpcvd.detailsList[0].valuesList.join('')}}</view>
@@ -340,7 +406,7 @@
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{riskreport.explanation.bppp.detailsList[0].valuesList.join('')}}</view>
@@ -374,7 +440,7 @@
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{riskreport.explanation.bptau.detailsList[0].valuesList.join('')}}</view>
@@ -409,7 +475,7 @@
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{essentialreport.explanation.age.detailsList[0].valuesList.join('')}}</view>
@@ -444,7 +510,7 @@
 				</view>
 				<view class="border-line"></view>
 				<view class="flex">
-					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
+					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
 				<view class="content">{{essentialreport.explanation.bmi.detailsList[0].valuesList.join('')}}</view>
@@ -459,6 +525,7 @@
 	} from 'vue';
 	import * as echarts from 'echarts';
 	import data_ from '@/static/xy.json'
+	import progressData from '@/utils/progrossData.js'
 	import {
 		lastReport,
 		addReport,
@@ -538,39 +605,49 @@
 			}
 		},
 		onShow() {
-			uni.showLoading({
-				title: '请求中'
-			})
-			//获取最后一条记录
-			lastReport().then(data => {
-				console.log('data', data)
-				this.initLastData(data)
-			}).catch((data) => {
-				console.log('catch:', data)
-				uni.hideLoading()
-				// this.initLastData()
-			})
+			// uni.showLoading({
+			// 	title: '请求中'
+			// })
+			// //获取最后一条记录
+			// lastReport().then(data => {
+			// 	console.log('data', data)
+			// 	this.initLastData(data)
+			// }).catch((data) => {
+			// 	console.log('catch:', data)
+			// 	uni.hideLoading()
+			// 	// this.initLastData()
+			// })
 		},
 		mounted() {
-			// const {
-			// 	physiologyscorereport, // 综合
-			// 	afreport,
-			// 	bpreport,
-			// 	essentialreport,
-			// 	healthScoreReport,
-			// 	hrreport,
-			// 	riskreport,
-			// 	spo2hreport,
-			// 	calculatedReport
-			// } = data_
-			// this.hrreport = hrreport
-			// this.afreport = afreport
-			// this.bpreport = bpreport
-			// this.spo2hreport = spo2hreport
-			// this.riskreport = riskreport
-			// this.essentialreport = essentialreport
-			// this.physiologyscorereport = physiologyscorereport
+			const {
+				physiologyscorereport, // 综合
+				afreport,
+				bpreport,
+				essentialreport,
+				healthScoreReport,
+				hrreport,
+				riskreport,
+				spo2hreport,
+				calculatedReport
+			} = data_
+			this.hrreport = hrreport
+			this.afreport = afreport
+			this.bpreport = bpreport
+			this.spo2hreport = spo2hreport
+			this.riskreport = riskreport
+			this.essentialreport = essentialreport
+			this.physiologyscorereport = physiologyscorereport
+			this.showInfo = true;
 
+			this.$nextTick(() => {
+				// 使用 Canvas 渲染器（默认）
+				var chart = echarts.init(this.$refs.charts1);
+				this.totalOption.series[0].data = this.gaugeData
+				this.gaugeData[0].value = this.physiologyscorereport.data
+				chart.setOption(this.totalOption);
+				console.log('chart:', chart)
+				uni.hideLoading()
+			})
 		},
 		methods: {
 			swipeTab(index) {
@@ -672,6 +749,12 @@
 			display: block;
 		}
 
+		.icon-risk {
+			width: 50rpx;
+			height: 45rpx;
+			display: block;
+		}
+
 		.icon-age {
 			width: 42rpx;
 			height: 43rpx;
@@ -756,6 +839,65 @@
 			padding-top: 10rpx;
 			background-color: white;
 			border-bottom: solid 1rpx skyblue;
+		}
+	}
+
+	.progress-container {
+		width: 100%;
+		height: 25rpx;
+		color: #333;
+		margin-top: 30rpx;
+		margin-bottom: 30rpx;
+		padding-top: 30rpx;
+		padding-bottom: 30rpx;
+
+		.tick {
+			position: relative;
+			padding-top: 10rpx;
+			padding-bottom: 10rpx;
+			font-family: 'YouYuan';
+
+			.tick-item {
+				position: absolute;
+			}
+		}
+
+		.progress-bar {
+			height: 100%;
+			border-radius: 10rpx;
+			background-color: #eee;
+			overflow: hidden;
+			position: relative;
+
+			.progress-layer {
+				height: 100%;
+			}
+
+			.first {
+				width: 60%;
+				background-color: rgb(124, 196, 200);
+			}
+
+			.second {
+				width: 10%;
+				background-color: rgb(172, 234, 111);
+			}
+
+			.third {
+				width: 10%;
+				background-color: rgb(226, 201, 62);
+			}
+
+			.forth {
+				width: 10%;
+				background-color: rgb(242, 179, 41);
+			}
+
+
+			.fifth {
+				width: 10%;
+				background-color: rgb(242, 111, 41);
+			}
 		}
 	}
 </style>

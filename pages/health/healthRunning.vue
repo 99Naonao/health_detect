@@ -87,7 +87,10 @@
 				measurement.addEventListener("collected", sender => {
 					//停止采集视频帧
 					console.log('正常停止采集视频')
-					that.stopMedia()
+					uni.showToast({
+						title: '采样结束'
+					})
+					// that.stopMedia()
 				})
 
 
@@ -118,7 +121,17 @@
 					// 	calculatedReport
 					// } = report
 					console.log('wholeReportGenerated', report)
-					addReport(JSON.stringify(report))
+					// 上传报告
+					addReport({
+						desc: JSON.stringify(report)
+					}).then(() => {
+						that.stopMedia();
+						// 跳转结果界面
+						uni.navigateTo({
+							url: '/pages/health/healthResult'
+						})
+					})
+					// 停止
 				})
 
 				console.log('measurement:', measurement)

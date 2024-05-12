@@ -10,16 +10,16 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/health/healthResult",
+			"path": "pages/health/health",
 			"style": {
-				"navigationBarTitleText": "健康检测结果",
+				"navigationBarTitleText": "健康检测",
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path": "pages/health/health",
+			"path": "pages/health/healthResult",
 			"style": {
-				"navigationBarTitleText": "健康检测",
+				"navigationBarTitleText": "健康检测结果",
 				"navigationStyle": "custom"
 			}
 		},
