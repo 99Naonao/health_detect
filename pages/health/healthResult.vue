@@ -6,13 +6,13 @@
 					生理测量报告
 				</view>
 				<view class="timestamp" v-if="0==current">
-					2024
+					{{lastCreateTime}}
 				</view>
 			</view>
 			<view class="tabitem" :class="{'active':1==current}" @click="swipeTab(1)">
 				<view class="">情绪测量报告</view>
 				<view class="timestamp" v-if="1==current">
-					2024
+					{{lastCreateTime}}
 				</view>
 			</view>
 		</view>
@@ -459,17 +459,23 @@
 	} from 'vue';
 	import * as echarts from 'echarts';
 	import data_ from '@/static/xy.json'
+	import {
+		lastReport,
+		addReport,
+		getJsonResult
+	} from '@/utils/h5app.js'
 	export default {
 		data() {
 			return {
+				lastCreateTime: '2024', // 上次检测时间
 				current: 0,
 				showInfo: false,
 				hrreport: {},
 				gaugeData: [{
 					value: 60,
-					name: '',
+					name: 'score',
 					title: {
-						offsetCenter: ['0%', '10%']
+						offsetCenter: ['00%', '30%']
 					},
 					detail: {
 						valueAnimation: true,
@@ -532,48 +538,81 @@
 			}
 		},
 		onShow() {
-			this.$nextTick(() => {
-				// 使用 Canvas 渲染器（默认）
-				var chart = echarts.init(this.$refs.charts1);
-				this.totalOption.series[0].data = this.gaugeData
-				this.gaugeData[0].value = this.physiologyscorereport.data
-				// this.totalOption.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-				// chart.setOption({
-				// 	series: [{
-				// 		data: this.gaugeData,
-				// 		pointer: {
-				// 			show: false
-				// 		}
-				// 	}]
-				// }, true);
-				chart.setOption(this.totalOption);
-				console.log('chart:', chart)
+			uni.showLoading({
+				title: '请求中'
+			})
+			//获取最后一条记录
+			lastReport().then(data => {
+				console.log('data', data)
+				this.initLastData(data)
+			}).catch((data) => {
+				console.log('catch:', data)
+				uni.hideLoading()
+				// this.initLastData()
 			})
 		},
 		mounted() {
-			const {
-				physiologyscorereport, // 综合
-				afreport,
-				bpreport,
-				essentialreport,
-				healthScoreReport,
-				hrreport,
-				riskreport,
-				spo2hreport,
-				calculatedReport
-			} = data_
-			this.hrreport = hrreport
-			this.afreport = afreport
-			this.bpreport = bpreport
-			this.spo2hreport = spo2hreport
-			this.riskreport = riskreport
-			this.essentialreport = essentialreport
-			this.physiologyscorereport = physiologyscorereport
-			this.showInfo = true;
+			// const {
+			// 	physiologyscorereport, // 综合
+			// 	afreport,
+			// 	bpreport,
+			// 	essentialreport,
+			// 	healthScoreReport,
+			// 	hrreport,
+			// 	riskreport,
+			// 	spo2hreport,
+			// 	calculatedReport
+			// } = data_
+			// this.hrreport = hrreport
+			// this.afreport = afreport
+			// this.bpreport = bpreport
+			// this.spo2hreport = spo2hreport
+			// this.riskreport = riskreport
+			// this.essentialreport = essentialreport
+			// this.physiologyscorereport = physiologyscorereport
+
 		},
 		methods: {
 			swipeTab(index) {
 				this.current = index
+			},
+			async initLastData(data) {
+				let data_url = (data.contentDetail)
+				let report = await getJsonResult(data_url)
+				const {
+					physiologyscorereport, // 综合
+					afreport,
+					bpreport,
+					essentialreport,
+					healthScoreReport,
+					hrreport,
+					riskreport,
+					spo2hreport,
+					calculatedReport
+				} = report
+				this.hrreport = hrreport
+				this.afreport = afreport
+				this.bpreport = bpreport
+				this.spo2hreport = spo2hreport
+				this.riskreport = riskreport
+				this.essentialreport = essentialreport
+				this.physiologyscorereport = physiologyscorereport
+
+				this.lastCreateTime = data.createAt;
+
+				this.showInfo = true;
+
+				console.log('report:', report)
+
+				this.$nextTick(() => {
+					// 使用 Canvas 渲染器（默认）
+					var chart = echarts.init(this.$refs.charts1);
+					this.totalOption.series[0].data = this.gaugeData
+					this.gaugeData[0].value = this.physiologyscorereport.data
+					chart.setOption(this.totalOption);
+					console.log('chart:', chart)
+					uni.hideLoading()
+				})
 			}
 		}
 	}
@@ -584,6 +623,8 @@
 		background-color: #f1f5f7;
 		font-family: "YouYuan";
 		color: #333;
+		padding-bottom: env(safe-area-inset-bottom);
+		padding-bottom: constant(safe-area-inset-bottom);
 		font-weight: 500;
 
 		.content {

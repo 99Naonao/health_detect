@@ -153,6 +153,11 @@ export function getSeperateQRCode(data) {
 export function getCityList() {
 	return getJson_(api.cityList)
 }
+
+/** 列表**/
+export function getJsonResult(url) {
+	return getJson_(url)
+}
 /**微信支付**/
 export async function wxPay(data) {
 	let result = await request_(base.baseUrl + api.wxPay, data);
