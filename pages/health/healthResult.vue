@@ -39,7 +39,7 @@
 					<text class="icon-title">风险区间</text>
 				</view>
 				<view class="progress-container">
-					<view class="tooltip" :style="{'left':riskToopTipLeft,'background-color':riskColor}">
+					<view class="tooltip" :style="{'left':riskToopTipLeft}">
 						<view class="tooltip-text" :style="{'background-color':riskColor}">
 							{{riskTips}}
 						</view>
@@ -142,7 +142,7 @@
 			</view>
 			<view class="heartRV border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>心率变异性<text
+					<image class="heartIcon" src="@/static/icon/SY_IconXZBY_Y.png"></image>心率变异性<text
 						class="valueNum">{{hrreport.data.hrv}}</text>
 				</view>
 
@@ -179,7 +179,7 @@
 			<!-- 房颤 -->
 			<view class="heartAfReport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>房颤
+					<image class="heartafIcon" src="@/static/icon/SY_IconFC_Y.png"></image>房颤
 				</view>
 				<view class="content">
 					<view class="desc-ccc">{{afreport.data == 0? '未发作':'发作'}}</view>
@@ -207,10 +207,10 @@
 			<!-- 舒张压 -->
 			<view class="heartBPReport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>舒张压<text
+					<image class="heartpressIcon" src="@/static/icon/SY_IconXY_Y.png"></image>舒张压<text
 						class="valueNum">{{bpreport.data.bpdiastolic}}</text>
 				</view>
-				<progress-bar :tick="hrreport.data.bpdiastolic" :ticks="[50,60,80,90,100]"></progress-bar>
+				<progress-bar :tick="bpreport.data.bpdiastolic" :ticks="[50,60,80,90,100]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -243,10 +243,10 @@
 			<!-- 收缩压 -->
 			<view class="heartBPReport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>收缩压<text
+					<image class="heartpressIcon" src="@/static/icon/SY_IconXY_Y.png"></image>收缩压<text
 						class="valueNum">{{bpreport.data.bpsystolic}}</text>
 				</view>
-				<progress-bar :tick="hrreport.data.bpsystolic" :ticks="[70,90,110,140,170]"></progress-bar>
+				<progress-bar :tick="bpreport.data.bpsystolic" :ticks="[70,90,110,140,170]"></progress-bar>
 
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
@@ -275,7 +275,7 @@
 			<!-- 血氧饱和度 -->
 			<view class="heartspo2hreport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>血氧饱和度<text
+					<image class="hearto2Icon" src="@/static/icon/SY_IconXYBHD_Y.png"></image>血氧饱和度<text
 						class="valueNum">{{spo2hreport.data}}%</text>
 				</view>
 
@@ -305,7 +305,7 @@
 			<!-- 心脏病风险 -->
 			<view class="heartspo2hreport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>心脏病风险<text
+					<image class="heartbreakIcon" src="@/static/icon/SY_IconXZBFX_Y.png"></image>心脏病风险<text
 						class="valueNum">{{(riskreport.data.bpheartattack * 100).toFixed(2)}}%</text>
 				</view>
 
@@ -344,7 +344,7 @@
 			<!-- 中风风险 -->
 			<view class="heartspo2hreport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>中风风险<text
+					<image class="heartbpsIcon" src="@/static/icon/SY_IconZFFX_Y.png"></image>中风风险<text
 						class="valueNum">{{riskreport.data.bpstroke * 100}}%</text>
 				</view>
 				<progress-bar :tick="riskreport.data.bpstroke * 100" :ticks="[0,1.5,3,4.5,6,7.5]"></progress-bar>
@@ -382,7 +382,7 @@
 			<!-- 心血管病风险 -->
 			<view class="heartspo2hreport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>心血管病风险<text
+					<image class="heartriskIcon" src="@/static/icon/SY_IconXGGN_Y.png"></image>心血管病风险<text
 						class="valueNum">{{riskreport.data.bpcvd * 100}}%</text>
 				</view>
 				<progress-bar :tick="riskreport.data.bpcvd * 100" :ticks="[0,3,6,9,12,15]"></progress-bar>
@@ -419,7 +419,7 @@
 			<!-- 心脏压力 -->
 			<view class="heartspo2hreport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>心脏压力<text
+					<image class="heartbpppIcon" src="@/static/icon/SY_IconXZYL_Y.png"></image>心脏压力<text
 						class="valueNum">{{riskreport.data.bppp}}</text>
 				</view>
 				<progress-bar :tick="riskreport.data.bppp" :ticks="[3.5,3.8,4.1,4.4,4.7]"></progress-bar>
@@ -493,7 +493,7 @@
 			<!-- 皮肤年龄 -->
 			<view class="heartspo2hreport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>皮肤年龄<text
+					<image class="heartIcon" src="@/static/icon/SY_IconPFNL_Y.png"></image>皮肤年龄<text
 						class="valueNum">{{essentialreport.data.age}}</text>
 				</view>
 				<progress-bar :tick="essentialreport.data.age" :ticks="[0,30,60,90,120,150]"></progress-bar>
@@ -531,7 +531,7 @@
 			<!-- 体重指数 -->
 			<view class="heartspo2hreport border">
 				<view class="title">
-					<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>体重指数<text
+					<image class="heartIcon" src="@/static/icon/SY_IconTZZS_Y.png"></image>体重指数<text
 						class="valueNum">{{essentialreport.data.bmi}}</text>
 				</view>
 				<progress-bar :tick="essentialreport.data.bmi" :ticks="[15,18.5,25,30,35,40]"></progress-bar>
@@ -677,59 +677,59 @@
 			})
 		},
 		mounted() {
-			// const {
-			// 	physiologyscorereport, // 综合
-			// 	afreport,
-			// 	bpreport,
-			// 	essentialreport,
-			// 	healthScoreReport,
-			// 	hrreport,
-			// 	riskreport,
-			// 	spo2hreport,
-			// 	calculatedReport
-			// } = data_
-			// this.hrreport = hrreport
-			// this.afreport = afreport
-			// this.bpreport = bpreport
-			// this.spo2hreport = spo2hreport
-			// this.riskreport = riskreport
-			// this.essentialreport = essentialreport
-			// this.physiologyscorereport = physiologyscorereport
-			// this.showInfo = true;
+			const {
+				physiologyscorereport, // 综合
+				afreport,
+				bpreport,
+				essentialreport,
+				healthScoreReport,
+				hrreport,
+				riskreport,
+				spo2hreport,
+				calculatedReport
+			} = data_
+			this.hrreport = hrreport
+			this.afreport = afreport
+			this.bpreport = bpreport
+			this.spo2hreport = spo2hreport
+			this.riskreport = riskreport
+			this.essentialreport = essentialreport
+			this.physiologyscorereport = physiologyscorereport
+			this.showInfo = true;
 
-			// let riskValue = this.physiologyscorereport.data
-			// if (riskValue >= 100) {
-			// 	riskValue = 100
-			// 	this.riskTips = '低风险'
-			// 	this.riskColor = '#f26f29'
-			// } else if (riskValue >= 90) {
-			// 	this.riskTips = '低风险'
-			// 	this.riskColor = '#f26f29'
-			// } else if (riskValue >= 80) {
-			// 	this.riskTips = '中低风险'
-			// 	this.riskColor = '#f2b329'
-			// } else if (riskValue >= 70) {
-			// 	this.riskTips = '中风险'
-			// 	this.riskColor = '#e2c93e'
-			// } else if (riskValue >= 60) {
-			// 	this.riskTips = '中高风险'
-			// 	this.riskColor = '#acea6f'
-			// } else {
-			// 	this.riskTips = '高风险'
-			// 	this.riskColor = '#7cc4c8'
-			// }
-			// this.riskToopTipLeft = riskValue + '%'
-			// console.log('this.riskc:', this.riskColor)
+			let riskValue = this.physiologyscorereport.data
+			if (riskValue >= 100) {
+				riskValue = 100
+				this.riskTips = '低风险'
+				this.riskColor = '#f26f29'
+			} else if (riskValue >= 90) {
+				this.riskTips = '低风险'
+				this.riskColor = '#f26f29'
+			} else if (riskValue >= 80) {
+				this.riskTips = '中低风险'
+				this.riskColor = '#f2b329'
+			} else if (riskValue >= 70) {
+				this.riskTips = '中风险'
+				this.riskColor = '#e2c93e'
+			} else if (riskValue >= 60) {
+				this.riskTips = '中高风险'
+				this.riskColor = '#acea6f'
+			} else {
+				this.riskTips = '高风险'
+				this.riskColor = '#7cc4c8'
+			}
+			this.riskToopTipLeft = riskValue + '%'
+			console.log('this.riskc:', this.riskColor)
 
-			// this.$nextTick(() => {
-			// 	// 使用 Canvas 渲染器（默认）
-			// 	var chart = echarts.init(this.$refs.charts1);
-			// 	this.totalOption.series[0].data = this.gaugeData
-			// 	this.gaugeData[0].value = this.physiologyscorereport.data
-			// 	chart.setOption(this.totalOption);
-			// 	console.log('chart:', chart)
-			// 	uni.hideLoading()
-			// })
+			this.$nextTick(() => {
+				// 使用 Canvas 渲染器（默认）
+				var chart = echarts.init(this.$refs.charts1);
+				this.totalOption.series[0].data = this.gaugeData
+				this.gaugeData[0].value = this.physiologyscorereport.data
+				chart.setOption(this.totalOption);
+				console.log('chart:', chart)
+				uni.hideLoading()
+			})
 		},
 		methods: {
 			swipeTab(index) {
@@ -863,6 +863,11 @@
 			display: block;
 		}
 
+		.heartbpsIcon {
+			width: 40rpx;
+			height: 48rpx;
+		}
+
 		.icon-risk {
 			width: 50rpx;
 			height: 45rpx;
@@ -900,6 +905,36 @@
 		.heartIcon {
 			width: 50rpx;
 			height: 45rpx;
+		}
+
+		.hearto2Icon {
+			width: 45rpx;
+			height: 46rpx;
+		}
+
+		.heartbreakIcon {
+			width: 50rpx;
+			height: 45rpx;
+		}
+
+		.heartafIcon {
+			width: 58rpx;
+			height: 39rpx;
+		}
+
+		.heartbpppIcon {
+			width: 52rpx;
+			height: 48rpx;
+		}
+
+		.heartpressIcon {
+			width: 53rpx;
+			height: 42rpx;
+		}
+
+		.heartriskIcon {
+			width: 48rpx;
+			height: 50rpx;
 		}
 
 		.desc-ccc {
@@ -1031,7 +1066,7 @@
 	}
 
 	.tooltip {
-		position: relative;
+		position: absolute;
 		left: 100px;
 		top: -25px;
 
@@ -1039,24 +1074,23 @@
 			padding: 10rpx;
 			padding-left: 20rpx;
 			padding-right: 20rpx;
+			word-wrap: normal;
+			word-break: keep-all;
 			color: #fff;
 			border-radius: 10rpx;
 			text-align: center;
-			position: absolute;
 			transform: translateX(-50%);
 			top: -20px;
 		}
 
 		.tooltip-triangle {
-			position: absolute;
-			top: 0rpx;
-			left: -10px;
-			top: 9px;
 			border-width: 20rpx;
 			border-color: #000 transparent transparent transparent;
 			border-style: solid;
 			width: 0px;
 			height: 0px;
+			margin-top: -2rpx;
+			transform: translateX(-50%);
 		}
 	}
 </style>
