@@ -39,6 +39,13 @@
 					<text class="icon-title">风险区间</text>
 				</view>
 				<view class="progress-container">
+					<view class="tooltip" :style="{'left':riskToopTipLeft,'background-color':riskColor}">
+						<view class="tooltip-text" :style="{'background-color':riskColor}">
+							{{riskTips}}
+						</view>
+						<view class="tooltip-triangle"
+							:style="{'border-color':riskColor+' transparent transparent transparent'}"></view>
+					</view>
 					<view class="progress-bar flex">
 						<view class="progress-layer first">
 
@@ -537,6 +544,9 @@
 				lastCreateTime: '2024', // 上次检测时间
 				current: 0,
 				showInfo: false,
+				riskToopTipLeft: 0,
+				riskTips: '轻度风险',
+				riskColor: '#f2b329',
 				hrreport: {},
 				gaugeData: [{
 					value: 60,
@@ -638,6 +648,30 @@
 			this.essentialreport = essentialreport
 			this.physiologyscorereport = physiologyscorereport
 			this.showInfo = true;
+
+			let riskValue = this.physiologyscorereport.data
+			if (riskValue >= 100) {
+				riskValue = 100
+				this.riskTips = '低风险'
+				this.riskColor = '#f26f29'
+			} else if (riskValue >= 90) {
+				this.riskTips = '低风险'
+				this.riskColor = '#f26f29'
+			} else if (riskValue >= 80) {
+				this.riskTips = '中低风险'
+				this.riskColor = '#f2b329'
+			} else if (riskValue >= 70) {
+				this.riskTips = '中风险'
+				this.riskColor = '#e2c93e'
+			} else if (riskValue >= 60) {
+				this.riskTips = '中高风险'
+				this.riskColor = '#acea6f'
+			} else {
+				this.riskTips = '高风险'
+				this.riskColor = '#7cc4c8'
+			}
+			this.riskToopTipLeft = riskValue + '%'
+			console.log('this.riskc:', this.riskColor)
 
 			this.$nextTick(() => {
 				// 使用 Canvas 渲染器（默认）
@@ -846,6 +880,7 @@
 		width: 100%;
 		height: 25rpx;
 		color: #333;
+		position: relative;
 		margin-top: 30rpx;
 		margin-bottom: 30rpx;
 		padding-top: 30rpx;
@@ -898,6 +933,36 @@
 				width: 10%;
 				background-color: rgb(242, 111, 41);
 			}
+		}
+	}
+
+	.tooltip {
+		position: relative;
+		left: 100px;
+		top: -25px;
+
+		.tooltip-text {
+			padding: 10rpx;
+			padding-left: 20rpx;
+			padding-right: 20rpx;
+			color: #fff;
+			border-radius: 10rpx;
+			text-align: center;
+			position: absolute;
+			transform: translateX(-50%);
+			top: -20px;
+		}
+
+		.tooltip-triangle {
+			position: absolute;
+			top: 0rpx;
+			left: -10px;
+			top: 9px;
+			border-width: 20rpx;
+			border-color: #000 transparent transparent transparent;
+			border-style: solid;
+			width: 0px;
+			height: 0px;
 		}
 	}
 </style>
