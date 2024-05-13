@@ -107,8 +107,8 @@
 				</view>
 			</view>
 			<view class="heart border">
-				<view class="title">心率</view>
-				<view>{{hrreport.data.hrbpm}}</view>
+				<view class="title">心率<text class="valueNum">{{hrreport.data.hrbpm}}</text></view>
+				<progress-bar :tick="hrreport.data.hrbpm"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -138,8 +138,9 @@
 				<view class="content">{{hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')}}</view>
 			</view>
 			<view class="heartRV border">
-				<view class="title">心率变异性</view>
-				<view>{{hrreport.data.hrv}}</view>
+				<view class="title">心率变异性<text class="valueNum">{{hrreport.data.hrv}}</text></view>
+
+				<progress-bar :tick="hrreport.data.hrv" :ticks="[0,50,200,300]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -172,7 +173,9 @@
 			<!-- 房颤 -->
 			<view class="heartAfReport border">
 				<view class="title">房颤</view>
-				<view class="content">{{afreport.data == 0? '未发作':'发作'}}</view>
+				<view class="content">
+					<view class="desc-ccc">{{afreport.data == 0? '未发作':'发作'}}</view>
+				</view>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -195,8 +198,8 @@
 			</view>
 			<!-- 舒张压 -->
 			<view class="heartBPReport border">
-				<view class="title">舒张压</view>
-				<view>{{bpreport.data.bpdiastolic}}</view>
+				<view class="title">舒张压<text class="valueNum">{{bpreport.data.bpdiastolic}}</text></view>
+				<progress-bar :tick="hrreport.data.bpdiastolic" :ticks="[50,60,80,90,100]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -228,8 +231,10 @@
 			</view>
 			<!-- 收缩压 -->
 			<view class="heartBPReport border">
-				<view class="title">收缩压</view>
-				<view>{{bpreport.data.bpsystolic}}</view>
+				<view class="title">收缩压<text class="valueNum">{{bpreport.data.bpsystolic}}</text>
+				</view>
+				<progress-bar :tick="hrreport.data.bpsystolic" :ticks="[70,90,110,140,170]"></progress-bar>
+
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -256,8 +261,9 @@
 			</view>
 			<!-- 血氧饱和度 -->
 			<view class="heartspo2hreport border">
-				<view class="title">血氧饱和度</view>
-				<view>{{spo2hreport.data}}%</view>
+				<view class="title">血氧饱和度<text class="valueNum">{{spo2hreport.data}}%</text></view>
+
+				<progress-bar :tick="spo2hreport.data" :ticks="[60,90,100]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -282,8 +288,10 @@
 			</view>
 			<!-- 心脏病风险 -->
 			<view class="heartspo2hreport border">
-				<view class="title">心脏病风险</view>
-				<view>{{riskreport.data.bpheartattack}}%</view>
+				<view class="title">心脏病风险<text
+						class="valueNum">{{(riskreport.data.bpheartattack * 100).toFixed(2)}}%</text></view>
+
+				<progress-bar :tick="riskreport.data.bpheartattack * 100" :ticks="[0,1.5,3,4.5,6,7.5]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -317,8 +325,8 @@
 			</view>
 			<!-- 中风风险 -->
 			<view class="heartspo2hreport border">
-				<view class="title">中风风险</view>
-				<view>{{riskreport.data.bpstroke * 100}}%</view>
+				<view class="title">中风风险<text class="valueNum">{{riskreport.data.bpstroke * 100}}%</text></view>
+				<progress-bar :tick="riskreport.data.bpstroke * 100" :ticks="[0,1.5,3,4.5,6,7.5]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -352,8 +360,8 @@
 			</view>
 			<!-- 心血管病风险 -->
 			<view class="heartspo2hreport border">
-				<view class="title">心血管病风险</view>
-				<view>{{riskreport.data.bpcvd * 100}}%</view>
+				<view class="title">心血管病风险<text class="valueNum">{{riskreport.data.bpcvd * 100}}%</text></view>
+				<progress-bar :tick="riskreport.data.bpcvd * 100" :ticks="[0,3,6,9,12,15]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -386,8 +394,8 @@
 			</view>
 			<!-- 心脏压力 -->
 			<view class="heartspo2hreport border">
-				<view class="title">心脏压力</view>
-				<view>{{riskreport.data.bppp}}</view>
+				<view class="title">心脏压力<text class="valueNum">{{riskreport.data.bppp}}</text></view>
+				<progress-bar :tick="riskreport.data.bppp" :ticks="[3.5,3.8,4.1,4.4,4.7]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -420,8 +428,8 @@
 			</view>
 			<!-- 血管功能 -->
 			<view class="heartspo2hreport border">
-				<view class="title">血管功能</view>
-				<view>{{riskreport.data.bptau}}</view>
+				<view class="title">血管功能<text class="valueNum">{{riskreport.data.bptau}}</text></view>
+				<progress-bar :tick="riskreport.data.bptau" :ticks="[0,0.4,0.8,1.2,1.6,2,2.4,3]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -454,8 +462,8 @@
 			</view>
 			<!-- 皮肤年龄 -->
 			<view class="heartspo2hreport border">
-				<view class="title">皮肤年龄</view>
-				<view>{{essentialreport.data.age}}</view>
+				<view class="title">皮肤年龄<text class="valueNum">{{essentialreport.data.age}}</text></view>
+				<progress-bar :tick="essentialreport.data.age" :ticks="[0,30,60,90,120,150]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -489,8 +497,8 @@
 			</view>
 			<!-- 体重指数 -->
 			<view class="heartspo2hreport border">
-				<view class="title">体重指数</view>
-				<view>{{essentialreport.data.bmi}}</view>
+				<view class="title">体重指数<text class="valueNum">{{essentialreport.data.bmi}}</text></view>
+				<progress-bar :tick="essentialreport.data.bmi" :ticks="[15,18.5,25,30,35,40]"></progress-bar>
 				<view class="flex align-center">
 					<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 						class="icon-title">AI专家解读</text>
@@ -530,6 +538,7 @@
 	import {
 		ref
 	} from 'vue';
+	import progressBar from '../comp/progressBar.vue';
 	import * as echarts from 'echarts';
 	import data_ from '@/static/xy.json'
 	import progressData from '@/utils/progrossData.js'
@@ -539,6 +548,9 @@
 		getJsonResult
 	} from '@/utils/h5app.js'
 	export default {
+		components: {
+			progressBar
+		},
 		data() {
 			return {
 				lastCreateTime: '2024', // 上次检测时间
@@ -744,6 +756,14 @@
 			padding-bottom: 20rpx;
 		}
 
+		.valueNum {
+			font-weight: bold;
+			color: #ffaa00;
+			padding-left: 10rpx;
+			font-size: 30rpx;
+			letter-spacing: 2rpx;
+		}
+
 		.focusnum {
 			color: #ffaa00;
 			letter-spacing: 2rpx;
@@ -815,6 +835,15 @@
 		.subtitle {
 			line-height: 116rpx;
 			font-size: 35rpx;
+		}
+
+		.desc-ccc {
+			background-color: #249631;
+			border-radius: 15rpx;
+			color: white;
+			display: block;
+			padding: 10rpx;
+			width: fit-content;
 		}
 
 		.desc {
