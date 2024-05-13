@@ -663,73 +663,73 @@
 			}
 		},
 		onShow() {
-			// uni.showLoading({
-			// 	title: '请求中'
-			// })
-			// //获取最后一条记录
-			// lastReport().then(data => {
-			// 	console.log('data', data)
-			// 	this.initLastData(data)
-			// }).catch((data) => {
-			// 	console.log('catch:', data)
-			// 	uni.hideLoading()
-			// 	// this.initLastData()
-			// })
+			uni.showLoading({
+				title: '请求中'
+			})
+			//获取最后一条记录
+			lastReport().then(data => {
+				console.log('data', data)
+				this.initLastData(data)
+			}).catch((data) => {
+				console.log('catch:', data)
+				uni.hideLoading()
+				// this.initLastData()
+			})
 		},
 		mounted() {
-			const {
-				physiologyscorereport, // 综合
-				afreport,
-				bpreport,
-				essentialreport,
-				healthScoreReport,
-				hrreport,
-				riskreport,
-				spo2hreport,
-				calculatedReport
-			} = data_
-			this.hrreport = hrreport
-			this.afreport = afreport
-			this.bpreport = bpreport
-			this.spo2hreport = spo2hreport
-			this.riskreport = riskreport
-			this.essentialreport = essentialreport
-			this.physiologyscorereport = physiologyscorereport
-			this.showInfo = true;
+			// const {
+			// 	physiologyscorereport, // 综合
+			// 	afreport,
+			// 	bpreport,
+			// 	essentialreport,
+			// 	healthScoreReport,
+			// 	hrreport,
+			// 	riskreport,
+			// 	spo2hreport,
+			// 	calculatedReport
+			// } = data_
+			// this.hrreport = hrreport
+			// this.afreport = afreport
+			// this.bpreport = bpreport
+			// this.spo2hreport = spo2hreport
+			// this.riskreport = riskreport
+			// this.essentialreport = essentialreport
+			// this.physiologyscorereport = physiologyscorereport
+			// this.showInfo = true;
 
-			let riskValue = this.physiologyscorereport.data
-			if (riskValue >= 100) {
-				riskValue = 100
-				this.riskTips = '低风险'
-				this.riskColor = '#f26f29'
-			} else if (riskValue >= 90) {
-				this.riskTips = '低风险'
-				this.riskColor = '#f26f29'
-			} else if (riskValue >= 80) {
-				this.riskTips = '中低风险'
-				this.riskColor = '#f2b329'
-			} else if (riskValue >= 70) {
-				this.riskTips = '中风险'
-				this.riskColor = '#e2c93e'
-			} else if (riskValue >= 60) {
-				this.riskTips = '中高风险'
-				this.riskColor = '#acea6f'
-			} else {
-				this.riskTips = '高风险'
-				this.riskColor = '#7cc4c8'
-			}
-			this.riskToopTipLeft = riskValue + '%'
-			console.log('this.riskc:', this.riskColor)
+			// let riskValue = this.physiologyscorereport.data
+			// if (riskValue >= 100) {
+			// 	riskValue = 100
+			// 	this.riskTips = '低风险'
+			// 	this.riskColor = '#f26f29'
+			// } else if (riskValue >= 90) {
+			// 	this.riskTips = '低风险'
+			// 	this.riskColor = '#f26f29'
+			// } else if (riskValue >= 80) {
+			// 	this.riskTips = '中低风险'
+			// 	this.riskColor = '#f2b329'
+			// } else if (riskValue >= 70) {
+			// 	this.riskTips = '中风险'
+			// 	this.riskColor = '#e2c93e'
+			// } else if (riskValue >= 60) {
+			// 	this.riskTips = '中高风险'
+			// 	this.riskColor = '#acea6f'
+			// } else {
+			// 	this.riskTips = '高风险'
+			// 	this.riskColor = '#7cc4c8'
+			// }
+			// this.riskToopTipLeft = riskValue + '%'
+			// console.log('this.riskc:', this.riskColor)
 
-			this.$nextTick(() => {
-				// 使用 Canvas 渲染器（默认）
-				var chart = echarts.init(this.$refs.charts1);
-				this.totalOption.series[0].data = this.gaugeData
-				this.gaugeData[0].value = this.physiologyscorereport.data
-				chart.setOption(this.totalOption);
-				console.log('chart:', chart)
-				uni.hideLoading()
-			})
+			// this.$nextTick(() => {
+			// 	// 使用 Canvas 渲染器（默认）
+			// 	var chart = echarts.init(this.$refs.charts1);
+			// 	this.totalOption.series[0].data = this.gaugeData
+			// 	this.gaugeData[0].value = this.physiologyscorereport.data
+			// 	chart.setOption(this.totalOption);
+			// 	console.log('chart:', chart)
+			// 	uni.hideLoading()
+			// })
 		},
 		methods: {
 			swipeTab(index) {

@@ -239,16 +239,20 @@
 			},
 			// 停止
 			stopMedia() {
-				// 获取媒体流
-				const stream = this.video.srcObject;
-				const tracks = stream.getTracks();
-				// 停止所有轨道
-				tracks.forEach(function(track) {
-					track.stop();
-				})
-				this.video.srcObject = null;
-				cancelAnimationFrame(this.equeneId)
-				cancelAnimationFrame(this.intervalId)
+				try {
+					// 获取媒体流
+					const stream = this.video.srcObject;
+					const tracks = stream.getTracks();
+					// 停止所有轨道
+					tracks.forEach(function(track) {
+						track.stop();
+					})
+					this.video.srcObject = null;
+					cancelAnimationFrame(this.equeneId)
+					cancelAnimationFrame(this.intervalId)
+				} catch (e) {
+					//TODO handle the exception
+				}
 				// if (this.video) {
 				// 	document.body.removeChild(this.video)
 				// }

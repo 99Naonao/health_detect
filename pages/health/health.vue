@@ -31,7 +31,7 @@
 			<view class="my-score flex just-align-center align-center">
 				<view>我的积分<image mode="widthFix" class="icon1" src="../../static/JK_02_IconJF2.png"></image>
 				</view>
-				<view class="score">{{userInfo.score}}</view>
+				<view class="score">{{userInfo.score?userInfo.score:0}}</view>
 			</view>
 		</view>
 

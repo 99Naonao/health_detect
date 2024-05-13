@@ -61,6 +61,7 @@
 		height: 160rpx;
 		background: rgba(90, 119, 149, 1);
 		display: flex;
+		z-index: 99;
 		border-top-left-radius: 50rpx;
 		border-top-right-radius: 50rpx;
 		padding-bottom: env(safe-area-inset-bottom);
