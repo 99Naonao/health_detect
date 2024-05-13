@@ -20,14 +20,14 @@
 					</view>
 				</view>
 			</view>
-			<view class="opt1 flex just-align-center" @click="checkPortHandler">
+			<!-- 			<view class="opt1 flex just-align-center" @click="checkPortHandler">
 				<view class="opt">
 					<text>查看报告</text>
 					<view>
 						<image mode="widthFix" class="icon" src="../../static/JK_02_IconJF1.png"></image>
 					</view>
 				</view>
-			</view>
+			</view> -->
 			<view class="my-score flex just-align-center align-center">
 				<view>我的积分<image mode="widthFix" class="icon1" src="../../static/JK_02_IconJF2.png"></image>
 				</view>
@@ -70,7 +70,7 @@
 		},
 		data() {
 			return {
-				cost: 100,
+				cost: 0,
 				sure: false,
 				measureIns: null,
 				video: null,
@@ -78,7 +78,6 @@
 		},
 		onShow() {
 			this.sure = false
-			// this.$refs.ppp.open('bottom')
 			uni.clearStorageSync('userInfo')
 			this.login()
 			// let userInfo = uni.getStorageSync('userInfo')

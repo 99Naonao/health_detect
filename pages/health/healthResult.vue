@@ -663,18 +663,18 @@
 			}
 		},
 		onShow() {
-			uni.showLoading({
-				title: '请求中'
-			})
-			//获取最后一条记录
-			lastReport().then(data => {
-				console.log('data', data)
-				this.initLastData(data)
-			}).catch((data) => {
-				console.log('catch:', data)
-				uni.hideLoading()
-				// this.initLastData()
-			})
+			// uni.showLoading({
+			// 	title: '请求中'
+			// })
+			// //获取最后一条记录
+			// lastReport().then(data => {
+			// 	console.log('data', data)
+			// 	this.initLastData(data)
+			// }).catch((data) => {
+			// 	console.log('catch:', data)
+			// 	uni.hideLoading()
+			// 	// this.initLastData()
+			// })
 		},
 		mounted() {
 			const {
@@ -814,6 +814,15 @@
 			padding-top: 20rpx;
 			padding-left: 50rpx;
 			padding-bottom: 20rpx;
+			max-height: 60rpx;
+			line-height: 38rpx;
+
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			overflow-wrap: break-word;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
 		}
 
 		.valueNum {

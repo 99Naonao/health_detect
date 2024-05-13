@@ -17,16 +17,16 @@
 			}
 		},
 		{
-			"path": "pages/health/healthResult",
+			"path": "pages/health/healthRunning",
 			"style": {
-				"navigationBarTitleText": "健康检测结果",
+				"navigationBarTitleText": "健康检测中",
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path": "pages/health/healthRunning",
+			"path": "pages/health/healthResult",
 			"style": {
-				"navigationBarTitleText": "健康检测中",
+				"navigationBarTitleText": "健康检测结果",
 				"navigationStyle": "custom"
 			}
 		},

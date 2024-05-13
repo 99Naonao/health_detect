@@ -3,6 +3,20 @@
 	<view class="container">
 		<image class="imgmask" src="../../static/JK_03_Mask00.png" mode="widthFix"></image>
 		<canvas id="canvas" class="canvas-c" :style="backBtnStyle" canvas-id="canvas"></canvas>
+		<view class="" style="position: relative;padding-top: 220rpx;">
+			<view class="tips">请将您的身体置于虚线内</view>
+			<view class="tips">检测大约需要30s，请在良好的光线环境内使用</view>
+		</view>
+		<view class="counting-c" v-if="counting>0">
+			{{counting}}
+		</view>
+
+		<!-- 		<div class="countdown">
+			<svg viewBox="-50 -50 100 100" stroke-width="10" class="circle">
+				<circle r="45" class="circle-01"></circle>
+				<circle r="45" class="circle-02" pathLength="1"></circle>
+			</svg>
+		</div> -->
 	</view>
 </template>
 
@@ -34,6 +48,7 @@
 				equeneId: 0,
 				intervalId: 0,
 				start: 0,
+				counting: 3,
 				backBtnStyle: {
 					'--canvasWdith': '30px',
 					'--canvasHeight': '30px',
@@ -140,8 +155,17 @@
 					this.takePhoto()
 				}, 100)
 
+				setTimeout(() => {
+					this.counting = 2
+				}, 1000)
+
+				setTimeout(() => {
+					this.counting = 1
+				}, 2000)
+
 				// 3秒后开始
 				setTimeout(() => {
+					this.counting = 0
 					// let result123 = document.getElementsByClassName('uni-canvas-canvas')
 					// let base645 = this.takePhoto();
 					let result = measurement.start(this.canvas)
@@ -298,12 +322,28 @@
 	.container {
 		position: relative;
 
+		.counting-c {
+			font-size: 220rpx;
+			text-align: center;
+			font-weight: bold;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			color: #ffaa00;
+			z-index: 101;
+			top: 350rpx;
+		}
+
 		.imgmask {
 			width: 100%;
 			position: absolute;
 			z-index: 2;
 			left: 0;
 			top: 0;
+		}
+
+		.tips {
+			text-align: center;
 		}
 	}
 
@@ -314,5 +354,70 @@
 		top: var(--canvasTop);
 		position: relative;
 		z-index: 1;
+	}
+
+	@property --t {
+		syntax: "<number>";
+		initial-value: 10;
+		inherits: true;
+	}
+
+	@property --s {
+		syntax: "<integer>";
+		initial-value: 0;
+		inherits: true;
+	}
+
+	.countdown {
+		display: grid;
+		width: 20em;
+		height: 20em;
+
+		.circle {
+			grid-column: 1;
+			grid-row: 1;
+
+			.circle-01 {
+				fill: none;
+				stroke: #fff;
+			}
+
+			.circle-02 {
+				--t: 16;
+				--k: calc(var(--t)/20);
+				fill: none;
+				transform: rotate(-90deg);
+				stroke-linecap: round;
+				stroke: color-mix(in hsl shorter hue, #ffaa00 calc(var(--k)*100%), #ffaa00);
+				stroke-dasharray: var(--k) 1;
+			}
+		}
+
+		&::after {
+			grid-column: 1;
+			grid-row: 1;
+			place-self: center;
+			font-size: 5em;
+			color: #fff;
+			content: "00:19";
+		}
+	}
+
+	.countdown {
+		animation: linear 10s linear infinite;
+
+		.circle {
+			.circle-02 {
+				--k: calc(var(--t)/10);
+				stroke: color-mix(in hsl shorter hue, #8a9b0f calc(var(--k)*100%), #940a3d);
+				stroke-dasharray: var(--k) 1;
+			}
+		}
+	}
+
+	@keyframes linear {
+		to {
+			--t: 0;
+		}
 	}
 </style>
