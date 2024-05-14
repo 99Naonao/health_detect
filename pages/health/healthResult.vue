@@ -103,15 +103,8 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view v-if='explanation_detailsList' class="content">
-					{{physiologyscorereport.explanation.detailsList[0].valuesList.join('')}}
-				</view>
-				<view v-else class="virturecontent">
-					{{physiologyscorereport.explanation.detailsList[0].valuesList.join('')}}
-				</view>
-				<view v-if='explanation_detailsList' class="morebtn" @click="showMore('explanation_detailsList')">
-					更多
-				</view>
+				<more-desc
+					:descValue="physiologyscorereport.explanation.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<view class="heart border">
 				<view class="title">
@@ -145,15 +138,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view v-if='hrbpm_detailsList' class="content">
-					{{hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')}}
-				</view>
-				<view v-else class="virturecontent">
-					{{hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')}}
-				</view>
-				<view v-if='hrbpm_detailsList' class="morebtn" @click="showMore('hrbpm_detailsList')">
-					更多
-				</view>
+				<more-desc :descValue="hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<view class="heartRV border">
 				<view class="title">
@@ -189,7 +174,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{hrreport.explanation.hrv.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="hrreport.explanation.hrv.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<!-- 房颤 -->
 			<view class="heartAfReport border">
@@ -217,7 +202,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{afreport.explanation.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="afreport.explanation.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<!-- 舒张压 -->
 			<view class="heartBPReport border">
@@ -253,7 +238,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{bpreport.explanation.bpdiastolic.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="bpreport.explanation.bpdiastolic.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<!-- 收缩压 -->
 			<view class="heartBPReport border">
@@ -285,7 +270,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{bpreport.explanation.bpsystolic.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="bpreport.explanation.bpsystolic.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<!-- 血氧饱和度 -->
 			<view class="heartspo2hreport border">
@@ -315,7 +300,8 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{spo2hreport.explanation.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="spo2hreport.explanation.detailsList[0].valuesList.join('')"></more-desc>
+				<!-- <view class="content">{{spo2hreport.explanation.detailsList[0].valuesList.join('')}}</view> -->
 			</view>
 			<!-- 心脏病风险 -->
 			<view class="heartspo2hreport border">
@@ -354,7 +340,9 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{riskreport.explanation.bpheartattack.detailsList[0].valuesList.join('')}}</view>
+				<more-desc
+					:descValue="riskreport.explanation.bpheartattack.detailsList[0].valuesList.join('')"></more-desc>
+				<!-- <view class="content">{{riskreport.explanation.bpheartattack.detailsList[0].valuesList.join('')}}</view> -->
 			</view>
 			<!-- 中风风险 -->
 			<view class="heartspo2hreport border">
@@ -392,7 +380,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{riskreport.explanation.bpstroke.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="riskreport.explanation.bpstroke.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<!-- 心血管病风险 -->
 			<view class="heartspo2hreport border">
@@ -429,7 +417,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{riskreport.explanation.bpcvd.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="riskreport.explanation.bpcvd.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<!-- 心脏压力 -->
 			<view class="heartspo2hreport border">
@@ -466,7 +454,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{riskreport.explanation.bppp.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="riskreport.explanation.bppp.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<!-- 血管功能 -->
 			<view class="heartspo2hreport border">
@@ -503,7 +491,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{riskreport.explanation.bptau.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="riskreport.explanation.bptau.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<!-- 皮肤年龄 -->
 			<view class="heartspo2hreport border">
@@ -541,7 +529,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{essentialreport.explanation.age.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="essentialreport.explanation.age.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 			<!-- 体重指数 -->
 			<view class="heartspo2hreport border">
@@ -579,7 +567,7 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{essentialreport.explanation.bmi.detailsList[0].valuesList.join('')}}</view>
+				<more-desc :descValue="essentialreport.explanation.bmi.detailsList[0].valuesList.join('')"></more-desc>
 			</view>
 		</view>
 	</view>
@@ -593,6 +581,7 @@
 	import * as echarts from 'echarts';
 	import data_ from '@/static/xy.json'
 	import progressData from '@/utils/progrossData.js'
+	import moreDesc from '../comp/moreDesc.vue';
 	import {
 		lastReport,
 		addReport,
@@ -600,7 +589,8 @@
 	} from '@/utils/h5app.js'
 	export default {
 		components: {
-			progressBar
+			progressBar,
+			moreDesc
 		},
 		data() {
 			return {
@@ -610,8 +600,6 @@
 				riskToopTipLeft: 0,
 				riskTips: '轻度风险',
 				riskColor: '#f2b329',
-				explanation_detailsList: true, // 是否需要更多
-				hrbpm_detailsList: true, // 心率是否需要更多
 				hrreport: {},
 				gaugeData: [{
 					value: 60,
@@ -738,7 +726,7 @@
 			this.riskToopTipLeft = riskValue + '%'
 			console.log('this.riskc:', this.riskColor)
 
-			this.checkMoreManage(data_)
+			// this.checkMoreManage(data_)
 
 			this.$nextTick(() => {
 				// 使用 Canvas 渲染器（默认）
@@ -751,22 +739,6 @@
 			})
 		},
 		methods: {
-			checkMoreManage(data_) {
-				this.checkMore('explanation_detailsList', data_.physiologyscorereport.explanation.detailsList[0].valuesList
-					.join(''))
-				this.checkMore('hrbpm_detailsList', data_.hrreport.explanation.hrbpm.detailsList[0].valuesList.join(''))
-			},
-			checkMore(kkey, value) {
-				console.log('checkMore:', kkey, value.length)
-				if (value.length > 60) {
-					this[kkey] = true
-				} else {
-					this[kkey] = false
-				}
-			},
-			showMore(kkey) {
-				this[kkey] = false
-			},
 			swipeTab(index) {
 				this.current = index
 			},

@@ -64,7 +64,6 @@
 			...mapGetters(['measureToken', 'userInfo'])
 		},
 		onShow() {
-			this.addListener()
 			this.startCamera()
 			this.message = ''
 		},
@@ -346,6 +345,8 @@
 				// 直接播放就行了
 				this.video.play();
 				this.LastTimestamp = 0;
+
+				this.addListener()
 				console.log('startCamera success')
 			},
 		}
