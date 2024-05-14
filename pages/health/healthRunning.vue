@@ -3,24 +3,20 @@
 	<view class="container">
 		<image class="imgmask" src="../../static/JK_03_Mask00.png" mode="widthFix"></image>
 		<canvas id="canvas" class="canvas-c" :style="backBtnStyle" canvas-id="canvas"></canvas>
-		<view class="" style="position: relative;padding-top: 220rpx;">
+
+		<view class="" style="position: relative;padding-top: 180rpx;">
 			<view class="tips">请将您的身体置于虚线内</view>
 			<view class="tips">检测大约需要30s，请在良好的光线环境内使用</view>
 		</view>
 		<view class="counting-c" v-if="counting>0">
 			{{counting}}
 		</view>
-
-		<!-- 		<div class="countdown">
-			<svg viewBox="-50 -50 100 100" stroke-width="10" class="circle">
-				<circle r="45" class="circle-01"></circle>
-				<circle r="45" class="circle-02" pathLength="1"></circle>
-			</svg>
-		</div> -->
+		<div class="circle" v-else ref="charts1"></div>
 	</view>
 </template>
 
 <script>
+	import * as echarts from 'echarts';
 	import {
 		mapActions,
 		mapState,
@@ -42,6 +38,76 @@
 	export default {
 		data() {
 			return {
+				gaugeData: [{
+					value: 0,
+					name: '采集中',
+					title: {
+						offsetCenter: ['0%', '-30%']
+					},
+					detail: {
+						valueAnimation: true,
+						offsetCenter: ['0%', '0%']
+					}
+				}],
+				totalOption: {
+					animation: true,
+					animationEasing: 'linear',
+					animationDuration: function(idx) {
+						// 越往后的数据时长越大
+						return idx * 100;
+					},
+					animationDurationUpdate: 0,
+					series: [{
+						type: 'gauge',
+						startAngle: 90,
+						endAngle: -270,
+						pointer: {
+							show: false
+						},
+						progress: {
+							show: true,
+							overlap: false,
+							roundCap: true,
+							clip: false,
+							itemStyle: {
+								color: '#ffaa00',
+								borderWidth: 0,
+								borderColor: '#f2b329'
+							}
+						},
+						axisLine: {
+							lineStyle: {
+								width: 10
+							}
+						},
+						splitLine: {
+							show: false,
+							distance: 0,
+							length: 10
+						},
+						axisTick: {
+							show: false
+						},
+						axisLabel: {
+							show: false,
+							distance: 50
+						},
+						data: this.gaugeData,
+						title: {
+							fontSize: 14
+						},
+						detail: {
+							width: 50,
+							height: 14,
+							fontSize: 14,
+							color: '#ffaa00',
+							borderColor: '#ffaa00',
+							borderRadius: 20,
+							borderWidth: 1,
+							formatter: '{value}%'
+						}
+					}]
+				},
 				measureIns: '',
 				video: null,
 				canvas: null,
@@ -49,6 +115,7 @@
 				intervalId: 0,
 				counting: 3,
 				LastTimestamp: 0, //
+				echartIns: {},
 				message: '',
 				MaxMeasureTime: 90, // 最大检测时间
 				StartMeasurementTime: 0, // 开始测量时间
@@ -66,12 +133,32 @@
 		onShow() {
 			this.startCamera()
 			this.message = ''
+			this.counting = 3
 		},
 		onHide() {
 			this.stopMedia()
 			// cancelAnimationFrame(that.equeneId)
 		},
 		methods: {
+			initCharts() {
+				this.$nextTick(() => {
+					// 使用 Canvas 渲染器（默认）
+					// if (this.echartIns) {
+					// 	this.echartIns.dispose()
+					// }
+					this.echartIns = echarts.init(this.$refs.charts1);
+					this.totalOption.series[0].data = this.gaugeData
+					this.echartIns.setOption(this.totalOption);
+					// let that = this
+					// const measurement = new Measurement(this.measureToken, MeasurementCategory.ALL)
+					// requestAnimationFrame((timestamp) => {
+					// 	that.LastTimestamp = timestamp
+					// 	console.log('that.LastTimestamp:', timestamp)
+					// 	that.StartMeasurementTime = Date.now()
+					// 	that.equenId(measurement, timestamp)
+					// })
+				})
+			},
 			addListener() {
 				if (!this.measureToken) {
 					uni.showToast({
@@ -169,14 +256,14 @@
 				// 3秒后开始
 				setTimeout(() => {
 					this.counting = 0
-					// let result123 = document.getElementsByClassName('uni-canvas-canvas')
-					// let base645 = this.takePhoto();
 					this.StartMeasurementTime = Date.now()
 					let result = measurement.start(this.canvas)
+					this.initCharts()
 					// console.log('takephoto result!', result)
 				}, 3000)
 			},
 			equenId(measurement, timestamp) {
+				// console.log('this.MeasureTime >= this.MaxMeasureTime', this.MeasureTime, this.MaxMeasureTime)
 				// 40毫秒发送一次绘制请求
 				if (timestamp - this.LastTimestamp >= 40) {
 					//更新测量时间
@@ -184,11 +271,23 @@
 
 					if ((Date.now() - this.StartMeasurementTime) / 1000 <= 30) {
 						this.message = '正在测量...'
+						this.gaugeData[0].name = this.message;
 					}
 					if ((Date.now() - this.StartMeasurementTime) / 1000 >= 30) {
 						this.message = '汇总中...'
+						this.gaugeData[0].name = this.message;
 					}
 					this.LastTimestamp = timestamp
+					let percent = (((Date.now() - this.StartMeasurementTime) / 30000) * 100).toFixed(2)
+					this.gaugeData[0].value = percent > 100 ? 100 : percent;
+					this.echartIns.setOption({
+						series: [{
+							data: this.gaugeData,
+							pointer: {
+								show: false
+							}
+						}]
+					});
 					measurement.enqueue({
 						frame: this.canvas,
 						timestamp: Date.now()
@@ -357,6 +456,16 @@
 	.container {
 		position: relative;
 
+		.circle {
+			position: absolute;
+			z-index: 80;
+			left: 50%;
+			top: 350rpx;
+			width: 200px;
+			height: 200px;
+			transform: translateX(-50%);
+		}
+
 		.counting-c {
 			font-size: 220rpx;
 			text-align: center;
@@ -389,70 +498,5 @@
 		top: var(--canvasTop);
 		position: relative;
 		z-index: 1;
-	}
-
-	@property --t {
-		syntax: "<number>";
-		initial-value: 10;
-		inherits: true;
-	}
-
-	@property --s {
-		syntax: "<integer>";
-		initial-value: 0;
-		inherits: true;
-	}
-
-	.countdown {
-		display: grid;
-		width: 20em;
-		height: 20em;
-
-		.circle {
-			grid-column: 1;
-			grid-row: 1;
-
-			.circle-01 {
-				fill: none;
-				stroke: #fff;
-			}
-
-			.circle-02 {
-				--t: 16;
-				--k: calc(var(--t)/20);
-				fill: none;
-				transform: rotate(-90deg);
-				stroke-linecap: round;
-				stroke: color-mix(in hsl shorter hue, #ffaa00 calc(var(--k)*100%), #ffaa00);
-				stroke-dasharray: var(--k) 1;
-			}
-		}
-
-		&::after {
-			grid-column: 1;
-			grid-row: 1;
-			place-self: center;
-			font-size: 5em;
-			color: #fff;
-			content: "00:19";
-		}
-	}
-
-	.countdown {
-		animation: linear 10s linear infinite;
-
-		.circle {
-			.circle-02 {
-				--k: calc(var(--t)/10);
-				stroke: color-mix(in hsl shorter hue, #8a9b0f calc(var(--k)*100%), #940a3d);
-				stroke-dasharray: var(--k) 1;
-			}
-		}
-	}
-
-	@keyframes linear {
-		to {
-			--t: 0;
-		}
 	}
 </style>
