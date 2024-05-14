@@ -247,7 +247,7 @@
 				this.$set(this.backBtnStyle, '--canvasWidth', (pageSize.width) + 'px')
 				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.width) + 'px')
 				this.$set(this.backBtnStyle, '--canvasLeft', '0px')
-				this.$set(this.backBtnStyle, '--canvasTop', (pageSize.width) * 0.1 + 'px')
+				this.$set(this.backBtnStyle, '--canvasTop', '1px')
 				ctx.scale(-1, 1)
 				ctx.translate(-pageSize.width / deviceInfo.pixelRatio, 0);
 				// 截取一部分

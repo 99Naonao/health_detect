@@ -18,7 +18,7 @@
 		</view>
 		<view class="border">
 			<view class="age flex">
-				<image class="icon-risk" src="../../static/icon/JK_04_IconFXQJ_Y.png"></image>
+				<image class="icon-risk" src="../../static/icon/SY_IconQXZH_Y.png"></image>
 				<text class="icon-title">风险区间</text>
 			</view>
 			<view class="progress-container">
@@ -76,7 +76,7 @@
 		</view>
 		<view class="border">
 			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>攻击性<text
+				<image class="heartatt" src="@/static/icon/SY_IconGJX_Y.png"></image>攻击性<text
 					class="valueNum">{{aggressivityreport.data}}</text>
 			</view>
 			<progress-bar :tick="aggressivityreport.data"></progress-bar>
@@ -102,7 +102,7 @@
 		</view>
 		<view class="border">
 			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>焦虑度<text
+				<image class="heartIcon" src="@/static/icon/SY_IconJLX_Y.png"></image>焦虑度<text
 					class="valueNum">{{anxietyreport.data}}</text>
 			</view>
 			<progress-bar :tick="anxietyreport.data"></progress-bar>
@@ -128,7 +128,7 @@
 		</view>
 		<view class="border">
 			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>活力度<text
+				<image class="heartIcon" src="@/static/icon/SY_IconHLD_Y.png"></image>活力度<text
 					class="valueNum">{{vitalityreport.data}}</text>
 			</view>
 			<progress-bar :tick="vitalityreport.data"></progress-bar>
@@ -154,7 +154,7 @@
 		</view>
 		<view class="border">
 			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>抑郁度<text
+				<image class="heartIcon" src="@/static/icon/SY_IconYYD_Y.png"></image>抑郁度<text
 					class="valueNum">{{suppressionreport.data}}</text>
 			</view>
 			<progress-bar :tick="suppressionreport.data"></progress-bar>
@@ -180,7 +180,7 @@
 		</view>
 		<view class="border">
 			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>疲劳度<text
+				<image class="heartIcon" src="@/static/icon/SY_IconPLD_Y.png"></image>疲劳度<text
 					class="valueNum">{{fatiguereport.data}}</text>
 			</view>
 			<progress-bar :tick="fatiguereport.data"></progress-bar>
@@ -214,7 +214,7 @@
 		</view>
 		<view class="border">
 			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>压力度<text
+				<image class="heartIcon" src="@/static/icon/SY_IconYLD_Y.png"></image>压力度<text
 					class="valueNum">{{msireport.data}}</text>
 			</view>
 			<progress-bar :tick="msireport.data"></progress-bar>
@@ -350,7 +350,7 @@
 				spo2hreport,
 				calculatedReport
 			} = this.result
-			console.log('123:', msireport.explanation.detailsList[0].valuesList.join(''))
+			// console.log('123:', msireport.explanation.detailsList[0].valuesList.join(''))
 			this.msireport = msireport
 			this.emotionscorereport = emotionscorereport
 			this.fatiguereport = fatiguereport
@@ -414,15 +414,7 @@
 			padding-top: 20rpx;
 			padding-left: 50rpx;
 			padding-bottom: 20rpx;
-			max-height: 60rpx;
 			line-height: 38rpx;
-
-			text-overflow: ellipsis;
-			display: -webkit-box;
-			overflow-wrap: break-word;
-			-webkit-line-clamp: 2;
-			-webkit-box-orient: vertical;
-			overflow: hidden;
 		}
 
 		.virturecontent {
@@ -485,8 +477,8 @@
 		}
 
 		.icon-risk {
-			width: 50rpx;
-			height: 45rpx;
+			width: 45rpx;
+			height: 44rpx;
 			display: block;
 		}
 
@@ -519,9 +511,15 @@
 		}
 
 		.heartIcon {
-			width: 50rpx;
-			height: 45rpx;
+			width: 46rpx;
+			height: 44rpx;
 		}
+
+		.heartatt {
+			width: 56rpx;
+			height: 41rpx;
+		}
+
 
 		.hearto2Icon {
 			width: 45rpx;
@@ -615,6 +613,8 @@
 
 			.tick-item {
 				position: absolute;
+				font-size: 24rpx;
+				font-family: 'Arial';
 				transform: translateX(-50%);
 			}
 		}
@@ -661,6 +661,7 @@
 		position: absolute;
 		left: 100px;
 		top: -25px;
+		transform: translateX(-50%);
 
 		.tooltip-text {
 			padding: 10rpx;
@@ -671,7 +672,6 @@
 			color: #fff;
 			border-radius: 10rpx;
 			text-align: center;
-			transform: translateX(-50%);
 			top: -20px;
 		}
 
@@ -682,6 +682,8 @@
 			width: 0px;
 			height: 0px;
 			margin-top: -2rpx;
+			position: absolute;
+			left: 50%;
 			transform: translateX(-50%);
 		}
 	}

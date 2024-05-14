@@ -18,7 +18,7 @@
 	} from 'vue';
 	export default {
 		setup(props) {
-			console.log('props:', props.descValue)
+			// console.log('props:', props.descValue)
 		},
 		data() {
 			return {
@@ -36,7 +36,7 @@
 		},
 		methods: {
 			checkMore(kkey, value) {
-				console.log('checkMore comp:', kkey, value.length)
+				// console.log('checkMore comp:', kkey, value.length)
 				if (value.length > 60) {
 					this[kkey] = true
 				} else {
@@ -66,7 +66,7 @@
 		padding-top: 20rpx;
 		padding-left: 50rpx;
 		padding-bottom: 20rpx;
-		max-height: 60rpx;
+		max-height: 55rpx;
 		line-height: 38rpx;
 
 		text-overflow: ellipsis;

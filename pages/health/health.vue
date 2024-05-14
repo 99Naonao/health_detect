@@ -23,9 +23,6 @@
 			<view class="opt1 flex just-align-center" @click="checkPortHandler">
 				<view class="opt">
 					<text>查看报告</text>
-					<view>
-						<image mode="widthFix" class="icon" src="../../static/JK_02_IconJF1.png"></image>
-					</view>
 				</view>
 			</view>
 			<view class="my-score flex just-align-center align-center">
