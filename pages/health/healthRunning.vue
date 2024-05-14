@@ -47,8 +47,11 @@
 				canvas: null,
 				equeneId: 0,
 				intervalId: 0,
-				start: 0,
 				counting: 3,
+				LastTimestamp: 0, //
+				message: '',
+				MaxMeasureTime: 90, // 最大检测时间
+				StartMeasurementTime: 0, // 开始测量时间
 				backBtnStyle: {
 					'--canvasWdith': '30px',
 					'--canvasHeight': '30px',
@@ -63,6 +66,7 @@
 		onShow() {
 			this.addListener()
 			this.startCamera()
+			this.message = ''
 		},
 		onHide() {
 			this.stopMedia()
@@ -84,8 +88,8 @@
 					console.log('measurementId canvas:', canvas)
 					if (canvas && canvas.width) {
 						requestAnimationFrame((timestamp) => {
-							that.start = timestamp
-							that.equenId(measurement)
+							that.LastTimestamp = timestamp
+							that.equenId(measurement, timestamp)
 						})
 					} else {
 						uni.showToast({
@@ -168,24 +172,47 @@
 					this.counting = 0
 					// let result123 = document.getElementsByClassName('uni-canvas-canvas')
 					// let base645 = this.takePhoto();
+					this.StartMeasurementTime = Date.now()
 					let result = measurement.start(this.canvas)
 					// console.log('takephoto result!', result)
 				}, 3000)
 			},
-			equenId(measurement) {
-				// if (timestamp - this.start >= 4000) {
-				// 	cancelAnimationFrame(this.equeneId)
-				// 	this.start = timestamp
-				// } else {
-				// let now = Date.now()
-				measurement.enqueue({
-					frame: this.canvas,
-					timestamp: Date.now()
-				})
-				this.equeneId = requestAnimationFrame((timestamp) => {
-					this.equenId(measurement)
-				})
-				// }
+			equenId(measurement, timestamp) {
+				// 40毫秒发送一次绘制请求
+				if (timestamp - this.LastTimestamp >= 40) {
+					//更新测量时间
+					this.MeasureTime = Math.floor((Date.now() - this.StartMeasurementTime) / 1000)
+
+					if ((Date.now() - this.StartMeasurementTime) / 1000 <= 30) {
+						this.message = '正在测量...'
+					}
+					if ((Date.now() - this.StartMeasurementTime) / 1000 >= 30) {
+						this.message = '汇总中...'
+					}
+					this.LastTimestamp = timestamp
+					measurement.enqueue({
+						frame: this.canvas,
+						timestamp: Date.now()
+					})
+				}
+
+				if (this.MeasureTime >= this.MaxMeasureTime) {
+					// 测量时间大于最大测量时间 主动结束测量
+					this.stopMedia()
+					this.message = '网络请求异常，请稍后重试'
+					uni.showToast({
+						title: this.message
+					})
+
+					uni.navigateTo({
+						url: '/pages/health/health'
+					})
+					// '网络请求异常，请稍后重试'
+				} else {
+					this.equeneId = requestAnimationFrame((timestamp) => {
+						this.equenId(measurement, timestamp)
+					})
+				}
 			},
 			// 截图拍照
 			takePhoto(timestamp) {
@@ -227,7 +254,10 @@
 				// 截取一部分
 				ctx.drawImage(this.video, 0, 0, pageSize.width, pageSize.width, 0, 0, pageSize.width / deviceInfo
 					.pixelRatio, pageSize.width / deviceInfo.pixelRatio);
+
+
 				this.intervalId = requestAnimationFrame((timestamp) => {
+
 					this.takePhoto(timestamp)
 				});
 				return ''
@@ -315,7 +345,7 @@
 				this.video.srcObject = await window.navigator.mediaDevices.getUserMedia(_videoConstraints);
 				// 直接播放就行了
 				this.video.play();
-				this.start = 0;
+				this.LastTimestamp = 0;
 				console.log('startCamera success')
 			},
 		}

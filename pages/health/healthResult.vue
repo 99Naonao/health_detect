@@ -103,7 +103,14 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{physiologyscorereport.explanation.detailsList[0].valuesList.join('')}}
+				<view v-if='explanation_detailsList' class="content">
+					{{physiologyscorereport.explanation.detailsList[0].valuesList.join('')}}
+				</view>
+				<view v-else class="virturecontent">
+					{{physiologyscorereport.explanation.detailsList[0].valuesList.join('')}}
+				</view>
+				<view v-if='explanation_detailsList' class="morebtn" @click="showMore('explanation_detailsList')">
+					更多
 				</view>
 			</view>
 			<view class="heart border">
@@ -138,7 +145,15 @@
 					<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 						class="icon-title">概念解释</text>
 				</view>
-				<view class="content">{{hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')}}</view>
+				<view v-if='hrbpm_detailsList' class="content">
+					{{hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')}}
+				</view>
+				<view v-else class="virturecontent">
+					{{hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')}}
+				</view>
+				<view v-if='hrbpm_detailsList' class="morebtn" @click="showMore('hrbpm_detailsList')">
+					更多
+				</view>
 			</view>
 			<view class="heartRV border">
 				<view class="title">
@@ -595,6 +610,8 @@
 				riskToopTipLeft: 0,
 				riskTips: '轻度风险',
 				riskColor: '#f2b329',
+				explanation_detailsList: true, // 是否需要更多
+				hrbpm_detailsList: true, // 心率是否需要更多
 				hrreport: {},
 				gaugeData: [{
 					value: 60,
@@ -663,75 +680,93 @@
 			}
 		},
 		onShow() {
-			uni.showLoading({
-				title: '请求中'
-			})
-			//获取最后一条记录
-			lastReport().then(data => {
-				console.log('data', data)
-				this.initLastData(data)
-			}).catch((data) => {
-				console.log('catch:', data)
-				uni.hideLoading()
-				// this.initLastData()
-			})
-		},
-		mounted() {
-			// const {
-			// 	physiologyscorereport, // 综合
-			// 	afreport,
-			// 	bpreport,
-			// 	essentialreport,
-			// 	healthScoreReport,
-			// 	hrreport,
-			// 	riskreport,
-			// 	spo2hreport,
-			// 	calculatedReport
-			// } = data_
-			// this.hrreport = hrreport
-			// this.afreport = afreport
-			// this.bpreport = bpreport
-			// this.spo2hreport = spo2hreport
-			// this.riskreport = riskreport
-			// this.essentialreport = essentialreport
-			// this.physiologyscorereport = physiologyscorereport
-			// this.showInfo = true;
-
-			// let riskValue = this.physiologyscorereport.data
-			// if (riskValue >= 100) {
-			// 	riskValue = 100
-			// 	this.riskTips = '低风险'
-			// 	this.riskColor = '#f26f29'
-			// } else if (riskValue >= 90) {
-			// 	this.riskTips = '低风险'
-			// 	this.riskColor = '#f26f29'
-			// } else if (riskValue >= 80) {
-			// 	this.riskTips = '中低风险'
-			// 	this.riskColor = '#f2b329'
-			// } else if (riskValue >= 70) {
-			// 	this.riskTips = '中风险'
-			// 	this.riskColor = '#e2c93e'
-			// } else if (riskValue >= 60) {
-			// 	this.riskTips = '中高风险'
-			// 	this.riskColor = '#acea6f'
-			// } else {
-			// 	this.riskTips = '高风险'
-			// 	this.riskColor = '#7cc4c8'
-			// }
-			// this.riskToopTipLeft = riskValue + '%'
-			// console.log('this.riskc:', this.riskColor)
-
-			// this.$nextTick(() => {
-			// 	// 使用 Canvas 渲染器（默认）
-			// 	var chart = echarts.init(this.$refs.charts1);
-			// 	this.totalOption.series[0].data = this.gaugeData
-			// 	this.gaugeData[0].value = this.physiologyscorereport.data
-			// 	chart.setOption(this.totalOption);
-			// 	console.log('chart:', chart)
+			// uni.showLoading({
+			// 	title: '请求中'
+			// })
+			// //获取最后一条记录
+			// lastReport().then(data => {
+			// 	console.log('data', data)
+			// 	this.initLastData(data)
+			// }).catch((data) => {
+			// 	console.log('catch:', data)
 			// 	uni.hideLoading()
+			// 	// this.initLastData()
 			// })
 		},
+		mounted() {
+			const {
+				physiologyscorereport, // 综合
+				afreport,
+				bpreport,
+				essentialreport,
+				healthScoreReport,
+				hrreport,
+				riskreport,
+				spo2hreport,
+				calculatedReport
+			} = data_
+			this.hrreport = hrreport
+			this.afreport = afreport
+			this.bpreport = bpreport
+			this.spo2hreport = spo2hreport
+			this.riskreport = riskreport
+			this.essentialreport = essentialreport
+			this.physiologyscorereport = physiologyscorereport
+			this.showInfo = true;
+
+			let riskValue = this.physiologyscorereport.data
+			if (riskValue >= 100) {
+				riskValue = 100
+				this.riskTips = '低风险'
+				this.riskColor = '#f26f29'
+			} else if (riskValue >= 90) {
+				this.riskTips = '低风险'
+				this.riskColor = '#f26f29'
+			} else if (riskValue >= 80) {
+				this.riskTips = '中低风险'
+				this.riskColor = '#f2b329'
+			} else if (riskValue >= 70) {
+				this.riskTips = '中风险'
+				this.riskColor = '#e2c93e'
+			} else if (riskValue >= 60) {
+				this.riskTips = '中高风险'
+				this.riskColor = '#acea6f'
+			} else {
+				this.riskTips = '高风险'
+				this.riskColor = '#7cc4c8'
+			}
+			this.riskToopTipLeft = riskValue + '%'
+			console.log('this.riskc:', this.riskColor)
+
+			this.checkMoreManage(data_)
+
+			this.$nextTick(() => {
+				// 使用 Canvas 渲染器（默认）
+				var chart = echarts.init(this.$refs.charts1);
+				this.totalOption.series[0].data = this.gaugeData
+				this.gaugeData[0].value = this.physiologyscorereport.data
+				chart.setOption(this.totalOption);
+				console.log('chart:', chart)
+				uni.hideLoading()
+			})
+		},
 		methods: {
+			checkMoreManage(data_) {
+				this.checkMore('explanation_detailsList', data_.physiologyscorereport.explanation.detailsList[0].valuesList
+					.join(''))
+				this.checkMore('hrbpm_detailsList', data_.hrreport.explanation.hrbpm.detailsList[0].valuesList.join(''))
+			},
+			checkMore(kkey, value) {
+				console.log('checkMore:', kkey, value.length)
+				if (value.length > 60) {
+					this[kkey] = true
+				} else {
+					this[kkey] = false
+				}
+			},
+			showMore(kkey) {
+				this[kkey] = false
+			},
 			swipeTab(index) {
 				this.current = index
 			},
@@ -760,6 +795,8 @@
 				this.lastCreateTime = data.createAt;
 
 				this.showInfo = true;
+
+				this.checkMoreManage(report)
 
 				let riskValue = this.physiologyscorereport.data
 				if (riskValue >= 100) {
@@ -823,6 +860,13 @@
 			-webkit-line-clamp: 2;
 			-webkit-box-orient: vertical;
 			overflow: hidden;
+		}
+
+		.virturecontent {
+			padding-top: 20rpx;
+			padding-left: 50rpx;
+			padding-bottom: 20rpx;
+			line-height: 38rpx;
 		}
 
 		.valueNum {
@@ -975,6 +1019,17 @@
 			border-bottom: #f5f5f5 solid 1px;
 			margin-top: 10rpx;
 			margin-bottom: 10rpx;
+		}
+
+		.morebtn {
+			display: flex;
+			align-items: right;
+			justify-content: right;
+			text-decoration: underline;
+			color: #46647d;
+			font-size: 25rpx;
+			text-underline-offset: 5rpx;
+			margin: 20rpx;
 		}
 	}
 
