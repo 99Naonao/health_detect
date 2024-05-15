@@ -13,11 +13,12 @@
 							</image>
 						</view>
 						<view class="usernameInfo">
-							<view class="userNickNameInfo" v-if="nickNameInputFlag">
-								<text class="username">{{ userInfo.nickName || '未知用户' }}</text>
+							<view class="username">
+								<!-- <text class="username">{{ userInfo.nickName || '未知用户' }}</text> -->
+								<text>{{ '未知用户' }}</text>
 								<!-- <image src="../../static/icon/edit.png"></image> -->
 							</view>
-							<view class="username" v-else>
+							<view class="username">
 
 							</view>
 						</view>
@@ -26,11 +27,11 @@
 				<view class="score_part">
 					<view class="score_info">
 						<view class="sub_score_info">
-							<view>我的积分</view>
+							<view>我的积分<image mode="widthFix" class="icon1" src="../../static/JK_02_IconJF2.png"></image>
+							</view>
 						</view>
 						<view class="score_txt">{{score}}</view>
 					</view>
-					<view class="btn" @click="go2Use">去使用</view>
 				</view>
 				<view class="desc">
 					<view class="title">积分说明</view>
@@ -77,6 +78,7 @@
 				hasLogin: false,
 				measurement: '',
 				measurementId: 0,
+				score: 123,
 			}
 		},
 		computed: {
@@ -151,21 +153,14 @@
 		background-color: white;
 		border-top-left-radius: 30rpx;
 		border-top-right-radius: 30rpx;
-		margin-top: 200rpx;
+		margin-top: 50rpx;
+		position: relative;
 
 		.user_info {
-			position: relative;
+
 			// overflow: hidden;
 		}
 
-		.top_info {
-			top: -50rpx;
-			margin: 0 auto;
-			// left: 50%;
-			// margin-left: 50%;
-			text-align: center;
-			position: relative;
-		}
 
 		.avatar_bg {
 			width: 114upx;
@@ -187,8 +182,11 @@
 		}
 
 		.username {
-			color: #32455B;
+			color: #333;
+			padding: 10rpx;
 			font-size: 35rpx;
+			text-align: center;
+			margin: 0 auto;
 		}
 
 		.score_part {
@@ -198,27 +196,33 @@
 			margin: 0 auto;
 			display: flex;
 			line-height: 130rpx;
-			font-size: 38rpx;
+			font-size: 30rpx;
 			color: #5B7897;
 			justify-content: center;
 			align-items: center;
-			box-shadow: 0px 0px 22px #BBB;
+
+			.icon1 {
+				width: 44rpx;
+				height: 30rpx;
+			}
 
 			.sub_score_info {
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				padding: 10rpx;
 			}
 
 			.score_txt {
-				flex: 1;
-				text-align: center;
-				line-height: 60rpx;
 				border-radius: 10rpx;
+				padding: 10rpx;
+				text-align: center;
+				line-height: 40rpx;
+				border-radius: 20rpx;
 				margin-left: 10rpx;
 				margin-right: 10rpx;
-				font-size: 36rpx;
+				font-size: 30rpx;
+				min-width: 150rpx;
+				height: 40rpx;
 				background-color: #dadada;
 			}
 
@@ -229,7 +233,6 @@
 			}
 
 			.score_info {
-				flex: 1;
 				display: flex;
 				justify-content: space-around;
 				align-items: center;
