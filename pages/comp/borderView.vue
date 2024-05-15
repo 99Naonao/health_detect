@@ -13,20 +13,20 @@
 		<view class="explanation content">
 			{{aiDesc}}
 		</view>
-		<view class="border-line"></view>
-		<view class="age">
+		<view class="border-line" v-if="ranking!=0"></view>
+		<view class="age" v-if="ranking!=0">
 			<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
 			<text class="icon-title">同龄人对比</text>
 		</view>
-		<view class="age content">
+		<view class="age content" v-if="ranking!=0">
 			超越<text class="focusnum">{{(ranking * 100).toFixed(2) + '%'}}</text>同龄人
 		</view>
-		<view class="border-line"></view>
-		<view class="">
+		<view class="border-line" v-if="adv!=''"></view>
+		<view class="" v-if="adv!=''">
 			<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
 				class="icon-title">健康建议</text>
 		</view>
-		<view class="content">
+		<view class="content" v-if="adv!=''">
 			{{adv}}
 		</view>
 		<view class="border-line"></view>
@@ -113,6 +113,9 @@
 					'icon-xxgrisk': '../../static/icon/SY_IconXGGN_Y.png',
 					'icon-xxylrisk': '../../static/icon/SY_IconXZYL_Y.png',
 					'icon-xgrisk': '../../static/icon/SY_IconXL_Y.png',
+					'icon-attack': '../../static/icon/SY_IconGJX_Y.png',
+					'icon-jiaolv': '../../static/icon/SY_IconJLX_Y.png',
+					'icon-huoli': '../../static/icon/SY_IconHLD_Y.png',
 				}
 			}
 		},
@@ -145,6 +148,11 @@
 	.icon-xxylrisk {
 		width: 52rpx;
 		height: 48rpx;
+	}
+
+	.icon-attack {
+		width: 56rpx;
+		height: 41rpx;
 	}
 
 	.icon-xgrisk {
@@ -259,5 +267,15 @@
 	.icon-ai {
 		width: 49rpx;
 		height: 58rpx;
+	}
+
+	.icon-jiaolv {
+		width: 46rpx;
+		height: 44rpx;
+	}
+
+	.icon-huoli {
+		width: 45rpx;
+		height: 44rpx;
 	}
 </style>

@@ -91,14 +91,12 @@
 		</view>
 		<!-- 皮肤年龄 -->
 		<border-view :title="'皮肤年龄'" :icon="'icon-skin'"
-			:adv="essentialreport.explanation.age.advicesList[0]?essentialreport.explanation.age.advicesList[0].valuesList.join(''):'无'"
-			:ranking="essentialreport.explanation.age.ranking"
-			:aiDesc="essentialreport.explanation.age.introductionList.join('')"
-			:desc="essentialreport.explanation.age.detailsList[0].valuesList.join('')" :value="essentialreport.data.age"
-			:essentialreport="essentialreport"></border-view>
+			:adv="essentialreport.explanation.age.advicesList[0]?essentialreport.explanation.age.advicesList[0].valuesList.join(''):''"
+			:aiDesc="skinDesc" :desc="essentialreport.explanation.age.detailsList[0].valuesList.join('')"
+			:value="essentialreport.data.age" :essentialreport="essentialreport"></border-view>
 		<!-- 体重指数 -->
 		<border-view :title="'体重指数'" :icon="'icon-weight'"
-			:adv="essentialreport.explanation.bmi.advicesList[0]?essentialreport.explanation.bmi.advicesList[0].valuesList.join(''):'无'"
+			:adv="essentialreport.explanation.bmi.advicesList[0]?essentialreport.explanation.bmi.advicesList[0].valuesList.join(''):''"
 			:ranking="essentialreport.explanation.bmi.ranking"
 			:aiDesc="essentialreport.explanation.bmi.introductionList.join('')"
 			:desc="essentialreport.explanation.bmi.detailsList[0].valuesList.join('')" :value="essentialreport.data.bmi"
@@ -243,6 +241,7 @@
 		},
 		data() {
 			return {
+				skinDesc: '如果皮肤年龄低于实际年龄：说明您看上去比本年龄的人年轻，保养较好。如果皮肤年龄大于实际年龄：说明您看上去比本年龄的人显老，需要考虑皮肤保养。',
 				showInfo: false,
 				riskToopTipLeft: 0,
 				riskTips: '轻度风险',

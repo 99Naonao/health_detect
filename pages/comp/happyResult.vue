@@ -17,7 +17,7 @@
 			<view class="desc">{{emotionscorereport.data.introductionList.join('')}}</view> -->
 		</view>
 		<view class="border">
-			<view class="age flex">
+			<view class="age">
 				<image class="icon-risk" src="../../static/icon/SY_IconQXZH_Y.png"></image>
 				<text class="icon-title">风险区间</text>
 			</view>
@@ -68,90 +68,33 @@
 				</view>
 			</view>
 			<view class="border-line"></view>
-			<view class="flex">
+			<view class="">
 				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 					class="icon-title">概念解释</text>
 			</view>
 			<more-desc :descValue="motionReport"></more-desc>
 		</view>
-		<view class="border">
-			<view class="title">
-				<image class="heartatt" src="@/static/icon/SY_IconGJX_Y.png"></image>攻击性<text
-					class="valueNum">{{aggressivityreport.data}}</text>
-			</view>
-			<progress-bar :tick="aggressivityreport.data"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{aggressivityreport.explanation.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">{{aggressivityreport.explanation.advicesList[0].valuesList.join('')}}</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="aggressivityreport.explanation.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
-		<view class="border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconJLX_Y.png"></image>焦虑度<text
-					class="valueNum">{{anxietyreport.data}}</text>
-			</view>
-			<progress-bar :tick="anxietyreport.data"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{anxietyreport.explanation.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">{{anxietyreport.explanation.advicesList[0].valuesList.join('')}}</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="anxietyreport.explanation.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
-		<view class="border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconHLD_Y.png"></image>活力度<text
-					class="valueNum">{{vitalityreport.data}}</text>
-			</view>
-			<progress-bar :tick="vitalityreport.data"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{vitalityreport.explanation.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">{{vitalityreport.explanation.advicesList[0].valuesList.join('')}}</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="vitalityreport.explanation.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
+		<!-- 攻击性 -->
+		<border-view :title="'攻击性'" :icon="'icon-attack'" :value="(aggressivityreport.data).toFixed(2)"
+			:ticks="[0,50,100,150]" :adv="aggressivityreport.explanation.advicesList[0].valuesList.join('')"
+			:aiDesc="aggressivityreport.explanation.introductionList.join('')"
+			:desc="aggressivityreport.explanation.detailsList[0].valuesList.join('')">
+		</border-view>
+
+		<!-- 焦虑度 -->
+		<border-view :title="'焦虑度'" :icon="'icon-jiaolv'" :value="(anxietyreport.data).toFixed(2)"
+			:ticks="[0,50,100,150]" :adv="anxietyreport.explanation.advicesList[0].valuesList.join('')"
+			:aiDesc="anxietyreport.explanation.introductionList.join('')"
+			:desc="anxietyreport.explanation.detailsList[0].valuesList.join('')">
+		</border-view>
+
+		<!-- 活力度 -->
+		<border-view :title="'活力度'" :icon="'icon-huoli'" :value="(vitalityreport.data).toFixed(2)"
+			:ticks="[0,50,100,150]" :adv="vitalityreport.explanation.advicesList[0].valuesList.join('')"
+			:aiDesc="vitalityreport.explanation.introductionList.join('')"
+			:desc="vitalityreport.explanation.detailsList[0].valuesList.join('')">
+		</border-view>
+
 		<view class="border">
 			<view class="title">
 				<image class="heartIcon" src="@/static/icon/SY_IconYYD_Y.png"></image>抑郁度<text
@@ -250,13 +193,15 @@
 </template>
 
 <script>
+	import borderView from './borderView.vue';
 	import * as echarts from 'echarts';
 	import progressBar from '@/pages/comp/progressBar.vue';
 	import moreDesc from '@/pages/comp/moreDesc.vue';
 	export default {
 		components: {
 			moreDesc,
-			progressBar
+			progressBar,
+			borderView
 		},
 		props: {
 			result: {
@@ -469,7 +414,6 @@
 		.icon {
 			width: 105rpx;
 			height: 116rpx;
-			display: block;
 		}
 
 		.heartbpsIcon {
@@ -480,19 +424,16 @@
 		.icon-risk {
 			width: 45rpx;
 			height: 44rpx;
-			display: block;
 		}
 
 		.icon-age {
 			width: 42rpx;
 			height: 43rpx;
-			display: block;
 		}
 
 		.icon-add {
-			width: 45rpx;
-			height: 48rpx;
-			display: block;
+			width: 39rpx;
+			height: 43rpx;
 		}
 
 		.icon-ai {
@@ -503,7 +444,7 @@
 
 		.icon-title {
 			padding-left: 10rpx;
-			font-size: 35rpx;
+			font-size: 30rpx;
 		}
 
 		.subtitle {
@@ -598,7 +539,7 @@
 
 	.progress-container {
 		width: 100%;
-		height: 25rpx;
+		height: 17rpx;
 		color: #333;
 		position: relative;
 		margin-top: 30rpx;
@@ -661,23 +602,25 @@
 	.tooltip {
 		position: absolute;
 		left: 100px;
-		top: -25px;
+		top: -12px;
 		transform: translateX(-50%);
 
 		.tooltip-text {
-			padding: 10rpx;
-			padding-left: 20rpx;
-			padding-right: 20rpx;
+			padding: 5rpx;
+			padding-left: 10rpx;
+			padding-right: 10rpx;
 			word-wrap: normal;
 			word-break: keep-all;
 			color: #fff;
 			border-radius: 10rpx;
 			text-align: center;
+			font-size: 22rpx;
+			// transform: translateX(-50%);
 			top: -20px;
 		}
 
 		.tooltip-triangle {
-			border-width: 20rpx;
+			border-width: 15rpx;
 			border-color: #000 transparent transparent transparent;
 			border-style: solid;
 			width: 0px;
