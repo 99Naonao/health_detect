@@ -418,15 +418,15 @@
 
 		.tabitem {
 			text-align: center;
-			margin-top: 30rpx;
 			padding-bottom: 10rpx;
+			padding-top: 10rpx;
 			height: 68rpx;
-			color: white;
-			background-color: #46647d;
-			border-top-right-radius: 20rpx;
-			border-top-left-radius: 20rpx;
+			color: #D3E2EF;
+			background-color: #6186a5;
+			border-top-right-radius: 30rpx;
+			border-top-left-radius: 30rpx;
 			line-height: 68rpx;
-			font-size: 30rpx;
+			font-size: 28rpx;
 			width: 260rpx;
 		}
 
@@ -441,11 +441,11 @@
 		.active {
 			font-weight: bold;
 			color: #616169;
-			height: 88rpx;
-			margin-top: 0rpx;
-			padding-top: 10rpx;
+			// margin-top: 0rpx;
+			// padding-top: 10rpx;
 			line-height: 36rpx;
 			background-color: white;
+			height: 68rpx;
 			// border-bottom: solid 1rpx skyblue;
 		}
 	}
