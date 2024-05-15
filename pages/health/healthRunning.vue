@@ -1,13 +1,15 @@
 <template>
 	<!-- <z-nav-bar backState="1000" fontColor='#000' title='健康检测'></z-nav-bar> -->
 	<view class="container">
-		<image class="imgmask" src="../../static/JK_03_Mask00.png" mode="widthFix"></image>
-		<canvas id="canvas" class="canvas-c" :style="backBtnStyle" canvas-id="canvas"></canvas>
-
-		<view class="" style="position: relative;padding-top: 180rpx;">
+		<image class="topii" src="../../static/20240515112204.png" mode=""></image>
+		<view class="user-tip">
+			<image class="imgmask" src="../../static/JK_03_Mask00.png" mode="widthFix"></image>
+			<view class="message">{{message}}</view>
 			<view class="tips">请将您的身体置于虚线内</view>
 			<view class="tips">检测大约需要30s，请在良好的光线环境内使用</view>
 		</view>
+		<canvas id="canvas" class="canvas-c" :style="backBtnStyle" canvas-id="canvas"></canvas>
+
 		<view class="counting-c" v-if="counting>0">
 			{{counting}}
 		</view>
@@ -40,7 +42,7 @@
 			return {
 				gaugeData: [{
 					value: 0,
-					name: '采集中',
+					name: '',
 					title: {
 						offsetCenter: ['0%', '-30%']
 					},
@@ -110,6 +112,7 @@
 				},
 				measureIns: '',
 				video: null,
+				collectTime: 20, //秒
 				canvas: null,
 				equeneId: 0,
 				intervalId: 0,
@@ -269,16 +272,16 @@
 					//更新测量时间
 					this.MeasureTime = Math.floor((Date.now() - this.StartMeasurementTime) / 1000)
 
-					if ((Date.now() - this.StartMeasurementTime) / 1000 <= 30) {
+					if ((Date.now() - this.StartMeasurementTime) / 1000 <= this.collectTime) {
 						this.message = '正在测量...'
-						this.gaugeData[0].name = this.message;
+						// this.gaugeData[0].name = this.message;
 					}
-					if ((Date.now() - this.StartMeasurementTime) / 1000 >= 30) {
+					if ((Date.now() - this.StartMeasurementTime) / 1000 >= this.collectTime) {
 						this.message = '汇总中...'
-						this.gaugeData[0].name = this.message;
+						// this.gaugeData[0].name = this.message;
 					}
 					this.LastTimestamp = timestamp
-					let percent = (((Date.now() - this.StartMeasurementTime) / 30000) * 100).toFixed(2)
+					let percent = (((Date.now() - this.StartMeasurementTime) / (this.collectTime * 1000)) * 100).toFixed(2)
 					this.gaugeData[0].value = percent > 100 ? 100 : percent;
 					this.echartIns.setOption({
 						series: [{
@@ -346,7 +349,7 @@
 				this.$set(this.backBtnStyle, '--canvasWidth', (pageSize.width) + 'px')
 				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.width) + 'px')
 				this.$set(this.backBtnStyle, '--canvasLeft', '0px')
-				this.$set(this.backBtnStyle, '--canvasTop', '1px')
+				this.$set(this.backBtnStyle, '--canvasTop', '232rpx')
 				ctx.scale(-1, 1)
 				ctx.translate(-pageSize.width / deviceInfo.pixelRatio, 0);
 				// 截取一部分
@@ -456,11 +459,20 @@
 	.container {
 		position: relative;
 
+		.topii {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 210rpx;
+			height: 232rpx;
+			transform: translateX(-50%);
+		}
+
 		.circle {
 			position: absolute;
 			z-index: 80;
 			left: 50%;
-			top: 350rpx;
+			top: 480rpx;
 			width: 200px;
 			height: 200px;
 			transform: translateX(-50%);
@@ -475,20 +487,33 @@
 			transform: translateX(-50%);
 			color: #ffaa00;
 			z-index: 101;
-			top: 350rpx;
+			top: 480rpx;
 		}
 
 		.imgmask {
 			width: 100%;
+		}
+
+		.user-tip {
 			position: absolute;
 			z-index: 2;
 			left: 0;
-			top: 0;
+			top: 232rpx;
+			width: 100%;
+
+			.message {
+				text-align: center;
+				font-weight: bold;
+				font-size: 38rpx;
+				padding: 10rpx;
+				color: #ffaa00;
+			}
+
+			.tips {
+				text-align: center;
+			}
 		}
 
-		.tips {
-			text-align: center;
-		}
 	}
 
 	.canvas-c {
