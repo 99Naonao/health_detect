@@ -116,6 +116,9 @@
 					'icon-attack': '../../static/icon/SY_IconGJX_Y.png',
 					'icon-jiaolv': '../../static/icon/SY_IconJLX_Y.png',
 					'icon-huoli': '../../static/icon/SY_IconHLD_Y.png',
+					'icon-yiyu': '../../static/icon/SY_IconYYD_Y.png',
+					'icon-pilao': '../../static/icon/SY_IconPLD_Y.png',
+					'icon-yali': '../../static/icon/SY_IconYLD_Y.png',
 				}
 			}
 		},
@@ -276,6 +279,21 @@
 
 	.icon-huoli {
 		width: 45rpx;
+		height: 44rpx;
+	}
+
+	.icon-yiyu {
+		width: 46rpx;
+		height: 44rpx;
+	}
+
+	.icon-pilao {
+		width: 45rpx;
+		height: 45rpx;
+	}
+
+	.icon-yali {
+		width: 46rpx;
 		height: 44rpx;
 	}
 </style>

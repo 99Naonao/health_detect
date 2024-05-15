@@ -95,100 +95,26 @@
 			:desc="vitalityreport.explanation.detailsList[0].valuesList.join('')">
 		</border-view>
 
-		<view class="border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconYYD_Y.png"></image>抑郁度<text
-					class="valueNum">{{suppressionreport.data}}</text>
-			</view>
-			<progress-bar :tick="suppressionreport.data"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{suppressionreport.explanation.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">{{suppressionreport.explanation.advicesList[0].valuesList.join('')}}</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="suppressionreport.explanation.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
-		<view class="border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconPLD_Y.png"></image>疲劳度<text
-					class="valueNum">{{fatiguereport.data}}</text>
-			</view>
-			<progress-bar :tick="fatiguereport.data"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{fatiguereport.explanation.introductionList.join('')}}
-			</view>
-			<!-- <view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="content">超越<text
-					class="focusnum">{{(fatiguereport.explanation.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view> -->
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">{{fatiguereport.explanation.advicesList[0].valuesList.join('')}}</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="fatiguereport.explanation.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
-		<view class="border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconYLD_Y.png"></image>压力度<text
-					class="valueNum">{{msireport.data}}</text>
-			</view>
-			<progress-bar :tick="msireport.data"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{msireport.explanation.introductionList.join('')}}
-			</view>
-			<!-- <view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="content">超越<text
-					class="focusnum">{{(msireport.explanation.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view> -->
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">{{msireport.explanation.advicesList[0].valuesList.join('')}}</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="msireport.explanation.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
+		<!-- 抑郁度 -->
+		<border-view :title="'抑郁度'" :icon="'icon-yiyu'" :value="(suppressionreport.data).toFixed(2)"
+			:ticks="[0,50,100,150]" :adv="suppressionreport.explanation.advicesList[0].valuesList.join('')"
+			:aiDesc="suppressionreport.explanation.introductionList.join('')"
+			:desc="suppressionreport.explanation.detailsList[0].valuesList.join('')">
+		</border-view>
+
+		<!--疲劳度 -->
+		<border-view :title="'疲劳度'" :icon="'icon-pilao'" :value="(fatiguereport.data).toFixed(2)"
+			:ticks="[0,50,100,150]" :adv="fatiguereport.explanation.advicesList[0].valuesList.join('')"
+			:aiDesc="fatiguereport.explanation.introductionList.join('')"
+			:desc="fatiguereport.explanation.detailsList[0].valuesList.join('')">
+		</border-view>
+
+		<!--压力度 -->
+		<border-view :title="'压力度'" :icon="'icon-yali'" :value="(msireport.data).toFixed(2)" :ticks="[0,50,100,150]"
+			:adv="msireport.explanation.advicesList[0].valuesList.join('')"
+			:aiDesc="msireport.explanation.introductionList.join('')"
+			:desc="msireport.explanation.detailsList[0].valuesList.join('')">
+		</border-view>
 	</view>
 </template>
 
