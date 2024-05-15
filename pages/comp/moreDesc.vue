@@ -1,10 +1,10 @@
 <template>
 	<view class="">
 		<view v-if='spo2hreport_detailsList' class="content">
-			{{ descValue }}
+			{{ filterDesc }}
 		</view>
 		<view v-else class="virturecontent">
-			{{ descValue }}
+			{{ filterDesc }}
 		</view>
 		<view v-if='spo2hreport_detailsList' class="morebtn" @click="showMore('spo2hreport_detailsList')">
 			更多
@@ -22,7 +22,8 @@
 		},
 		data() {
 			return {
-				spo2hreport_detailsList: true
+				spo2hreport_detailsList: true,
+				filterDesc: ''
 			}
 		},
 		props: {
@@ -32,7 +33,8 @@
 			}
 		},
 		mounted() {
-			this.checkMore('spo2hreport_detailsList', this.descValue)
+			this.filterDesc = this.descValue.replace(new RegExp('小阳科技', 'g'), '福建中数')
+			this.checkMore('spo2hreport_detailsList', this.filterDesc)
 		},
 		methods: {
 			checkMore(kkey, value) {
