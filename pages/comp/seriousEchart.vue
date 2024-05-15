@@ -1,108 +1,27 @@
 <template>
 	<view class="border">
-		<view class="title">
-			<image :class='sccc' :src="iconUrl"></image><text class="icon-title">{{title}}</text><text
-				class="valueNum">{{valuePercent?value+'%':value}}
-			</text>
-		</view>
-		<progress-bar :tick="value" :ticks="ticks"></progress-bar>
-		<view class="">
-			<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-				class="icon-title">AI专家解读</text>
-		</view>
-		<view class="explanation content">
-			{{aiDesc}}
-		</view>
-		<view class="border-line" v-if="ranking!=0"></view>
-		<view class="age" v-if="ranking!=0">
-			<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-			<text class="icon-title">同龄人对比</text>
-		</view>
-		<view class="age content" v-if="ranking!=0">
-			超越<text class="focusnum">{{(ranking * 100).toFixed(2) + '%'}}</text>同龄人
-		</view>
-		<view class="border-line" v-if="adv!=''"></view>
-		<view class="" v-if="adv!=''">
-			<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-				class="icon-title">健康建议</text>
-		</view>
-		<view class="content" v-if="adv!=''">
-			{{adv}}
-		</view>
-		<view class="border-line"></view>
-		<view class="">
-			<image class="icon-explan" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-				class="icon-title">概念解释</text>
-		</view>
-		<more-desc :descValue="desc"></more-desc>
+		<image :class="sccs" :src="iconUrl" mode="widthFix"></image><text class="title">{{title}}</text>
+		<div ref="charts1" style="width: 375px;height: 200px;"></div>
 	</view>
 </template>
 
 <script>
 	import * as echarts from 'echarts';
-	import progressBar from '@/pages/comp/progressBar.vue';
-	import moreDesc from '@/pages/comp/moreDesc.vue';
-	import icon1 from '@/static/icon/SY_IconTZZS_Y.png';
 	export default {
-		components: {
-			progressBar,
-			moreDesc
-		},
 		props: {
-			valuePercent: {
-				type: Boolean,
-				default: false,
-			},
-			ticks: {
-				type: Array,
-				default: [0, 30, 60, 90, 120, 150]
-			},
 			title: {
 				type: String,
 				default: ''
-			},
-			adv: {
-				type: String,
-				default: ''
-			},
-			value: {
-				type: Number,
-				default: 0
-			},
-			ranking: {
-				type: Number,
-				default: 0
 			},
 			icon: {
 				type: String,
 				default: 'icon-weight'
 			},
-			aiDesc: {
-				type: String,
-				default: '',
-			},
-			desc: {
-				type: String,
-				default: ''
-			},
-			essentialreport: {
-				type: Object,
-				default: {}
-			}
-		},
-		mounted() {
-			// this.iconUrl = require(this.icons['icon-weight'])
-			console.log('icon:', this.icon)
-			this.sccc = this.icon
-			this.iconUrl = this.getImageUrl(this.icons[this.icon]);
-			this.iconUrl = this.icons[this.icon]
-
-			// this.iconUrl = `/static/icon/SY_IconTZZS_Y.png`
 		},
 		data() {
 			return {
+				sccs: '',
 				iconUrl: '',
-				sccc: 'icon-weight',
 				icons: {
 					'icon-weight': '/static/icon/SY_IconTZZS_Y.png',
 					'icon-skin': '/static/icon/SY_IconPFNL_Y.png',
@@ -122,19 +41,68 @@
 					'icon-yiyu': '/static/icon/SY_IconYYD_Y.png',
 					'icon-pilao': '/static/icon/SY_IconPLD_Y.png',
 					'icon-yali': '/static/icon/SY_IconYLD_Y.png',
-				}
+				},
+				option: {
+					grid: {
+						left: 60,
+						top: 20,
+						right: 30,
+						bottom: 30,
+					},
+					xAxis: {
+						type: 'category',
+						data: ['周1', '周2', '周3', '周4', '周5', '周6', '周日']
+					},
+					yAxis: {
+						type: 'value',
+						axisLine: {
+							show: true
+						}
+					},
+					series: [{
+						data: [150, 230, 224, 218, 135, 147, 260],
+						type: 'line'
+					}]
+				},
 			}
 		},
+		mounted() {
+			this.init()
+		},
 		methods: {
-			getImageUrl(path) {
-				console.log(path, new URL(path, import.meta.url))
-				return new URL(path, import.meta.url).href
+			init() {
+				this.iconUrl = this.icons[this.icon]
+				this.sccs = this.icon
+
+				this.$nextTick(() => {
+					// 使用 Canvas 渲染器（默认）
+					var chart = echarts.init(this.$refs.charts1);
+					// this.totalOption.series[0].data = this.gaugeData
+					// this.gaugeData[0].value = riskValue
+					chart.setOption(this.option);
+					// console.log('chart:', chart)
+					// uni.hideLoading()
+				})
 			}
 		}
 	}
 </script>
 
 <style scoped lang="scss">
+	.border {
+		background-color: white;
+		margin: 30rpx;
+		padding: 30rpx;
+		border-radius: 50rpx !important;
+		box-shadow: 0px 0px 5px 5px #eee;
+	}
+
+	.title {
+		font-size: 30rpx;
+		color: black;
+		padding-left: 10rpx;
+	}
+
 	.heartIcon {
 		width: 50rpx;
 		height: 45rpx;

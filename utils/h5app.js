@@ -15,6 +15,7 @@ const api = {
 	token: '/ybHealthAccessToken',
 	add: '/ybUserHealthReport/add',
 	last: '/ybUserHealthReport/last',
+	history: '/ybUserHealthReport/static',
 }
 
 export function getWxUserInfo() {
@@ -147,6 +148,10 @@ export function cardList() {
 /**二维码生成接口**/
 export function getSeperateQRCode(data) {
 	return request_(base.baseUrl + api.qrCode, data);
+}
+/**获取历史记录*/
+export function getHistoryData(data) {
+	return request_(base.baseUrl + api.history, data);
 }
 
 /** 列表**/

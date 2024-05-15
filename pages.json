@@ -17,6 +17,13 @@
 			}
 		},
 		{
+			"path": "pages/mine/history",
+			"style": {
+				"navigationBarTitleText": "历史检测记录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/health/healthRunning",
 			"style": {
 				"navigationBarTitleText": "健康检测中",

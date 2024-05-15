@@ -39,7 +39,7 @@
 				</view>
 				<view class="score_part">
 					<view class="score_info">
-						<view class="btn" @click="measureHandler">开始测量</view>
+						<view class="btn" @click="measureHandler">历史数据</view>
 					</view>
 				</view>
 			</view>
@@ -94,7 +94,9 @@
 		methods: {
 			...mapActions(['$login']),
 			measureHandler() {
-
+				uni.navigateTo({
+					url: '/pages/mine/history'
+				})
 			},
 			clickWxLogin() {
 				autoLogin((res) => {
