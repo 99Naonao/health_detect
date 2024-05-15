@@ -111,7 +111,8 @@
 			:desc="hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')">
 		</border-view>
 		<!-- 心率变异性 -->
-		<border-view :title="'心率变异性'" :icon="'icon-heart-change'" :value="hrreport.data.hrv" :ticks="[0,50,200,300]"
+		<border-view :title="'心率变异性'" :icon="'icon-heart-change'" :valuePercent="true" :value="hrreport.data.hrv"
+			:ticks="[0,50,200,300]"
 			:adv="hrreport.explanation.hrv.advicesList[0]?hrreport.explanation.hrv.advicesList[0].valuesList.join(''):'无'"
 			:ranking="hrreport.explanation.hrv.ranking" :aiDesc="hrreport.explanation.hrv.introductionList.join('')"
 			:desc="hrreport.explanation.hrv.detailsList[0].valuesList.join('')">
@@ -163,7 +164,8 @@
 		</border-view>
 
 		<!-- 血氧饱和度 -->
-		<border-view :title="'血氧饱和度'" :icon="'icon-ox'" :value="spo2hreport.data" :ticks="[60,90,100]"
+		<border-view :title="'血氧饱和度'" :icon="'icon-ox'" :valuePercent="true" :value="spo2hreport.data"
+			:ticks="[60,90,100]"
 			:adv="spo2hreport.explanation.advicesList[0]?spo2hreport.explanation.advicesList[0].valuesList.join(''):'无'"
 			:ranking="bpreport.explanation.bpsystolic.ranking"
 			:aiDesc="spo2hreport.explanation.introductionList.join('')"
@@ -171,8 +173,8 @@
 		</border-view>
 
 		<!-- 心脏病风险 -->
-		<border-view :title="'心脏病风险'" :icon="'icon-risk'" :value="(riskreport.data.bpheartattack * 100).toFixed(2)"
-			:ticks="[0,1.5,3,4.5,6,7.5]"
+		<border-view :title="'心脏病风险'" :icon="'icon-risk'" :valuePercent="true"
+			:value="(riskreport.data.bpheartattack * 100).toFixed(2)" :ticks="[0,1.5,3,4.5,6,7.5]"
 			:adv="riskreport.explanation.bpheartattack.advicesList[0]?riskreport.explanation.bpheartattack.advicesList[0].valuesList.join(''):'无'"
 			:ranking="riskreport.data.bpheartattack"
 			:aiDesc="riskreport.explanation.bpheartattack.introductionList.join('')"
@@ -180,8 +182,8 @@
 		</border-view>
 
 		<!-- 中风风险 -->
-		<border-view :title="'中风风险'" :icon="'icon-zrisk'" :value="(riskreport.data.bpstroke * 100).toFixed(2)"
-			:ticks="[0,1.5,3,4.5,6,7.5]"
+		<border-view :title="'中风风险'" :icon="'icon-zrisk'" :valuePercent="true"
+			:value="(riskreport.data.bpstroke * 100).toFixed(2)" :ticks="[0,1.5,3,4.5,6,7.5]"
 			:adv="riskreport.explanation.bpstroke.advicesList[0]?riskreport.explanation.bpstroke.advicesList[0].valuesList.join(''):''"
 			:ranking="riskreport.explanation.bpstroke.ranking"
 			:aiDesc="riskreport.explanation.bpstroke.introductionList.join('')"
@@ -189,8 +191,8 @@
 		</border-view>
 
 		<!-- 心血管病风险 -->
-		<border-view :title="'心血管病风险'" :icon="'icon-xxgrisk'" :value="(riskreport.data.bpcvd * 100).toFixed(2)"
-			:ticks="[0,3,6,9,12,15]"
+		<border-view :title="'心血管病风险'" :icon="'icon-xxgrisk'" :valuePercent="true"
+			:value="(riskreport.data.bpcvd * 100).toFixed(2)" :ticks="[0,3,6,9,12,15]"
 			:adv="riskreport.explanation.bpcvd.advicesList[0]?riskreport.explanation.bpcvd.advicesList[0].valuesList.join(''):'无'"
 			:ranking="riskreport.explanation.bpcvd.ranking"
 			:aiDesc="riskreport.explanation.bpcvd.introductionList.join('')"

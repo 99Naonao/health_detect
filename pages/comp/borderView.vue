@@ -2,7 +2,8 @@
 	<view class="border">
 		<view class="title">
 			<image :class='sccc' :src="iconUrl"></image><text class="icon-title">{{title}}</text><text
-				class="valueNum">{{value}}</text>
+				class="valueNum">{{valuePercent?value+'%':value}}
+			</text>
 		</view>
 		<progress-bar :tick="value" :ticks="ticks"></progress-bar>
 		<view class="">
@@ -48,6 +49,10 @@
 			moreDesc
 		},
 		props: {
+			valuePercent: {
+				type: Boolean,
+				default: false,
+			},
 			ticks: {
 				type: Array,
 				default: [0, 30, 60, 90, 120, 150]
