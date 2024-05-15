@@ -578,7 +578,7 @@
 
 	.progress-container {
 		width: 100%;
-		height: 25rpx;
+		height: 17rpx;
 		color: #333;
 		position: relative;
 		margin-top: 30rpx;
@@ -643,24 +643,25 @@
 	.tooltip {
 		position: absolute;
 		left: 100px;
-		top: -25px;
+		top: -12px;
 		transform: translateX(-50%);
 
 		.tooltip-text {
-			padding: 10rpx;
-			padding-left: 20rpx;
-			padding-right: 20rpx;
+			padding: 5rpx;
+			padding-left: 10rpx;
+			padding-right: 10rpx;
 			word-wrap: normal;
 			word-break: keep-all;
 			color: #fff;
 			border-radius: 10rpx;
 			text-align: center;
+			font-size: 22rpx;
 			// transform: translateX(-50%);
 			top: -20px;
 		}
 
 		.tooltip-triangle {
-			border-width: 20rpx;
+			border-width: 15rpx;
 			border-color: #000 transparent transparent transparent;
 			border-style: solid;
 			width: 0px;
