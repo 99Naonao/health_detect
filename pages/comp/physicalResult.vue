@@ -189,117 +189,31 @@
 		</border-view>
 
 		<!-- 心血管病风险 -->
-		<view class="heartspo2hreport border">
-			<view class="title">
-				<image class="heartriskIcon" src="@/static/icon/SY_IconXGGN_Y.png"></image>心血管病风险<text
-					class="valueNum">{{riskreport.data.bpcvd * 100}}%</text>
-			</view>
-			<progress-bar :tick="riskreport.data.bpcvd * 100" :ticks="[0,3,6,9,12,15]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{riskreport.explanation.bpcvd.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="age content">
-				超越<text class="focusnum">{{(riskreport.explanation.bpcvd.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">
-				{{riskreport.explanation.bpcvd.advicesList[0]?riskreport.explanation.bpcvd.advicesList[0].valuesList.join(''):''}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="riskreport.explanation.bpcvd.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
-		<!-- 心脏压力 -->
-		<view class="heartspo2hreport border">
-			<view class="title">
-				<image class="heartbpppIcon" src="@/static/icon/SY_IconXZYL_Y.png"></image>心脏压力<text
-					class="valueNum">{{riskreport.data.bppp}}</text>
-			</view>
-			<progress-bar :tick="riskreport.data.bppp" :ticks="[3.5,3.8,4.1,4.4,4.7]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{riskreport.explanation.bppp.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="age content">
-				超越<text class="focusnum">{{(riskreport.explanation.bppp.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">
-				{{riskreport.explanation.bppp.advicesList[0]?riskreport.explanation.bppp.advicesList[0].valuesList.join(''):''}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="riskreport.explanation.bppp.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
-		<!-- 血管功能 -->
-		<view class="heartspo2hreport border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>血管功能<text
-					class="valueNum">{{riskreport.data.bptau}}</text>
-			</view>
-			<progress-bar :tick="riskreport.data.bptau" :ticks="[0,0.4,0.8,1.2,1.6,2,2.4,3]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{riskreport.explanation.bptau.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="age content">
-				超越<text class="focusnum">{{(riskreport.explanation.bptau.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">
-				{{riskreport.explanation.bptau.advicesList[0]?riskreport.explanation.bptau.advicesList[0].valuesList.join(''):''}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="riskreport.explanation.bptau.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
+		<border-view :title="'心血管病风险'" :icon="'icon-xxgrisk'" :value="(riskreport.data.bpcvd * 100).toFixed(2)"
+			:ticks="[0,3,6,9,12,15]"
+			:adv="riskreport.explanation.bpcvd.advicesList[0]?riskreport.explanation.bpcvd.advicesList[0].valuesList.join(''):'无'"
+			:ranking="riskreport.explanation.bpcvd.ranking"
+			:aiDesc="riskreport.explanation.bpcvd.introductionList.join('')"
+			:desc="riskreport.explanation.bpcvd.detailsList[0].valuesList.join('')">
+		</border-view>
 
+		<!-- 心脏压力 -->
+		<border-view :title="'心脏压力'" :icon="'icon-xxylrisk'" :value="(riskreport.data.bppp).toFixed(2)"
+			:ticks="[3.5,3.8,4.1,4.4,4.7]"
+			:adv="riskreport.explanation.bppp.advicesList[0]?riskreport.explanation.bppp.advicesList[0].valuesList.join(''):'无'"
+			:ranking="riskreport.explanation.bppp.ranking"
+			:aiDesc="riskreport.explanation.bppp.introductionList.join('')"
+			:desc="riskreport.explanation.bppp.detailsList[0].valuesList.join('')">
+		</border-view>
+
+		<!-- 血管功能 -->
+		<border-view :title="'血管功能'" :icon="'icon-xgrisk'" :value="(riskreport.data.bptau).toFixed(2)"
+			:ticks="[0,0.4,0.8,1.2,1.6,2,2.4,3]"
+			:adv="riskreport.explanation.bptau.advicesList[0]?riskreport.explanation.bptau.advicesList[0].valuesList.join(''):'无'"
+			:ranking="riskreport.explanation.bptau.ranking"
+			:aiDesc="riskreport.explanation.bptau.introductionList.join('')"
+			:desc="riskreport.explanation.bptau.detailsList[0].valuesList.join('')">
+		</border-view>
 	</view>
 </template>
 

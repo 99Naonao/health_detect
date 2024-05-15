@@ -105,6 +105,9 @@
 					'icon-ox': '../../static/icon/SY_IconXYBHD_Y.png',
 					'icon-risk': '../../static/icon/SY_IconXZBFX_Y.png',
 					'icon-zrisk': '../../static/icon/SY_IconZFFX_Y.png',
+					'icon-xxgrisk': '../../static/icon/SY_IconXGGN_Y.png',
+					'icon-xxylrisk': '../../static/icon/SY_IconXZYL_Y.png',
+					'icon-xgrisk': '../../static/icon/SY_IconXL_Y.png',
 				}
 			}
 		},
@@ -132,6 +135,16 @@
 	.icon-ox {
 		width: 45rpx;
 		height: 46rpx;
+	}
+
+	.icon-xxylrisk {
+		width: 52rpx;
+		height: 48rpx;
+	}
+
+	.icon-xgrisk {
+		width: 50rpx;
+		height: 45rpx;
 	}
 
 	.icon-skin {
@@ -200,6 +213,11 @@
 	.icon-up {
 		width: 53rpx;
 		height: 42rpx;
+	}
+
+	.icon-xxgrisk {
+		width: 48rpx;
+		height: 50rpx;
 	}
 
 	.icon-weight {
