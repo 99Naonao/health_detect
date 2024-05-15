@@ -9,6 +9,10 @@
 	import * as echarts from 'echarts';
 	export default {
 		props: {
+			ticks: { // y轴的值
+				type: Array,
+				default: [150, 230, 224, 218, 135, 147, 260],
+			},
 			title: {
 				type: String,
 				default: ''
@@ -79,6 +83,7 @@
 					var chart = echarts.init(this.$refs.charts1);
 					// this.totalOption.series[0].data = this.gaugeData
 					// this.gaugeData[0].value = riskValue
+					this.option.series[0].data = this.ticks
 					chart.setOption(this.option);
 					// console.log('chart:', chart)
 					// uni.hideLoading()
@@ -100,6 +105,7 @@
 	.title {
 		font-size: 30rpx;
 		color: black;
+		color: #333;
 		padding-left: 10rpx;
 	}
 
