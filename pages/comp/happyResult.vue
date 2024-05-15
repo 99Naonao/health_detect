@@ -6,7 +6,7 @@
 					<view class="bigtitle">
 						情绪综合分
 					</view>
-					<div ref="charts1" style="width: 200px;height: 200px;"></div>
+					<div ref="charts1" style="width: 168px;height: 168px;"></div>
 					<!-- <view class="circle">{{physiologyscorereport.data}}</view> -->
 				</view>
 				<image class="topimg" src="../../static/SY_04_Pic01.png" mode="widthFix"></image>
@@ -298,7 +298,7 @@
 						},
 						axisLine: {
 							lineStyle: {
-								width: 15
+								width: 10
 							}
 						},
 						splitLine: {
@@ -449,7 +449,8 @@
 
 		.bigtitle {
 			font-size: 30rpx;
-			padding-bottom: 30rpx;
+			text-align: center;
+			// padding-bottom: 30rpx;
 		}
 
 		.circle {

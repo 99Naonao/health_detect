@@ -6,7 +6,7 @@
 					<view class="bigtitle">
 						综合心健康风险
 					</view>
-					<div ref="charts1" style="width: 200px;height: 200px;"></div>
+					<div ref="charts1" style="width: 168px;height: 168px;"></div>
 					<!-- <view class="circle">{{physiologyscorereport.data}}</view> -->
 				</view>
 				<image class="topimg" src="../../static/SY_04_Pic01.png" mode="widthFix"></image>
@@ -588,6 +588,10 @@
 					}
 				}],
 				totalOption: {
+					grid: {
+						top: 0,
+						left: 0,
+					},
 					series: [{
 						type: 'gauge',
 						startAngle: 0,
@@ -607,8 +611,9 @@
 							}
 						},
 						axisLine: {
+							padding: [0, 0, 0, 0],
 							lineStyle: {
-								width: 15
+								width: 10
 							}
 						},
 						splitLine: {
@@ -750,7 +755,8 @@
 
 		.bigtitle {
 			font-size: 30rpx;
-			padding-bottom: 30rpx;
+			text-align: center;
+			// padding-bottom: 30rpx;
 		}
 
 		.circle {
