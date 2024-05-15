@@ -167,7 +167,7 @@
 	.valueNum {
 		font-weight: bold;
 		color: #ffaa00;
-		padding-left: 10rpx;
+		padding-left: 20rpx;
 		font-size: 30rpx;
 		letter-spacing: 2rpx;
 	}

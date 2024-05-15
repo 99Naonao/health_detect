@@ -42,14 +42,14 @@
 		position: relative;
 
 		.bar {
-			height: 20rpx;
+			height: 17rpx;
 			background-color: rgb(124, 196, 235);
 			border-radius: 10rpx;
 		}
 
 		.arrowcon {
 			position: absolute;
-			top: -34rpx;
+			top: -5rpx;
 			transform: translateX(-50%);
 		}
 
