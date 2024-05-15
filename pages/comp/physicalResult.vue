@@ -11,13 +11,14 @@
 				</view>
 				<image class="topimg" src="../../static/SY_04_Pic01.png" mode="widthFix"></image>
 			</view>
-			<view class="subtitle flex">
-				<image class="icon" src="../../static/icon/SY_IconZFFX.png"></image><text>AI专家解读</text>
+			<view class="title">
+				<image class="icon" src="../../static/icon/JK_04_IconAI_Y.png"></image><text
+					class="icon-title">AI专家解读</text>
 			</view>
 			<view class="desc">{{physiologyscorereport.explanation.introductionList.join('')}}</view>
 		</view>
 		<view class="border">
-			<view class="age flex">
+			<view class="age">
 				<image class="icon-risk" src="../../static/icon/JK_04_IconFXQJ_Y.png"></image>
 				<text class="icon-title">风险区间</text>
 			</view>
@@ -67,7 +68,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="age flex">
+			<view class="age">
 				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
 				<text class="icon-title">同龄人对比</text>
 			</view>
@@ -75,172 +76,57 @@
 					class="focusnum">{{(physiologyscorereport.explanation.ranking * 100).toFixed(2) + '%'}}</text>同龄人
 			</view>
 			<view class="border-line"></view>
-			<view class="flex">
+			<view class="title">
 				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
 					class="icon-title">健康建议</text>
 			</view>
 			<view class="content">{{physiologyscorereport.explanation.advicesList[0].valuesList.join('')}}
 			</view>
 			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
+			<view class="title">
+				<image class="icon-explan" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 					class="icon-title">概念解释</text>
 			</view>
 			<more-desc :descValue="physiologyscorereport.explanation.detailsList[0].valuesList.join('')"></more-desc>
 		</view>
 		<!-- 皮肤年龄 -->
-		<view class="heartspo2hreport border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconPFNL_Y.png"></image>皮肤年龄<text
-					class="valueNum">{{essentialreport.data.age}}</text>
-			</view>
-			<progress-bar :tick="essentialreport.data.age" :ticks="[0,30,60,90,120,150]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{essentialreport.explanation.age.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="age content">
-				超越<text class="focusnum">{{(essentialreport.explanation.age.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">
-				{{essentialreport.explanation.age.advicesList[0]?essentialreport.explanation.age.advicesList[0].valuesList.join(''):''}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="essentialreport.explanation.age.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
+		<border-view :title="'皮肤年龄'" :icon="'icon-skin'"
+			:adv="essentialreport.explanation.age.advicesList[0]?essentialreport.explanation.age.advicesList[0].valuesList.join(''):'无'"
+			:ranking="essentialreport.explanation.age.ranking"
+			:aiDesc="essentialreport.explanation.age.introductionList.join('')"
+			:desc="essentialreport.explanation.age.detailsList[0].valuesList.join('')" :value="essentialreport.data.age"
+			:essentialreport="essentialreport"></border-view>
 		<!-- 体重指数 -->
-		<view class="heartspo2hreport border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconTZZS_Y.png"></image>体重指数<text
-					class="valueNum">{{essentialreport.data.bmi}}</text>
-			</view>
-			<progress-bar :tick="essentialreport.data.bmi" :ticks="[15,18.5,25,30,35,40]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{essentialreport.explanation.bmi.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="age content">
-				超越<text class="focusnum">{{(essentialreport.explanation.bmi.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">
-				{{essentialreport.explanation.bmi.advicesList[0]?essentialreport.explanation.bmi.advicesList[0].valuesList.join(''):''}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="essentialreport.explanation.bmi.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
-		<view class="heart border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconXL_Y.png"></image>心率<text
-					class="valueNum">{{hrreport.data.hrbpm}}</text>
-			</view>
-			<progress-bar :tick="hrreport.data.hrbpm"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{hrreport.explanation.hrbpm.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="content">超越<text
-					class="focusnum">{{(hrreport.explanation.hrbpm.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">{{hrreport.explanation.hrbpm.advicesList[0].valuesList.join('')}}</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
-		<view class="heartRV border">
-			<view class="title">
-				<image class="heartIcon" src="@/static/icon/SY_IconXZBY_Y.png"></image>心率变异性<text
-					class="valueNum">{{hrreport.data.hrv}}</text>
-			</view>
+		<border-view :title="'体重指数'" :icon="'icon-weight'"
+			:adv="essentialreport.explanation.bmi.advicesList[0]?essentialreport.explanation.bmi.advicesList[0].valuesList.join(''):'无'"
+			:ranking="essentialreport.explanation.bmi.ranking"
+			:aiDesc="essentialreport.explanation.bmi.introductionList.join('')"
+			:desc="essentialreport.explanation.bmi.detailsList[0].valuesList.join('')" :value="essentialreport.data.bmi"
+			:essentialreport="essentialreport">
+		</border-view>
+		<!-- 心率 -->
+		<border-view :title="'心率'" :icon="'icon-heart'" :value="hrreport.data.hrbpm"
+			:adv="hrreport.explanation.hrbpm.advicesList[0].valuesList.join('')"
+			:ranking="hrreport.explanation.hrbpm.ranking" :aiDesc="hrreport.explanation.hrbpm.introductionList.join('')"
+			:desc="hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')">
+		</border-view>
+		<!-- 心率变异性 -->
+		<border-view :title="'心率变异性'" :icon="'icon-heart-change'" :value="hrreport.data.hrv" :ticks="[0,50,200,300]"
+			:adv="hrreport.explanation.hrv.advicesList[0]?hrreport.explanation.hrv.advicesList[0].valuesList.join(''):'无'"
+			:ranking="hrreport.explanation.hrv.ranking" :aiDesc="hrreport.explanation.hrv.introductionList.join('')"
+			:desc="hrreport.explanation.hrv.detailsList[0].valuesList.join('')">
+		</border-view>
 
-			<progress-bar :tick="hrreport.data.hrv" :ticks="[0,50,200,300]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{hrreport.explanation.hrv.introductionList.join('')}}
-			</view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="age content">
-				超越<text class="focusnum">{{(hrreport.explanation.hrv.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">
-				{{hrreport.explanation.hrv.advicesList[0]?hrreport.explanation.hrv.advicesList[0].valuesList.join(''):'无'}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="hrreport.explanation.hrv.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
 		<!-- 房颤 -->
 		<view class="heartAfReport border">
 			<view class="title">
-				<image class="heartafIcon" src="@/static/icon/SY_IconFC_Y.png"></image>房颤
+				<image class="icon-shake" src="@/static/icon/SY_IconFC_Y.png"></image><text
+					style="padding: 10rpx;">房颤</text>
 			</view>
 			<view class="content">
 				<view class="desc-ccc">{{afreport.data == 0? '未发作':'发作'}}</view>
 			</view>
-			<view class="flex align-center">
+			<view class="">
 				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 					class="icon-title">AI专家解读</text>
 			</view>
@@ -248,192 +134,60 @@
 				{{afreport.explanation.introductionList.join('')}}
 			</view>
 			<view class="border-line"></view>
-			<view class="flex">
+			<view class="">
 				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
 					class="icon-title">健康建议</text>
 			</view>
 			<view class="content">{{afreport.explanation.advicesList[0].valuesList.join('')}}</view>
 			<view class="border-line"></view>
-			<view class="flex">
+			<view class="">
 				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
 					class="icon-title">概念解释</text>
 			</view>
 			<more-desc :descValue="afreport.explanation.detailsList[0].valuesList.join('')"></more-desc>
 		</view>
 		<!-- 舒张压 -->
-		<view class="heartBPReport border">
-			<view class="title">
-				<image class="heartpressIcon" src="@/static/icon/SY_IconXY_Y.png"></image>舒张压<text
-					class="valueNum">{{bpreport.data.bpdiastolic}}</text>
-			</view>
-			<progress-bar :tick="bpreport.data.bpdiastolic" :ticks="[50,60,80,90,100]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{bpreport.explanation.bpdiastolic.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="age content">
-				超越<text class="focusnum">{{(bpreport.explanation.bpdiastolic.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">{{bpreport.explanation.bpdiastolic.advicesList[0].valuesList.join('')}}</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="bpreport.explanation.bpdiastolic.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
+		<border-view :title="'舒张压'" :icon="'icon-press'" :value="bpreport.data.bpdiastolic" :ticks="[50,60,80,90,100]"
+			:adv="bpreport.explanation.bpdiastolic.advicesList[0].valuesList.join('')"
+			:ranking="bpreport.explanation.bpdiastolic.ranking"
+			:aiDesc="bpreport.explanation.bpdiastolic.introductionList.join('')"
+			:desc="bpreport.explanation.bpdiastolic.detailsList[0].valuesList.join('')">
+		</border-view>
+
 		<!-- 收缩压 -->
-		<view class="heartBPReport border">
-			<view class="title">
-				<image class="heartpressIcon" src="@/static/icon/SY_IconXY_Y.png"></image>收缩压<text
-					class="valueNum">{{bpreport.data.bpsystolic}}</text>
-			</view>
-			<progress-bar :tick="bpreport.data.bpsystolic" :ticks="[70,90,110,140,170]"></progress-bar>
+		<border-view :title="'收缩压'" :icon="'icon-up'" :value="bpreport.data.bpsystolic" :ticks="[70,90,110,140,170]"
+			:adv="bpreport.explanation.bpsystolic.advicesList[0].valuesList.join('')"
+			:ranking="bpreport.explanation.bpsystolic.ranking"
+			:aiDesc="bpreport.explanation.bpsystolic.introductionList.join('')"
+			:desc="bpreport.explanation.bpsystolic.detailsList[0].valuesList.join('')">
+		</border-view>
 
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{bpreport.explanation.bpsystolic.introductionList.join('')}}
-			</view>
-			<view class="age content">
-				超越<text class="focusnum">{{(bpreport.explanation.bpsystolic.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">{{bpreport.explanation.bpsystolic.advicesList[0].valuesList.join('')}}</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="bpreport.explanation.bpsystolic.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
 		<!-- 血氧饱和度 -->
-		<view class="heartspo2hreport border">
-			<view class="title">
-				<image class="hearto2Icon" src="@/static/icon/SY_IconXYBHD_Y.png"></image>血氧饱和度<text
-					class="valueNum">{{spo2hreport.data}}%</text>
-			</view>
+		<border-view :title="'血氧饱和度'" :icon="'icon-ox'" :value="spo2hreport.data" :ticks="[60,90,100]"
+			:adv="spo2hreport.explanation.advicesList[0]?spo2hreport.explanation.advicesList[0].valuesList.join(''):'无'"
+			:ranking="bpreport.explanation.bpsystolic.ranking"
+			:aiDesc="spo2hreport.explanation.introductionList.join('')"
+			:desc="spo2hreport.explanation.detailsList[0].valuesList.join('')">
+		</border-view>
 
-			<progress-bar :tick="spo2hreport.data" :ticks="[60,90,100]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{spo2hreport.explanation.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">
-				{{spo2hreport.explanation.advicesList[0]?spo2hreport.explanation.advicesList[0].valuesList.join(''):'无'}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="spo2hreport.explanation.detailsList[0].valuesList.join('')"></more-desc>
-			<!-- <view class="content">{{spo2hreport.explanation.detailsList[0].valuesList.join('')}}</view> -->
-		</view>
 		<!-- 心脏病风险 -->
-		<view class="heartspo2hreport border">
-			<view class="title">
-				<image class="heartbreakIcon" src="@/static/icon/SY_IconXZBFX_Y.png"></image>心脏病风险<text
-					class="valueNum">{{(riskreport.data.bpheartattack * 100).toFixed(2)}}%</text>
-			</view>
+		<border-view :title="'心脏病风险'" :icon="'icon-risk'" :value="(riskreport.data.bpheartattack * 100).toFixed(2)"
+			:ticks="[0,1.5,3,4.5,6,7.5]"
+			:adv="riskreport.explanation.bpheartattack.advicesList[0]?riskreport.explanation.bpheartattack.advicesList[0].valuesList.join(''):'无'"
+			:ranking="riskreport.data.bpheartattack"
+			:aiDesc="riskreport.explanation.bpheartattack.introductionList.join('')"
+			:desc="riskreport.explanation.bpheartattack.detailsList[0].valuesList.join('')">
+		</border-view>
 
-			<progress-bar :tick="riskreport.data.bpheartattack * 100" :ticks="[0,1.5,3,4.5,6,7.5]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{riskreport.explanation.bpheartattack.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="age content">
-				超越<text
-					class="focusnum">{{(riskreport.explanation.bpheartattack.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">
-				{{riskreport.explanation.bpheartattack.advicesList[0]?riskreport.explanation.bpheartattack.advicesList[0].valuesList.join(''):''}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="riskreport.explanation.bpheartattack.detailsList[0].valuesList.join('')"></more-desc>
-			<!-- <view class="content">{{riskreport.explanation.bpheartattack.detailsList[0].valuesList.join('')}}</view> -->
-		</view>
 		<!-- 中风风险 -->
-		<view class="heartspo2hreport border">
-			<view class="title">
-				<image class="heartbpsIcon" src="@/static/icon/SY_IconZFFX_Y.png"></image>中风风险<text
-					class="valueNum">{{riskreport.data.bpstroke * 100}}%</text>
-			</view>
-			<progress-bar :tick="riskreport.data.bpstroke * 100" :ticks="[0,1.5,3,4.5,6,7.5]"></progress-bar>
-			<view class="flex align-center">
-				<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
-					class="icon-title">AI专家解读</text>
-			</view>
-			<view class="explanation content">
-				{{riskreport.explanation.bpstroke.introductionList.join('')}}
-			</view>
-			<view class="border-line"></view>
-			<view class="age flex">
-				<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
-				<text class="icon-title">同龄人对比</text>
-			</view>
-			<view class="age content">
-				超越<text class="focusnum">{{(riskreport.explanation.bpstroke.ranking * 100).toFixed(2) + '%'}}</text>同龄人
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
-					class="icon-title">健康建议</text>
-			</view>
-			<view class="content">
-				{{riskreport.explanation.bpstroke.advicesList[0]?riskreport.explanation.bpstroke.advicesList[0].valuesList.join(''):''}}
-			</view>
-			<view class="border-line"></view>
-			<view class="flex">
-				<image class="icon-add" src="../../static/icon/JK_04_IconGNJX_B.png"></image><text
-					class="icon-title">概念解释</text>
-			</view>
-			<more-desc :descValue="riskreport.explanation.bpstroke.detailsList[0].valuesList.join('')"></more-desc>
-		</view>
+		<border-view :title="'中风风险'" :icon="'icon-zrisk'" :value="(riskreport.data.bpstroke * 100).toFixed(2)"
+			:ticks="[0,1.5,3,4.5,6,7.5]"
+			:adv="riskreport.explanation.bpstroke.advicesList[0]?riskreport.explanation.bpstroke.advicesList[0].valuesList.join(''):''"
+			:ranking="riskreport.explanation.bpstroke.ranking"
+			:aiDesc="riskreport.explanation.bpstroke.introductionList.join('')"
+			:desc="riskreport.explanation.bpstroke.detailsList[0].valuesList.join('')">
+		</border-view>
+
 		<!-- 心血管病风险 -->
 		<view class="heartspo2hreport border">
 			<view class="title">
@@ -553,8 +307,10 @@
 	import * as echarts from 'echarts';
 	import progressBar from '@/pages/comp/progressBar.vue';
 	import moreDesc from '@/pages/comp/moreDesc.vue';
+	import borderView from './borderView.vue';
 	export default {
 		components: {
+			borderView,
 			progressBar,
 			moreDesc
 		},
@@ -772,10 +528,14 @@
 			color: #46647d;
 		}
 
+		.icon-shake {
+			width: 58rpx;
+			height: 39rpx;
+		}
+
 		.icon {
-			width: 105rpx;
-			height: 116rpx;
-			display: block;
+			width: 40rpx;
+			height: 46rpx;
 		}
 
 		.heartbpsIcon {
@@ -786,34 +546,40 @@
 		.icon-risk {
 			width: 50rpx;
 			height: 45rpx;
-			display: block;
 		}
 
 		.icon-age {
 			width: 42rpx;
 			height: 43rpx;
-			display: block;
+		}
+
+		.icon-explan {
+			width: 39rpx;
+			height: 43rpx;
 		}
 
 		.icon-add {
 			width: 45rpx;
 			height: 48rpx;
-			display: block;
 		}
 
 		.icon-ai {
 			width: 49rpx;
 			height: 58rpx;
-			display: block;
 		}
 
 		.icon-title {
 			padding-left: 10rpx;
-			font-size: 35rpx;
+			font-size: 30rpx;
+		}
+
+		.icon-weight {
+			width: 47rpx;
+			height: 50rpx;
 		}
 
 		.subtitle {
-			line-height: 116rpx;
+			line-height: 46rpx;
 			font-size: 35rpx;
 		}
 
@@ -873,7 +639,7 @@
 			background-color: white;
 			margin: 30rpx;
 			padding: 30rpx;
-			border-radius: 20rpx;
+			border-radius: 30rpx;
 			box-shadow: 0px 0px 5px 5px #eee;
 		}
 
