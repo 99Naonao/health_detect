@@ -29,7 +29,7 @@
 					"pagePath": "pages/func/func",
 					"iconPath": "/static/JK_02_but02Icon.png",
 					"selectedIconPath": "/static/JK_02_but02bIcon.png",
-					"text": "功能说明"
+					"text": "最近检测"
 				}, {
 					"pagePath": "pages/mine/mine",
 					"iconPath": "/static/JK_02_but03Icon.png",

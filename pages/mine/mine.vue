@@ -56,10 +56,7 @@
 		mapGetters,
 		mapMutations
 	} from 'vuex'
-	import {
-		Measurement,
-		MeasurementCategory
-	} from 'xy-health-measurement-wx'
+
 	// #ifdef MP-WEIXIN
 
 	import {
@@ -91,7 +88,7 @@
 			uni.hideTabBar()
 		},
 		onShow() {
-			this.$login()
+			// this.$login()
 		},
 		methods: {
 			...mapActions(['$login']),
@@ -106,43 +103,8 @@
 				})
 			},
 			go2Use() {
-				console.log('this.measureToken:', this.measureToken)
-				this.measurement = new Measurement(this.measureToken, this.measureToken, MeasurementCategory.ALL)
-				console.log('this.measureToke123n:', measure)
 
-				//监听异常事件
-				this.measurement.addEventListener("crashed", (sender, exception) => {
-					const {
-						errorMessage
-					} = exception
-					console.log(errorMessage)
-				})
-
-				//监听启动测量事件
-				this.measurement.addEventListener("started", (sender, measurementId) => {
-					this.measurementId = measurementId
-					this.queneMeasure()
-					console.log('suck:', measurementId)
-				})
-
-
-				this.measurement.start("base64_frame")
 			},
-			queneMeasure() {
-				//监听视频帧采集完成事件
-				this.measurement.addEventListener("collected", sender => {
-					//停止采集视频帧
-				})
-				this.measurement.enqueue({
-					base64_frame: "base64_frame"
-				})
-
-				// //入队视频帧
-				// this.measurement.enqueue({
-				// 	"base64_frame",
-				// 	1709151805475
-				// })
-			}
 		}
 	}
 </script>

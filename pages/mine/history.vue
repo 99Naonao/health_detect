@@ -7,6 +7,9 @@
 			<view :class="active==1?'item active':'item'" @click="itemChange(1)">
 				月
 			</view>
+			<view :class="active==2?'item active':'item'" @click="itemChange(2)">
+				年
+			</view>
 		</view>
 		<serious-echart :icon="'icon-weight'" :title="'体重指数'"></serious-echart>
 		<serious-echart :icon="'icon-heart'" :title="'心率'"></serious-echart>
@@ -45,8 +48,11 @@
 		onShow() {
 			getHistoryData({
 				type: 1
-			})
+			}).then(res => {
+				console.log('getHistoryData:', res)
+			}).catch(e => {
 
+			})
 		},
 		methods: {
 			init() {
@@ -54,6 +60,9 @@
 			},
 			itemChange(index) {
 				this.active = index;
+				uni.showLoading({
+					title: '请求中'
+				})
 			}
 		}
 	}

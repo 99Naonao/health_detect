@@ -47,14 +47,14 @@
 		{
 			"path": "pages/mine/mine",
 			"style": {
-				"navigationBarTitleText": "uni-app",
+				"navigationBarTitleText": "我的数据",
 				"navigationStyle": "custom"
 			}
 		},
 		{
 			"path": "pages/func/func",
 			"style": {
-				"navigationBarTitleText": "uni-app",
+				"navigationBarTitleText": "最近检测",
 				"navigationStyle": "custom"
 			}
 		}
