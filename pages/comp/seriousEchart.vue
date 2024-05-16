@@ -22,10 +22,20 @@
 				default: 'icon-weight'
 			},
 		},
+		watch: {
+			ticks(value) {
+				// console.log('fuck ticks', value)
+				if (value.length > 0) {
+					this.option.series[0].data = this.ticks
+					this.chart.setOption(this.option);
+				}
+			}
+		},
 		data() {
 			return {
 				sccs: '',
 				iconUrl: '',
+				chart: {},
 				icons: {
 					'icon-weight': '/static/icon/SY_IconTZZS_Y.png',
 					'icon-skin': '/static/icon/SY_IconPFNL_Y.png',
@@ -80,11 +90,11 @@
 
 				this.$nextTick(() => {
 					// 使用 Canvas 渲染器（默认）
-					var chart = echarts.init(this.$refs.charts1);
+					this.chart = echarts.init(this.$refs.charts1);
 					// this.totalOption.series[0].data = this.gaugeData
 					// this.gaugeData[0].value = riskValue
 					this.option.series[0].data = this.ticks
-					chart.setOption(this.option);
+					this.chart.setOption(this.option);
 					// console.log('chart:', chart)
 					// uni.hideLoading()
 				})
