@@ -14,8 +14,8 @@
 		<serious-echart :ticks="source.bmi" :icon="'icon-weight'" :title="'体重指数'"></serious-echart>
 		<serious-echart :ticks="source.hrbpm" :icon="'icon-heart'" :title="'心率'"></serious-echart>
 		<serious-echart :ticks="source.hrv" :icon="'icon-heart-change'" :title="'心率变异性'"></serious-echart>
-		<serious-echart :tick="source.bpsystolic" :icon="'icon-press'" :title="'舒张压'"></serious-echart>
-		<serious-echart :tick="source.bpdiastolic" :icon="'icon-up'" :title="'收缩压'"></serious-echart>
+		<serious-echart :ticks="source.bpsystolic" :icon="'icon-press'" :title="'舒张压'"></serious-echart>
+		<serious-echart :ticks="source.bpdiastolic" :icon="'icon-up'" :title="'收缩压'"></serious-echart>
 		<serious-echart :ticks="source.spo2hreport" :icon="'icon-ox'" :title="'血氧饱和度'"></serious-echart>
 		<serious-echart :ticks="source.bpheartattack" :icon="'icon-risk'" :title="'心脏病风险'"></serious-echart>
 		<serious-echart :ticks="source.bpstroke" :icon="'icon-zrisk'" :title="'中风风险'"></serious-echart>
