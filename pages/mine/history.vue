@@ -11,23 +11,30 @@
 				年
 			</view>
 		</view>
-		<serious-echart :ticks="source.bmi" :icon="'icon-weight'" :title="'体重指数'"></serious-echart>
-		<serious-echart :ticks="source.hrbpm" :icon="'icon-heart'" :title="'心率'"></serious-echart>
-		<serious-echart :ticks="source.hrv" :icon="'icon-heart-change'" :title="'心率变异性'"></serious-echart>
-		<serious-echart :ticks="source.bpsystolic" :icon="'icon-press'" :title="'舒张压'"></serious-echart>
-		<serious-echart :ticks="source.bpdiastolic" :icon="'icon-up'" :title="'收缩压'"></serious-echart>
-		<serious-echart :ticks="source.spo2hreport" :icon="'icon-ox'" :title="'血氧饱和度'"></serious-echart>
-		<serious-echart :ticks="source.bpheartattack" :icon="'icon-risk'" :title="'心脏病风险'"></serious-echart>
-		<serious-echart :ticks="source.bpstroke" :icon="'icon-zrisk'" :title="'中风风险'"></serious-echart>
-		<serious-echart :ticks="source.bpcvd" :icon="'icon-xxgrisk'" :title="'心血管病风险'"></serious-echart>
-		<serious-echart :ticks="source.bppp" :icon="'icon-xxylrisk'" :title="'心脏压力'"></serious-echart>
-		<serious-echart :ticks="source.bptau" :icon="'icon-xgrisk'" :title="'血管功能'"></serious-echart>
-		<serious-echart :ticks="source.aggressivityreport" :icon="'icon-attack'" :title="'攻击性'"></serious-echart>
-		<serious-echart :ticks="source.anxietyreport" :icon="'icon-jiaolv'" :title="'焦虑度'"></serious-echart>
-		<serious-echart :ticks="source.vitalityreport" :icon="'icon-huoli'" :title="'活力度'"></serious-echart>
-		<serious-echart :ticks="source.suppressionreport" :icon="'icon-yiyu'" :title="'抑郁度'"></serious-echart>
-		<serious-echart :ticks="source.fatiguereport" :icon="'icon-pilao'" :title="'疲劳度'"></serious-echart>
-		<serious-echart :ticks="source.msireport" :icon="'icon-yali'" :title="'压力度'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.bmi" :icon="'icon-weight'" :title="'体重指数'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.hrbpm" :icon="'icon-heart'" :title="'心率'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.hrv" :icon="'icon-heart-change'"
+			:title="'心率变异性'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.bpsystolic" :icon="'icon-press'" :title="'舒张压'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.bpdiastolic" :icon="'icon-up'" :title="'收缩压'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.spo2hreport" :icon="'icon-ox'" :title="'血氧饱和度'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.bpheartattack" :icon="'icon-risk'"
+			:title="'心脏病风险'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.bpstroke" :icon="'icon-zrisk'" :title="'中风风险'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.bpcvd" :icon="'icon-xxgrisk'" :title="'心血管病风险'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.bppp" :icon="'icon-xxylrisk'" :title="'心脏压力'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.bptau" :icon="'icon-xgrisk'" :title="'血管功能'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.aggressivityreport" :icon="'icon-attack'"
+			:title="'攻击性'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.anxietyreport" :icon="'icon-jiaolv'"
+			:title="'焦虑度'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.vitalityreport" :icon="'icon-huoli'"
+			:title="'活力度'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.suppressionreport" :icon="'icon-yiyu'"
+			:title="'抑郁度'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.fatiguereport" :icon="'icon-pilao'"
+			:title="'疲劳度'"></serious-echart>
+		<serious-echart :xAxis="xAxis" :ticks="source.msireport" :icon="'icon-yali'" :title="'压力度'"></serious-echart>
 	</view>
 </template>
 
@@ -42,6 +49,7 @@
 		},
 		data() {
 			return {
+				xAxis: [],
 				active: 0,
 
 				temp: {
@@ -54,9 +62,6 @@
 		},
 		onShow() {
 			this.updateData(this.active + 1)
-			// setTimeout(() => {
-			// 	this.hrbpm = [85, 88, 80, 0, 0, 0, 0]
-			// }, 1000)
 		},
 		methods: {
 			init() {
@@ -64,24 +69,39 @@
 			},
 			itemChange(index) {
 				this.active = index;
-				this.updateData(this.active + 1)
 				uni.showLoading({
 					title: '请求中'
 				})
+				this.updateData(this.active + 1)
 			},
 			updateData(type) {
 				getHistoryData({
 					type: type
 				}).then(res => {
-					console.log('getHistoryData:', res)
+					uni.hideLoading()
+					console.log('12345getHistoryData:', res)
 					let item;
 					let obj;
+					// switch (this.active) {
+					// 	case 0:
+					// 		this.xAxis = ['周1', '周2', '周3', '周4', '周5', '周6', '周日'];
+					// 		break
+					// 	case 1:
+					// 		break;
+					// }
+					this.xAxis = []
 					this.reset()
 					for (var index in res) {
 						item = res[index]
+						this.xAxis.push(item.localDate)
 						if (item.content) {
 							obj = JSON.parse(item.content)
-							this.filter(obj)
+							try {
+								this.filter(obj)
+							} catch (e) {
+								//TODO handle the exception
+								console.log('eee:', e)
+							}
 						} else {
 							this.allAddZero()
 						}
@@ -139,8 +159,10 @@
 				this.temp.fatiguereport = []
 				this.temp.msireport = []
 				this.source = {}
+				Object.assign(this.source, this.temp)
 			},
 			filter(result) {
+				console.log('filter:', result)
 				const {
 					physiologyscorereport, // 综合
 					afreport,
@@ -181,7 +203,8 @@
 				}
 
 				if (riskreport) {
-					this.temp.riskreport.push(riskreport.data.bpheartattack ? riskreport.data.bpheartattack : 0) // 心脏病风险
+					this.temp.bpheartattack.push(riskreport.data.bpheartattack ? riskreport.data.bpheartattack :
+						0) // 心脏病风险
 					this.temp.bpstroke.push(riskreport.data.bpstroke ? riskreport.data.bpstroke : 0) // 中风风险
 					this.temp.bpcvd.push(riskreport.data.bpcvd ? riskreport.data.bpcvd : 0) // 心血管风险
 					this.temp.bppp.push(riskreport.data.bppp ? riskreport.data.bppp : 0) // 心血管风险

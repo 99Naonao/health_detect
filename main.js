@@ -17,6 +17,7 @@ import {
 	createSSRApp
 } from 'vue'
 export function createApp() {
+	window.wx = {}
 	const app = createSSRApp(App)
 	// 引入vuex
 	app.use(store)

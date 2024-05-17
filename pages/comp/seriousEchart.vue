@@ -7,11 +7,18 @@
 
 <script>
 	import * as echarts from 'echarts';
+	import {
+		markRaw
+	} from 'vue'
 	export default {
 		props: {
 			ticks: { // y轴的值
 				type: Array,
-				default: [150, 230, 224, 218, 135, 147, 260],
+				default: [150, 230, 224, 218, 135, 147, 160, 300, 350, 400, 150, 500, 500, 500, 500, 500, 500],
+			},
+			xAxis: {
+				type: Array,
+				default: ['周1', '周2', '周3', '周4', '周5', '周6', '周日']
 			},
 			title: {
 				type: String,
@@ -26,9 +33,22 @@
 			ticks(value) {
 				// console.log('fuck ticks', value)
 				if (value.length > 0) {
+
+					if (this.ticks.length > 20) {
+						this.option.dataZoom[0].endValue = 10
+					} else if (this.ticks.length > 35) {
+						this.option.dataZoom[0].endValue = 15
+					} else {
+						this.option.dataZoom[0].endValue = 7
+					}
+
 					this.option.series[0].data = this.ticks
 					this.chart.setOption(this.option);
 				}
+			},
+			xAxis(value) {
+				this.option.xAxis.data = this.xAxis
+				this.chart.setOption(this.option);
 			}
 		},
 		data() {
@@ -65,6 +85,7 @@
 					},
 					xAxis: {
 						type: 'category',
+						position: "bottom",
 						data: ['周1', '周2', '周3', '周4', '周5', '周6', '周日']
 					},
 					yAxis: {
@@ -73,14 +94,32 @@
 							show: true
 						}
 					},
+					dataZoom: [{
+						type: 'inside',
+						throttle: 50,
+						show: true,
+						showDetail: false,
+						xAxisIndex: [0],
+						startValue: 0,
+						endValue: 7,
+						minSpan: 1,
+						bottom: 0
+					}],
 					series: [{
-						data: [150, 230, 224, 218, 135, 147, 260],
+						data: [],
+						coordinateSystem: 'cartesian2d',
 						type: 'line'
 					}]
 				},
 			}
 		},
 		mounted() {
+			echarts.env.touchEventsSupported = true;
+			echarts.env.wxa = false;
+			echarts.env.canvasSupported = false;
+			echarts.env.svgSupported = true;
+			echarts.env.domSupported = true;
+
 			this.init()
 		},
 		methods: {
@@ -88,13 +127,19 @@
 				this.iconUrl = this.icons[this.icon]
 				this.sccs = this.icon
 
+				// this.chart = markRaw(echarts.init(document.getElementById(this.id)))
+
 				this.$nextTick(() => {
 					// 使用 Canvas 渲染器（默认）
-					this.chart = echarts.init(this.$refs.charts1);
+					// 你可以有选择地退出默认的深度响应式/只读转换模式，并将原始的，未被代理的对象嵌入状态图中。它们可以根据情况灵活运用：
+					// 有些值不应该是响应式的，例如复杂的第三方类实例或 Vue 组件对象。
+					// 当渲染具有不可变数据源的大列表时，跳过 proxy 转换可以提高性能。
+					// 所以在实例化echart时，将其指定为非响应式的即可。
+					this.chart = markRaw(echarts.init(this.$refs.charts1));
 					// this.totalOption.series[0].data = this.gaugeData
 					// this.gaugeData[0].value = riskValue
-					this.option.series[0].data = this.ticks
-					this.chart.setOption(this.option);
+					// this.option.series[0].data = this.ticks
+					// this.chart.setOption(this.option);
 					// console.log('chart:', chart)
 					// uni.hideLoading()
 				})
@@ -193,7 +238,7 @@
 		margin: 30rpx;
 		padding: 30rpx;
 		border-radius: 30rpx;
-		box-shadow: 0px 0px 5px 5px #eee;
+		box-shadow: 0px 0px 13px 13px #f0f3fc;
 	}
 
 	.icon-explan {
