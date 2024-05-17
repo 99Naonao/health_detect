@@ -35,7 +35,7 @@
 									</image>
 								</view>
 							</view>
-							<view class="score_txt">{{score}}</view>
+							<view class="score_txt">{{userInfo.score}}</view>
 						</view>
 					</view>
 					<view class="">
@@ -137,11 +137,11 @@
 				hasLogin: false,
 				measurement: '',
 				measurementId: 0,
-				score: 123,
+				score: 0,
 			}
 		},
 		computed: {
-			...mapGetters(['measureToken'])
+			...mapGetters(['measureToken', 'userInfo'])
 		},
 		components: {
 			tabbar,
