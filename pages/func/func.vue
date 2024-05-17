@@ -271,6 +271,11 @@
 </style>
 <style lang="scss" scoped>
 	.container {
-		padding-bottom: 100rpx;
+		padding-bottom: env(safe-area-inset-bottom);
+		padding-bottom: constant(safe-area-inset-bottom);
+
+		.result {
+			padding-bottom: 160rpx;
+		}
 	}
 </style>

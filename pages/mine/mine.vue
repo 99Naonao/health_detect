@@ -56,18 +56,8 @@
 
 					</view>
 				</view>
-				<!-- <view class="desc">
-					<view class="title">积分说明</view>
-					<view class="subtitle">如何活动</view>
-					<view>眠加积分是眠加健康睡眠中心</view>
-				</view>
-				<view class="score_part">
-					<view class="score_info">
-						<view class="btn" @click="measureHandler">历史数据</view>
-					</view>
-				</view> -->
 			</view>
-			<view>
+			<view class="" style="padding-bottom: 160rpx;">
 				<serious-echart :xAxis="xAxis" :ticks="source.bmi" :icon="'icon-weight'"
 					:title="'体重指数'"></serious-echart>
 				<serious-echart :xAxis="xAxis" :ticks="source.hrbpm" :icon="'icon-heart'"
