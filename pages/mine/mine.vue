@@ -6,10 +6,9 @@
 				<view class="t_c">
 					<view class="user_info">
 						<view class="top_info">
-							<view class="avatar_bg">
+							<view class="avatar_bg flex align-center just-align-center">
 								<image v-if="hasLogin" class="avatar"
-									:src="userInfo.avatar || '/static/default-avatar.png'"
-									@click="navTo('/pages/my/set/userInfo')"></image>
+									:src="userInfo.avatar || '/static/default-avatar.png'"></image>
 								<image v-else class="avatar"
 									:src="userInfo&&userInfo.avatar || '/static/default-avatar.png'"
 									@click="clickWxLogin">
@@ -162,9 +161,9 @@
 				})
 			},
 			clickWxLogin() {
-				autoLogin((res) => {
-					console.log('success')
-				})
+				// autoLogin((res) => {
+				// 	console.log('success')
+				// })
 			},
 			go2Use() {
 
@@ -400,16 +399,14 @@
 				height: 114upx;
 				border-radius: 100%;
 				margin: 0 auto;
-				border: 5px solid #fff;
+				border: 5px solid #eee;
 				background-color: #FFF4EA;
 
 				.avatar {
 					flex-shrink: 0;
-					width: 114upx;
-					height: 114upx;
-					transform: scale(0.9);
+					width: 87upx;
+					height: 87upx;
 					border-radius: 100%;
-					border: 4rpx solid #fff;
 					background-color: #FFF4EA;
 				}
 			}

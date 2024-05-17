@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<tabbar current='0'></tabbar>
-		<view>
+		<view class="main">
 			<view class='kv' ref="cccc">
 				<image class="kv-img" src='@/static/JK_02_Bg01.png' mode="widthFix"></image>
 			</view>
@@ -20,11 +20,11 @@
 					</view>
 				</view>
 			</view>
-			<view class="opt1 flex just-align-center" @click="checkPortHandler">
+			<!-- 			<view class="opt1 flex just-align-center" @click="checkPortHandler">
 				<view class="opt">
 					<text>查看报告</text>
 				</view>
-			</view>
+			</view> -->
 			<view class="my-score flex just-align-center align-center">
 				<view>我的积分<image mode="widthFix" class="icon1" src="../../static/JK_02_IconJF2.png"></image>
 				</view>
@@ -74,18 +74,17 @@
 			}
 		},
 		onShow() {
-			this.sure = false
-			uni.clearStorageSync('userInfo')
-			this.login()
-			// let userInfo = uni.getStorageSync('userInfo')
-			// if (!userInfo) {
-			// 	this.login()
-			// } else {
-			// 	console.log('登录2成功')
-			// 	this.$login().then((res) => {
-			// 		console.log('获取token2成功')
-			// 	})
-			// }
+			this.sure = uni.getStorageSync('checkP') ? true : false
+			// uni.clearStorageSync('userInfo')
+			let userInfo = uni.getStorageSync('userInfo')
+			if (!userInfo) {
+				this.login()
+			} else {
+				console.log('登录2成功')
+				this.$login().then((res) => {
+					console.log('获取token2成功')
+				})
+			}
 		},
 		setup() {
 
@@ -167,9 +166,14 @@
 			groupChange(e) {
 				if (e.detail.value.length > 0) {
 					this.sure = true
+
 				} else {
 					this.sure = false
 				}
+				this.updateCheckStatus()
+			},
+			updateCheckStatus() {
+				uni.setStorageSync('checkP', this.sure)
 			},
 			addListener() {
 				this.measureIns = new Measurement(this.measureToken, MeasurementCategory.ALL)
@@ -210,11 +214,11 @@
 							console.log(res)
 							if (res.confirm) {
 								this.sure = true
+								this.updateCheckStatus()
 								this.goCheck()
 							}
 						}
 					});
-					console.log('123:', this.sure)
 				}
 			}
 		}
@@ -227,6 +231,13 @@
 	}
 
 	.container {
+		padding-bottom: env(safe-area-inset-bottom);
+		padding-bottom: constant(safe-area-inset-bottom);
+
+		.main {
+			padding-bottom: 160rpx;
+		}
+
 		.check-label {
 			line-height: 30rpx;
 		}
