@@ -376,6 +376,7 @@ function request_(url, sortData) {
 					uni.showToast({
 						title: message
 					})
+					uni.clearStorageSync('userInfo')
 					//重新登录刷新网页
 					window.location.href =
 						'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.zsyl.cc/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'

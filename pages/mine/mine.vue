@@ -57,39 +57,41 @@
 				</view>
 			</view>
 			<view class="" style="padding-bottom: 160rpx;">
-				<serious-echart :xAxis="xAxis" :ticks="source.bmi" :icon="'icon-weight'"
+				<serious-echart :xAxis="xAxis" :yAxis="[0,100]" :ticks="source.age" :icon="'icon-skin'"
+					:title="'皮肤年龄'"></serious-echart>
+				<serious-echart :xAxis="xAxis" :yAxis="[15,40]" :ticks="source.bmi" :icon="'icon-weight'"
 					:title="'体重指数'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.hrbpm" :icon="'icon-heart'"
+				<serious-echart :yAxis="[40,160]" :xAxis="xAxis" :ticks="source.hrbpm" :icon="'icon-heart'"
 					:title="'心率'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.hrv" :icon="'icon-heart-change'"
+				<serious-echart :yAxis="[0,300]" :xAxis="xAxis" :ticks="source.hrv" :icon="'icon-heart-change'"
 					:title="'心率变异性'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.bpsystolic" :icon="'icon-press'"
+				<serious-echart :yAxis="[50,100]" :xAxis="xAxis" :ticks="source.bpsystolic" :icon="'icon-press'"
 					:title="'舒张压'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.bpdiastolic" :icon="'icon-up'"
+				<serious-echart :yAxis="[70,170]" :xAxis="xAxis" :ticks="source.bpdiastolic" :icon="'icon-up'"
 					:title="'收缩压'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.spo2hreport" :icon="'icon-ox'"
+				<serious-echart :yAxis="[60,100]" :xAxis="xAxis" :ticks="source.spo2hreport" :icon="'icon-ox'"
 					:title="'血氧饱和度'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.bpheartattack" :icon="'icon-risk'"
+				<serious-echart :yAxis="[0,7.5]" :xAxis="xAxis" :ticks="source.bpheartattack" :icon="'icon-risk'"
 					:title="'心脏病风险'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.bpstroke" :icon="'icon-zrisk'"
+				<serious-echart :yAxis="[0,7.5]" :xAxis="xAxis" :ticks="source.bpstroke" :icon="'icon-zrisk'"
 					:title="'中风风险'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.bpcvd" :icon="'icon-xxgrisk'"
+				<serious-echart :yAxis="[0,15]" :xAxis="xAxis" :ticks="source.bpcvd" :icon="'icon-xxgrisk'"
 					:title="'心血管病风险'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.bppp" :icon="'icon-xxylrisk'"
+				<serious-echart :yAxis="[3.5,4.5]" :xAxis="xAxis" :ticks="source.bppp" :icon="'icon-xxylrisk'"
 					:title="'心脏压力'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.bptau" :icon="'icon-xgrisk'"
+				<serious-echart :yAxis="[0,3]" :xAxis="xAxis" :ticks="source.bptau" :icon="'icon-xgrisk'"
 					:title="'血管功能'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.aggressivityreport" :icon="'icon-attack'"
+				<serious-echart :yAxis="[0,100]" :xAxis="xAxis" :ticks="source.aggressivityreport" :icon="'icon-attack'"
 					:title="'攻击性'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.anxietyreport" :icon="'icon-jiaolv'"
+				<serious-echart :yAxis="[0,100]" :xAxis="xAxis" :ticks="source.anxietyreport" :icon="'icon-jiaolv'"
 					:title="'焦虑度'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.vitalityreport" :icon="'icon-huoli'"
+				<serious-echart :yAxis="[0,100]" :xAxis="xAxis" :ticks="source.vitalityreport" :icon="'icon-huoli'"
 					:title="'活力度'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.suppressionreport" :icon="'icon-yiyu'"
+				<serious-echart :yAxis="[0,100]" :xAxis="xAxis" :ticks="source.suppressionreport" :icon="'icon-yiyu'"
 					:title="'抑郁度'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.fatiguereport" :icon="'icon-pilao'"
+				<serious-echart :yAxis="[0,100]" :xAxis="xAxis" :ticks="source.fatiguereport" :icon="'icon-pilao'"
 					:title="'疲劳度'"></serious-echart>
-				<serious-echart :xAxis="xAxis" :ticks="source.msireport" :icon="'icon-yali'"
+				<serious-echart :yAxis="[0,100]" :xAxis="xAxis" :ticks="source.msireport" :icon="'icon-yali'"
 					:title="'压力度'"></serious-echart>
 			</view>
 		</view>
@@ -217,24 +219,24 @@
 			},
 			allAddZero() {
 				// 造数据
-				this.temp.hrbpm.push(0)
-				this.temp.hrv.push(0)
-				this.temp.bmi.push(0)
-				this.temp.age.push(0)
-				this.temp.bpsystolic.push(0)
-				this.temp.bpdiastolic.push(0)
-				this.temp.spo2hreport.push(0)
-				this.temp.bpheartattack.push(0)
-				this.temp.bpstroke.push(0)
-				this.temp.bpcvd.push(0)
-				this.temp.bppp.push(0)
-				this.temp.bptau.push(0)
-				this.temp.aggressivityreport.push(0)
-				this.temp.anxietyreport.push(0)
-				this.temp.vitalityreport.push(0)
-				this.temp.suppressionreport.push(0)
-				this.temp.fatiguereport.push(0)
-				this.temp.msireport.push(0)
+				this.temp.hrbpm.push(null)
+				this.temp.hrv.push(null)
+				this.temp.bmi.push(null)
+				this.temp.age.push(null)
+				this.temp.bpsystolic.push(null)
+				this.temp.bpdiastolic.push(null)
+				this.temp.spo2hreport.push(null)
+				this.temp.bpheartattack.push(null)
+				this.temp.bpstroke.push(null)
+				this.temp.bpcvd.push(null)
+				this.temp.bppp.push(null)
+				this.temp.bptau.push(null)
+				this.temp.aggressivityreport.push(null)
+				this.temp.anxietyreport.push(null)
+				this.temp.vitalityreport.push(null)
+				this.temp.suppressionreport.push(null)
+				this.temp.fatiguereport.push(null)
+				this.temp.msireport.push(null)
 			},
 			setData() {
 				Object.assign(this.source, this.temp)
