@@ -20,9 +20,6 @@
 									<text>{{ '未知用户' }}</text>
 									<!-- <image src="../../static/icon/edit.png"></image> -->
 								</view>
-								<view class="username">
-
-								</view>
 							</view>
 						</view>
 					</view>
@@ -34,13 +31,13 @@
 									</image>
 								</view>
 							</view>
-							<view class="score_txt">{{userInfo.score}}</view>
+							<view class="score_txt">{{userInfo.score?userInfo.score:0}}</view>
 						</view>
 					</view>
-					<view class="">
-						<view class="title">
+					<view class="switch-list">
+						<!-- <view class="title">
 							<image class="icon123" src="/static/icon/JK_05_IconLSJL2.png"></image><text>历史检测记录</text>
-						</view>
+						</view> -->
 						<view class="flex just-align-center align-center" style="justify-content: space-around;">
 							<view :class="active==0?'item active':'item'" @click="itemChange(0)">
 								周
@@ -366,24 +363,26 @@
 		}
 
 		.item {
-			background-color: #eee;
-			color: #333;
-			font-size: 40rpx;
-			padding: 20rpx;
-			margin: 10rpx;
-			padding-left: 50rpx;
-			padding-right: 50rpx;
-			border-radius: 60rpx;
+			background-color: rgb(92, 138, 178);
+			color: #fff;
+			font-size: 28rpx;
+			// padding: 20rpx;
+			line-height: 60rpx;
+			height: 60rpx;
+			width: 100%;
+			text-align: center;
+			border-top-left-radius: 30rpx;
+			border-top-right-radius: 30rpx;
 		}
 
 		.active {
-			background-color: #ffaa00;
-			color: white;
+			background-color: #f2f2f2;
+			color: rgb(92, 138, 178);
 		}
 
 		.info {
 			margin: 0 auto;
-			background-color: white;
+			background-color: rgb(87, 119, 150);
 			// margin-top: 50rpx;
 			position: relative;
 			border-bottom-right-radius: 45rpx;
@@ -392,7 +391,7 @@
 
 
 			.t_c {
-				padding-bottom: 20rpx;
+				// padding-bottom: 20rpx;
 				margin-bottom: 20rpx;
 				border-radius: 20rpx;
 			}
@@ -416,14 +415,15 @@
 			}
 
 			.username {
-				color: #333;
-				padding: 10rpx;
-				font-size: 35rpx;
+				color: #fff;
+				padding: 16rpx;
+				font-size: 32rpx;
 				text-align: center;
 				margin: 0 auto;
 			}
 
 			.score_part {
+				padding-top: 23rpx;
 				height: 50rpx;
 				border-radius: 20rpx;
 				margin: 0 auto;
@@ -431,6 +431,7 @@
 				line-height: 50rpx;
 				font-size: 30rpx;
 				color: #5B7897;
+				color: #fff;
 				justify-content: center;
 				align-items: center;
 
@@ -452,6 +453,7 @@
 				.score_txt {
 					border-radius: 10rpx;
 					padding: 10rpx;
+					color: #fff;
 					text-align: center;
 					line-height: 47rpx;
 					border-radius: 30rpx;
@@ -461,7 +463,7 @@
 					min-width: 170rpx;
 					letter-spacing: 2rpx;
 					height: 47rpx;
-					background-color: #dadada;
+					background-color: rgb(92, 138, 178);
 				}
 
 				.icon {
@@ -487,6 +489,10 @@
 					color: white;
 					margin-right: 20rpx;
 				}
+			}
+
+			.switch-list {
+				padding-top: 26rpx;
 			}
 
 			.desc {

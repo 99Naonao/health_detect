@@ -1,7 +1,13 @@
 <template>
 	<view class="border">
-		<image :class="sccs" :src="iconUrl" mode="widthFix"></image><text class="title">{{title}}</text><text
-			class="tip">{{tip}}</text>
+		<view class="flex" style="align-items:baseline;">
+			<view>
+				<image :class="sccs" :src="iconUrl" mode="widthFix"></image><text class="title">{{title}}</text>
+			</view>
+			<view style="flex:1">
+				<text class="tip">{{tip}}</text>
+			</view>
+		</view>
 		<div ref="charts1" style="width: 375px;height: 200px;"></div>
 	</view>
 </template>
@@ -150,7 +156,7 @@
 		methods: {
 			init() {
 				this.iconUrl = this.icons[this.icon]
-				this.tip = this.tips[this.icon] ? this.tips[this.icon] : '无'
+				this.tip = this.tips[this.icon] ? this.tips[this.icon] : ''
 				this.sccs = this.icon
 
 				// this.chart = markRaw(echarts.init(document.getElementById(this.id)))
@@ -162,11 +168,10 @@
 					// 当渲染具有不可变数据源的大列表时，跳过 proxy 转换可以提高性能。
 					// 所以在实例化echart时，将其指定为非响应式的即可。
 					this.chart = markRaw(echarts.init(this.$refs.charts1));
-
-					this.option.series[0].data = this.ticks
-					this.option.yAxis.min = this.yAxis[0]
-					this.option.yAxis.max = this.yAxis[1]
-					this.chart.setOption(this.option);
+					// this.option.series[0].data = this.ticks
+					// this.option.yAxis.min = this.yAxis[0]
+					// this.option.yAxis.max = this.yAxis[1]
+					// this.chart.setOption(this.option);
 					uni.hideLoading()
 				})
 			}
@@ -186,7 +191,11 @@
 	.tip {
 		font-size: 22rpx;
 		color: #333;
-		padding-left: 10rpx;
+		text-align: justify;
+		margin-left: 10rpx;
+		word-wrap: break-word;
+		display: block;
+		line-height: 28rpx;
 	}
 
 	.title {
