@@ -18,6 +18,12 @@
 		display: flex;
 	}
 
+	.uni-checkbox-input {
+		border-radius: 100% !important;
+		background-color: #F77913 !important;
+		border: none !important;
+		color: #ffffff !important;
+	}
 	.just-align-center {
 		justify-content: center;
 	}

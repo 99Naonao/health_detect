@@ -5,20 +5,24 @@
 			<view class='kv' ref="cccc">
 				<image class="kv-img" src='@/static/JK_02_Bg01.png' mode="widthFix"></image>
 			</view>
-			<view class="law flex just-align-center align-center">
-				<checkbox-group ref="ggg" @change="groupChange">
-					<view class="flex just-align-center align-center">
-						<checkbox :checked="sure" value="sure" /><text>我已经阅读同意</text>
-					</view>
-				</checkbox-group><text class="line" @click="navLink">用户使用条款</text>
-			</view>
 			<view class="opt1 flex just-align-center" @click="checkHandler">
 				<view class="opt">
 					<text>开始测量</text>
-					<view>
-						<image mode="widthFix" class="icon" src="../../static/JK_02_IconJF1.png"></image>{{cost}} /次
+					<view class="">
+						<image mode="widthFix" class="icon" src="../../static/JK_02_IconJF1.png"></image><text
+							class="cost-c">{{cost}}
+							积分/次</text>
 					</view>
 				</view>
+			</view>
+			<view class="law flex just-align-center align-center">
+				<checkbox-group ref="ggg" @change="groupChange">
+					<view class="flex just-align-center align-center">
+						<checkbox class="" style="transform: scale(0.9);" activeBackgroundColor="#F77913"
+							iconColor="#ffffff" :checked="sure" value="sure" />
+						<text>我已经阅读同意</text>
+					</view>
+				</checkbox-group><text class="line" @click="navLink">用户使用条款</text>
 			</view>
 			<!-- 			<view class="opt1 flex just-align-center" @click="checkPortHandler">
 				<view class="opt">
@@ -65,6 +69,9 @@
 		onLoad() {
 			uni.hideTabBar()
 		},
+		mounted() {
+			uni.clearStorageSync('userInfo')
+		},
 		data() {
 			return {
 				cost: 0,
@@ -75,7 +82,7 @@
 		},
 		onShow() {
 			this.sure = uni.getStorageSync('checkP') ? true : false
-			// uni.clearStorageSync('userInfo')
+
 			let userInfo = uni.getStorageSync('userInfo')
 			if (!userInfo) {
 				this.login()
@@ -246,7 +253,9 @@
 
 			text-align: center;
 			padding-top: 50rpx;
-			line-height: 40rpx;
+			line-height: 30rpx;
+			font-size: 24rpx;
+
 
 			.line {
 				color: #F77913;
@@ -267,29 +276,42 @@
 			padding: 20rpx;
 			text-align: center;
 			line-height: 30rpx;
-			padding-top: 50rpx;
+			padding-top: 25rpx;
+			font-size: 24rpx;
 		}
 
 		.score {
 			background-color: #EEE;
 			padding: 10rpx;
 			width: 200rpx;
+			margin-left: 14rpx;
 			border-radius: 20rpx;
+			font-size: 30rpx;
 		}
 	}
 
 	.opt1 {
-		padding-top: 50rpx;
+		padding-top: 118rpx;
 	}
+
+
 
 	.opt {
 		background-color: rgba(90, 119, 149, 1);
-		border-radius: 50rpx;
+		box-shadow: 0px 5px 5px 5px #f2f8ff;
+		border-radius: 80rpx;
 		text-align: center;
 		color: white;
 		padding: 20rpx;
 		padding-left: 150rpx;
 		padding-right: 150rpx;
+		font-size: 32rpx;
+
+		.cost-c {
+			font-size: 24rpx;
+			padding-left: 14rpx;
+			line-height: 30rpx;
+		}
 
 		.icon {
 			width: 35rpx;
