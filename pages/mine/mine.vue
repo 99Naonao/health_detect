@@ -65,9 +65,9 @@
 					:title="'心率'"></serious-echart>
 				<serious-echart :yAxis="[0,300]" :xAxis="xAxis" :ticks="source.hrv" :icon="'icon-heart-change'"
 					:title="'心率变异性'"></serious-echart>
-				<serious-echart :yAxis="[50,100]" :xAxis="xAxis" :ticks="source.bpsystolic" :icon="'icon-press'"
+				<serious-echart :yAxis="[50,100]" :xAxis="xAxis" :ticks="source.bpdiastolic" :icon="'icon-press'"
 					:title="'舒张压'"></serious-echart>
-				<serious-echart :yAxis="[70,170]" :xAxis="xAxis" :ticks="source.bpdiastolic" :icon="'icon-up'"
+				<serious-echart :yAxis="[70,170]" :xAxis="xAxis" :ticks="source.bpsystolic" :icon="'icon-up'"
 					:title="'收缩压'"></serious-echart>
 				<serious-echart :yAxis="[60,100]" :xAxis="xAxis" :ticks="source.spo2hreport" :icon="'icon-ox'"
 					:title="'血氧饱和度'"></serious-echart>
@@ -119,7 +119,8 @@
 	// #endif
 	// #ifdef H5
 	import {
-		autoLogin
+		autoLogin,
+		getWxUserInfo
 	} from '@/utils/h5app.js'
 	// #endif
 
@@ -163,6 +164,7 @@
 				})
 			},
 			clickWxLogin() {
+				getWxUserInfo()
 				// autoLogin((res) => {
 				// 	console.log('success')
 				// })
