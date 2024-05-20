@@ -55,8 +55,7 @@
 <style scoped>
 	.morebtn {
 		display: flex;
-		align-items: right;
-		justify-content: right;
+		justify-content: flex-end;
 		text-decoration: underline;
 		color: #46647d;
 		font-size: 25rpx;
