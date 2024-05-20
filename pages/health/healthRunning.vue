@@ -349,7 +349,7 @@
 				this.$set(this.backBtnStyle, '--canvasWidth', (pageSize.width) + 'px')
 				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.width) + 'px')
 				this.$set(this.backBtnStyle, '--canvasLeft', '0px')
-				this.$set(this.backBtnStyle, '--canvasTop', '232rpx')
+				this.$set(this.backBtnStyle, '--canvasTop', '116rpx')
 				ctx.scale(-1, 1)
 				ctx.translate(-pageSize.width / deviceInfo.pixelRatio, 0);
 				// 截取一部分
@@ -463,8 +463,8 @@
 			position: absolute;
 			top: 0;
 			left: 50%;
-			width: 210rpx;
-			height: 232rpx;
+			width: 94.5rpx;
+			height: 104.4rpx;
 			transform: translateX(-50%);
 		}
 
@@ -472,9 +472,9 @@
 			position: absolute;
 			z-index: 80;
 			left: 50%;
-			top: 480rpx;
-			width: 200px;
-			height: 200px;
+			top: 580rpx;
+			width: 240rpx;
+			height: 240rpx;
 			transform: translateX(-50%);
 		}
 
@@ -498,7 +498,7 @@
 			position: absolute;
 			z-index: 2;
 			left: 0;
-			top: 232rpx;
+			top: 116rpx;
 			width: 100%;
 
 			.message {

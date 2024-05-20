@@ -36,10 +36,12 @@
 	.barcontainer {
 		color: black;
 		height: 25rpx;
-		margin-top: 60rpx;
 		padding-bottom: 60rpx;
 		background-color: white;
 		position: relative;
+		width: 90%;
+		margin: 0 auto;
+		margin-top: 60rpx;
 
 		.bar {
 			height: 17rpx;

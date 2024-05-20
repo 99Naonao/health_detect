@@ -116,6 +116,7 @@
 		line-height: 35rpx;
 		text-indent: 60rpx;
 		text-align: justify;
+
 		color: #616169;
 	}
 
@@ -135,8 +136,7 @@
 
 	.morebtn {
 		display: flex;
-		align-items: right;
-		justify-content: right;
+		justify-content: flex-end;
 		text-decoration: underline;
 		color: #46647d;
 		font-size: 25rpx;
@@ -169,6 +169,7 @@
 		line-height: 68rpx;
 		font-size: 28rpx;
 		width: 260rpx;
+		margin-top: 10rpx;
 	}
 
 	.timestamp {
@@ -186,7 +187,8 @@
 		// padding-top: 10rpx;
 		line-height: 36rpx;
 		background-color: white;
-		height: 108rpx;
+		height: 98rpx;
+		margin-top: 0rpx;
 		// border-bottom: solid 1rpx skyblue;
 	}
 }
@@ -214,7 +216,7 @@
 
 	.progress-bar {
 		height: 100%;
-		border-radius: 10rpx;
+		border-radius: 30rpx;
 		background-color: #eee;
 		overflow: hidden;
 		position: relative;

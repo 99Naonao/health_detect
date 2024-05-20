@@ -250,12 +250,10 @@
 		}
 
 		.law {
-
 			text-align: center;
-			padding-top: 50rpx;
+			padding-top: 40rpx;
 			line-height: 30rpx;
 			font-size: 24rpx;
-
 
 			.line {
 				color: #F77913;
@@ -302,7 +300,7 @@
 		border-radius: 80rpx;
 		text-align: center;
 		color: white;
-		padding: 20rpx;
+		padding: 18rpx;
 		padding-left: 150rpx;
 		padding-right: 150rpx;
 		font-size: 32rpx;

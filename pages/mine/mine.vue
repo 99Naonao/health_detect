@@ -397,6 +397,7 @@
 			background-color: rgb(87, 119, 150);
 			// margin-top: 50rpx;
 			position: relative;
+			padding-top: 100rpx;
 			border-bottom-right-radius: 45rpx;
 			border-bottom-left-radius: 45rpx;
 			// box-shadow: 0px 0px 10px 10px #f0f3fc;
@@ -471,9 +472,9 @@
 					margin-left: 10rpx;
 					margin-right: 10rpx;
 					font-size: 30rpx;
-					min-width: 170rpx;
+					min-width: 200rpx;
 					letter-spacing: 2rpx;
-					height: 47rpx;
+					height: 45rpx;
 					background-color: rgb(92, 138, 178);
 				}
 
@@ -503,7 +504,7 @@
 			}
 
 			.switch-list {
-				padding-top: 26rpx;
+				padding-top: 34rpx;
 			}
 
 			.desc {
