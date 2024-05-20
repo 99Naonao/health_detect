@@ -53,7 +53,10 @@
 					</view>
 				</view>
 			</view>
-			<view class="" style="padding-bottom: 160rpx;">
+			<view class="echart-part" style="padding-bottom: 150rpx;">
+				<view style="padding-top:15rpx;">
+
+				</view>
 				<serious-echart :xAxis="xAxis" :yAxis="[0,100]" :ticks="source.age" :icon="'icon-skin'"
 					:title="'皮肤年龄'"></serious-echart>
 				<serious-echart :xAxis="xAxis" :yAxis="[15,40]" :ticks="source.bmi" :icon="'icon-weight'"
@@ -368,7 +371,7 @@
 			font-size: 28rpx;
 			// padding: 20rpx;
 			line-height: 60rpx;
-			height: 60rpx;
+			height: 100rpx;
 			width: 100%;
 			text-align: center;
 			border-top-left-radius: 30rpx;
@@ -380,6 +383,15 @@
 			color: rgb(92, 138, 178);
 		}
 
+		.echart-part {
+			// padding-top: 20rpx;
+			transform: translateY(-40rpx);
+			border-top-right-radius: 40rpx;
+			border-top-left-radius: 40rpx;
+			background-color: #f2f2f2;
+			z-index: 100;
+		}
+
 		.info {
 			margin: 0 auto;
 			background-color: rgb(87, 119, 150);
@@ -387,12 +399,11 @@
 			position: relative;
 			border-bottom-right-radius: 45rpx;
 			border-bottom-left-radius: 45rpx;
-			box-shadow: 0px 0px 10px 10px #f0f3fc;
+			// box-shadow: 0px 0px 10px 10px #f0f3fc;
 
 
 			.t_c {
 				// padding-bottom: 20rpx;
-				margin-bottom: 20rpx;
 				border-radius: 20rpx;
 			}
 

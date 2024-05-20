@@ -8,7 +8,7 @@
 				<text class="tip">{{tip}}</text>
 			</view>
 		</view>
-		<div ref="charts1" style="width: 375px;height: 200px;"></div>
+		<div ref="charts1" style="width: 660rpx;height: 400rpx;"></div>
 	</view>
 </template>
 
