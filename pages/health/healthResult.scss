@@ -1,10 +1,8 @@
 .container {
-	background-color: #f1f5f7;
 	font-family: "YouYuan";
 	color: #333;
 	padding-bottom: env(safe-area-inset-bottom);
 	padding-bottom: constant(safe-area-inset-bottom);
-	font-weight: 500;
 
 	.bigtitle {
 		font-size: 30rpx;
@@ -147,6 +145,13 @@
 	}
 }
 
+.result{
+	border-top-left-radius: 55rpx;
+	border-top-right-radius: 55rpx;
+	transform: translateY(-40rpx);
+	background-color: white;
+}
+
 
 .tab {
 	padding-top: 18rpx;
@@ -156,11 +161,11 @@
 		text-align: center;
 		padding-bottom: 10rpx;
 		padding-top: 10rpx;
-		height: 68rpx;
-		color: #D3E2EF;
+		height: 88rpx;
+		color: #333;
 		background-color: #6186a5;
-		border-top-right-radius: 30rpx;
-		border-top-left-radius: 30rpx;
+		border-top-right-radius: 36rpx;
+		border-top-left-radius: 36rpx;
 		line-height: 68rpx;
 		font-size: 28rpx;
 		width: 260rpx;
@@ -175,13 +180,13 @@
 	}
 
 	.active {
-		font-weight: bold;
+		// font-weight: bold;
 		color: #616169;
 		// margin-top: 0rpx;
 		// padding-top: 10rpx;
 		line-height: 36rpx;
 		background-color: white;
-		height: 68rpx;
+		height: 108rpx;
 		// border-bottom: solid 1rpx skyblue;
 	}
 }
