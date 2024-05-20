@@ -383,7 +383,6 @@
 		// background-color: #f1f5f7;
 		font-family: "YouYuan";
 		color: #333;
-		font-weight: 500;
 
 		.content {
 			padding-top: 20rpx;
@@ -562,17 +561,6 @@
 			border-bottom: #f5f5f5 solid 1px;
 			margin-top: 10rpx;
 			margin-bottom: 10rpx;
-		}
-
-		.morebtn {
-			display: flex;
-			align-items: right;
-			justify-content: right;
-			text-decoration: underline;
-			color: #46647d;
-			font-size: 25rpx;
-			text-underline-offset: 5rpx;
-			margin: 20rpx;
 		}
 	}
 
