@@ -380,11 +380,9 @@
 
 <style lang="scss" scoped>
 	.container {
-		background-color: #f1f5f7;
+		// background-color: #f1f5f7;
 		font-family: "YouYuan";
 		color: #333;
-		padding-bottom: env(safe-area-inset-bottom);
-		padding-bottom: constant(safe-area-inset-bottom);
 		font-weight: 500;
 
 		.content {
@@ -417,6 +415,8 @@
 		.topkv {
 			background-color: white;
 			padding: 30rpx;
+			border-top-left-radius: 55rpx;
+			border-top-right-radius: 55rpx;
 
 			.topimg {
 				width: 399rpx;
