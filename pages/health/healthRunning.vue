@@ -480,7 +480,7 @@
 			position: absolute;
 			z-index: 80;
 			left: 50%;
-			top: 580rpx;
+			top: 620rpx;
 			width: 240rpx;
 			height: 240rpx;
 			transform: translateX(-50%);

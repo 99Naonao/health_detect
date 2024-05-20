@@ -1,0 +1,298 @@
+.container {
+		// background-color: #f1f5f7;
+		font-family: "YouYuan";
+		color: #333;
+
+		.content {
+			padding-top: 20rpx;
+			padding-left: 50rpx;
+			padding-bottom: 20rpx;
+			line-height: 38rpx;
+			font-size: 24rpx;
+		}
+
+		.virturecontent {
+			padding-top: 20rpx;
+			padding-left: 50rpx;
+			padding-bottom: 20rpx;
+			line-height: 38rpx;
+		}
+
+		.valueNum {
+			font-weight: bold;
+			color: #ffaa00;
+			padding-left: 10rpx;
+			font-size: 30rpx;
+			letter-spacing: 2rpx;
+		}
+
+		.focusnum {
+			color: #ffaa00;
+			letter-spacing: 2rpx;
+		}
+
+		.topkv {
+			background-color: white;
+			padding: 30rpx;
+			padding-bottom: 20rpx;
+			border-top-left-radius: 55rpx;
+			border-top-right-radius: 55rpx;
+
+			.topimg {
+				width: 399rpx;
+				height: 397rpx;
+			}
+
+			.title {
+				padding-left: 30rpx;
+				padding-right: 30rpx;
+			}
+		}
+
+		.bigtitle {
+			font-size: 30rpx;
+			text-align: center;
+			// padding-bottom: 30rpx;
+		}
+
+		.circle {
+			background-color: white;
+			box-shadow: 0px 0px 5px 5px #46647d;
+			width: 220rpx;
+			height: 220rpx;
+			border-radius: 200rpx;
+			line-height: 220rpx;
+			text-align: center;
+			font-size: 40rpx;
+			letter-spacing: 2rpx;
+			color: #46647d;
+		}
+
+		.icon-shake {
+			width: 58rpx;
+			height: 39rpx;
+		}
+
+		.icon {
+			width: 40rpx;
+			height: 46rpx;
+		}
+
+		.heartbpsIcon {
+			width: 40rpx;
+			height: 48rpx;
+		}
+
+		.icon-risk {
+			width: 50rpx;
+			height: 45rpx;
+		}
+
+		.icon-age {
+			width: 42rpx;
+			height: 43rpx;
+		}
+
+		.icon-explan {
+			width: 39rpx;
+			height: 43rpx;
+		}
+
+		.icon-add {
+			width: 45rpx;
+			height: 48rpx;
+		}
+
+		.icon-ai {
+			width: 49rpx;
+			height: 58rpx;
+		}
+
+		.icon-title {
+			padding-left: 10rpx;
+			font-size: 30rpx;
+		}
+
+		.icon-weight {
+			width: 47rpx;
+			height: 50rpx;
+		}
+
+		.subtitle {
+			line-height: 46rpx;
+			font-size: 35rpx;
+		}
+
+		.heartIcon {
+			width: 50rpx;
+			height: 45rpx;
+		}
+
+		.hearto2Icon {
+			width: 45rpx;
+			height: 46rpx;
+		}
+
+		.heartbreakIcon {
+			width: 50rpx;
+			height: 45rpx;
+		}
+
+		.heartafIcon {
+			width: 58rpx;
+			height: 39rpx;
+		}
+
+		.heartbpppIcon {
+			width: 52rpx;
+			height: 48rpx;
+		}
+
+		.heartpressIcon {
+			width: 53rpx;
+			height: 42rpx;
+		}
+
+		.heartriskIcon {
+			width: 48rpx;
+			height: 50rpx;
+		}
+
+		.desc-ccc {
+			background-color: #249631;
+			border-radius: 15rpx;
+			color: white;
+			display: block;
+			padding: 10rpx;
+			width: fit-content;
+		}
+
+		.desc {
+			font-size: 24rpx;
+			line-height: 35rpx;
+			// text-indent: 60rpx;
+			text-align: justify;
+			padding-left: 30rpx;
+			padding-right: 30rpx;
+			padding-top: 10rpx;
+			color: #616169;
+		}
+
+		.data_container {
+			background-color: rgb(245, 245, 245);
+			padding-top: 5rpx;
+		}
+
+		.border {
+			background-color: white;
+			margin: 30rpx;
+			padding: 30rpx;
+			border-radius: 40rpx;
+			box-shadow: 0px 0px 5px 5px #eee;
+		}
+
+		.border-line {
+			border-bottom: #f5f5f5 solid 1px;
+			margin-top: 10rpx;
+			margin-bottom: 10rpx;
+		}
+	}
+
+
+	.progress-container {
+		width: 90%;
+		margin: 0 auto;
+		height: 17rpx;
+		color: #333;
+		position: relative;
+		margin-top: 30rpx;
+		margin-bottom: 30rpx;
+		padding-top: 30rpx;
+		padding-bottom: 30rpx;
+
+		.tick {
+			position: relative;
+			padding-top: 10rpx;
+			padding-bottom: 10rpx;
+			font-family: 'YouYuan';
+
+			.tick-item {
+				position: absolute;
+				font-size: 24rpx;
+				font-family: 'Arial';
+				text-align: center;
+				transform: translateX(-50%);
+			}
+		}
+
+		.progress-bar {
+			height: 100%;
+			border-radius: 30rpx;
+			background-color: #eee;
+			overflow: hidden;
+			position: relative;
+
+			.progress-layer {
+				height: 100%;
+			}
+
+			.first {
+				width: 60%;
+				background-color: rgb(242, 111, 41);
+			}
+
+			.second {
+				width: 10%;
+				background-color: rgb(242, 179, 41);
+			}
+
+			.third {
+				width: 10%;
+				background-color: rgb(226, 201, 62);
+			}
+
+			.forth {
+				width: 10%;
+				background-color: rgb(172, 234, 111);
+			}
+
+			.fifth {
+				width: 10%;
+				background-color: rgb(124, 196, 200);
+
+			}
+		}
+	}
+
+	.tooltip {
+		position: absolute;
+		left: 100px;
+		top: -12px;
+		transform: translateX(-50%);
+
+		.tooltip-text {
+			padding: 5rpx;
+			padding-left: 10rpx;
+			padding-right: 10rpx;
+			word-wrap: normal;
+			word-break: keep-all;
+			color: #fff;
+			border-radius: 10rpx;
+			text-align: center;
+			font-size: 22rpx;
+			// transform: translateX(-50%);
+			top: -20px;
+		}
+
+		.tooltip-triangle {
+			border-width: 15rpx;
+			border-color: #000 transparent transparent transparent;
+			border-style: solid;
+			width: 0px;
+			height: 0px;
+			margin-top: -2rpx;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
