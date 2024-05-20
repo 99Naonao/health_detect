@@ -189,6 +189,14 @@
 				measurement.addEventListener('crashed', async (sender, e) => {
 					console.log('crashed!停止采集视频')
 					that.stopMedia()
+
+					uni.showToast({
+						title: '意外停止采集视频，请重试'
+					})
+
+					uni.navigateTo({
+						url: '/pages/health/health'
+					})
 				})
 
 				//监听视频帧采集完成事件
