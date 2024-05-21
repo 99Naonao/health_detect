@@ -419,8 +419,8 @@
 
 				.avatar {
 					flex-shrink: 0;
-					width: 114upx;
-					height: 114upx;
+					width: 118upx;
+					height: 118upx;
 					border-radius: 100%;
 					background-color: #FFF4EA;
 				}

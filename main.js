@@ -35,8 +35,8 @@ var openid = getQueryString("openid");
 var isready = 0;
 var title = "中数健康检测"; //分享标题
 var desc = "中数健康检测" // 分享描述默认是空
-var image = "https://ex.weasley.tv/hansMap/logo.jpg";
-var shareurl =
+var image = "https://sleep.zsyl.cc/sleeph5/share_img_not_delete.jpg";
+let shareurl =
 	'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.zsyl.cc/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
 
 var shareContent = ['onMenuShareTimeline', 'onMenuShareAppMessage'];
@@ -70,6 +70,7 @@ function register(res) {
 	wx.ready(() => { //需在用户可能点击分享按钮前就先调用
 		console.log('readyreadyreadyreadyreadyreadyreadyready')
 		isready = 1;
+		// console.log('$shareurlshareurlshareurl:', shareurl)
 		updateShareInfo(title, desc, shareurl, image);
 	});
 	wx.error(() => { //需在用户可能点击分享按钮前就先调用
@@ -78,6 +79,10 @@ function register(res) {
 }
 
 function updateShareInfo($title, $desc, $shareurl, $image) {
+	console.log('$shareurl:', $shareurl)
+	// let shareeeee =
+	// 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.zsyl.cc/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+	// console.log('shareeeee:', shareeeee)
 	wx.onMenuShareTimeline({
 		title: $title, // 分享标题
 		link: $shareurl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
@@ -122,7 +127,7 @@ if (isWeChat()) {
 	var localUrl = window.location.href;
 	var postlocalurl = (localUrl.split("#")[0]);
 
-	shareurl = postlocalurl;
+	shareurl = "https://sleep.zsyl.cc/sleeph5/router.html";
 	msJsTicket({
 		url: encodeURIComponent(postlocalurl)
 	}).then((res) => {

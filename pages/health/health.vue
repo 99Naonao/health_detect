@@ -74,7 +74,7 @@
 		},
 		data() {
 			return {
-				cost: 0,
+				cost: 20,
 				sure: false,
 				measureIns: null,
 				video: null,
@@ -198,12 +198,10 @@
 			goCheck() {
 				console.log(this.userInfo)
 				if (this.userInfo.score >= this.cost) {
-
-				} else {
 					uni.navigateTo({
 						url: '/pages/health/healthRunning'
 					})
-
+				} else {
 					uni.showToast({
 						title: '当前积分不够',
 						icon: 'error'
