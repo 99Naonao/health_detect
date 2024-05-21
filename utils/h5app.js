@@ -1,6 +1,7 @@
 // #ifdef H5
 import base from '@/utils/baseUrl';
-// import store from '@/store';
+import userInfoStore from '@/store/user.js';
+
 const api = {
 	login: '/ybLoginH5',
 	cardList: '/card/serList',
@@ -89,6 +90,10 @@ export function autoLogin(callback) {
 		});
 		let userInfo = res
 		console.log('wxlogin:', userInfo)
+		const teuserInfoStore = userInfoStore()
+		teuserInfoStore.$patch({
+			'userInfo': userInfo
+		})
 		setUserInfo(userInfo);
 		// uni.showToast({
 		// 	title: '登录成功',
@@ -407,8 +412,7 @@ function request_(url, sortData) {
 			},
 			fail: err => {
 				uni.hideLoading()
-				reject(err),
-					store.commit("setLoadingShow", false);
+				reject(err)
 			}
 		})
 		// uni.request({

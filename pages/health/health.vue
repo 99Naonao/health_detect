@@ -42,11 +42,9 @@
 <script>
 	import tabbar from '@/components/tabbar/tabbar.vue'
 	import {
-		mapActions,
-		mapState,
-		mapGetters,
-		mapMutations
-	} from 'vuex'
+		storeToRefs
+	} from 'pinia'
+	import userInfoStore from '../../store/user.js'
 	import {
 		Measurement,
 		MeasurementCategory
@@ -63,14 +61,29 @@
 		components: {
 			tabbar
 		},
-		computed: {
-			...mapGetters(['measureToken', 'userInfo'])
+		setup(props, context) {
+			const getUserInfo = userInfoStore()
+			const {
+				userInfo,
+				measureToken
+			} = storeToRefs(getUserInfo)
+			console.log('health setup:::', getUserInfo)
+			return {
+				userInfo,
+				getUserInfo
+			}
 		},
 		onLoad() {
 			uni.hideTabBar()
 		},
 		mounted() {
-			uni.clearStorageSync('userInfo')
+			// uni.clearStorageSync('userInfo');
+			var code = window.getCode()
+			if (code) {
+				this.login()
+			} else {
+				this.getMeasureToken()
+			}
 		},
 		data() {
 			return {
@@ -82,34 +95,81 @@
 		},
 		onShow() {
 			this.sure = uni.getStorageSync('checkP') ? true : false
+			// this.login()
 
-			let userInfo = uni.getStorageSync('userInfo')
-			if (!userInfo) {
-				this.login()
-			} else {
-				console.log('登录2成功')
-				this.$login().then((res) => {
-					console.log('获取token2成功')
-				})
-			}
-		},
-		setup() {
+			// let user = {
+			// 	address: "",
+			// 	authAt: null,
+			// 	avatar: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eop8EWu5X9uMZ8BErjVkjiagMpRKtkWczIMpIFSibrkHjA7icdgN6DJ93a7qcHiacZPQ27URnNBCicE8Bg/132",
+			// 	birthDay: "",
+			// 	code: "",
+			// 	createIp: null,
+			// 	createTime: "2024-04-26 15:00:28",
+			// 	createUser: "-1",
+			// 	fenxiaoId: "0",
+			// 	frozen: 0,
+			// 	identityCard: "",
+			// 	isAuth: 1,
+			// 	lastLoginAt: null,
+			// 	lastLoginIp: null,
+			// 	lastMobileToken: null,
+			// 	lastSignAt: null,
+			// 	lastSignTime: null,
+			// 	lev: 1,
+			// 	mobile: "",
+			// 	msgRead: 0,
+			// 	nickName: "大白牙",
+			// 	realName: "",
+			// 	recommendCode: "",
+			// 	registerAt: "2024-04-26 15:00:28",
+			// 	registerIp: null,
+			// 	remain: 0,
+			// 	score: 999,
+			// 	sex: "M",
+			// 	smsCode: "",
+			// 	statusFlag: 1,
+			// 	token: "eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjMyLCJhY2NvdW50Ijoib1d2Vno2Y19UTDhzWXJ0RWxLU18ycVM2UjFfdyIsInV1aWQiOiI5MzQ2NDY3MC0yZTYwLTRlNTktOWQxNS03ZTE4NDBmYzNkNTEiLCJyZW1lbWJlck1lIjp0cnVlLCJleHBpcmF0aW9uRGF0ZSI6MTcxNjg5OTE4ODg2OCwiY2FUb2tlbiI6bnVsbCwib3RoZXJzIjpudWxsLCJzdWIiOiIzMiIsImlhdCI6MTcxNjI5NDM4OCwiZXhwIjoxNzE2ODk5MTg4fQ.dUDUpVfSQCtR31fzXMO1s_rV7-UTMAZcFXV4BqhGbOslFM_qbUabQOezxzGi-UuzXLJ06JoAgUFFGDEhbhMurw",
+			// 	tokenExpireAt: "1716899188868",
+			// 	totalConsume: 0,
+			// 	tradingPassword: "",
+			// 	updateTime: "2024-05-21 20:26:28",
+			// 	updateUser: "-1",
+			// 	userId: "32",
+			// 	userName: "oWvVz6c_TL8sYrtElKS_2qS6R1_w",
+			// 	userPassword: "",
+			// 	userType: null,
+			// 	withdraw: 0,
+			// 	yongjin: 0,
+			// }
 
+
+
+			// setTimeout(() => {
+			// 	const teuserInfoStore = userInfoStore()
+			// 	teuserInfoStore.$patch({
+			// 		'userInfo': user
+			// 	})
+			// 	console.log('scor:', teuserInfoStore.userInfo)
+			// }, 3000)
+
+			// let userInfo = uni.getStorageSync('userInfo')
+			// if (!userInfo) {
+			// this.login()
+			// } else {
+			// 	console.log('登录2成功')
+			// 	this.$login().then((res) => {
+			// 		console.log('获取token2成功')
+			// 	})
+			// }
 		},
 		methods: {
-			...mapActions(['$login']),
+			getMeasureToken() {
+				const getUserInfo = userInfoStore()
+				getUserInfo.$login()
+			},
 			login() {
 				autoLogin((res) => {
-					uni.showToast({
-						title: '登录成功'
-					})
-					console.log('登录成功')
-					this.$login().then((res) => {
-						uni.showToast({
-							title: '获取token成功'
-						})
-						console.log('获取token1成功')
-					})
+					this.getMeasureToken()
 				})
 			},
 			navLink() {
@@ -181,19 +241,6 @@
 			},
 			updateCheckStatus() {
 				uni.setStorageSync('checkP', this.sure)
-			},
-			addListener() {
-				this.measureIns = new Measurement(this.measureToken, MeasurementCategory.ALL)
-				const measurement = this.measureIns
-				//监听启动测量事件
-				measurement.addEventListener("started", (sender, measurementId) => {
-					console.log(measurementId)
-					// measurement.enqueue({
-					// 	"base64_frame",
-					// 	1709151805475
-					// })
-				})
-				measurement.start("base64_frame")
 			},
 			goCheck() {
 				console.log(this.userInfo)

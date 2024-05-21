@@ -20,12 +20,6 @@
 <script>
 	import * as echarts from 'echarts';
 	import {
-		mapActions,
-		mapState,
-		mapGetters,
-		mapMutations
-	} from 'vuex'
-	import {
 		Measurement,
 		MeasurementCategory
 	} from 'xy-health-measurement'
@@ -37,7 +31,23 @@
 		addReport,
 	} from '../../utils/h5app.js'
 	// #endif
+	import {
+		storeToRefs
+	} from 'pinia'
+	import userInfoStore from '../../store/user.js'
 	export default {
+		setup() {
+			const getUserInfo = userInfoStore()
+			const {
+				userInfo,
+				measureToken
+			} = storeToRefs(getUserInfo)
+			console.log('health setup:::', getUserInfo)
+			return {
+				userInfo,
+				getUserInfo
+			}
+		},
 		data() {
 			return {
 				gaugeData: [{
@@ -130,9 +140,7 @@
 				},
 			}
 		},
-		computed: {
-			...mapGetters(['measureToken', 'userInfo'])
-		},
+		computed: {},
 		onShow() {
 			this.startCamera()
 			this.message = ''
@@ -163,12 +171,13 @@
 				})
 			},
 			addListener() {
-				if (!this.measureToken) {
+				const getUserInfo = userInfoStore()
+				if (!getUserInfo.measureToken) {
 					uni.showToast({
 						title: '不存在token'
 					})
 				}
-				const measurement = new Measurement(this.measureToken, MeasurementCategory.ALL)
+				const measurement = new Measurement(getUserInfo.measureToken, MeasurementCategory.ALL)
 				let that = this;
 				//监听启动测量事件
 				measurement.addEventListener("started", (sender, measurementId) => {
@@ -194,7 +203,7 @@
 						title: '意外停止采集视频，请重试'
 					})
 
-					uni.navigateTo({
+					uni.switchTab({
 						url: '/pages/health/health'
 					})
 				})
@@ -240,7 +249,19 @@
 					// 上传报告
 					addReport({
 						desc: JSON.stringify(report)
-					}).then(() => {
+					}).then((res) => {
+						console.log('add:', res)
+						try {
+							let userInfo = res
+							console.log('addadd:', userInfo)
+							const teuserInfoStore = userInfoStore()
+							teuserInfoStore.$patch({
+								'userInfo': userInfo
+							})
+							uni.setStorageSync("userInfo", userInfo);
+						} catch (e) {
+							//TODO handle the exception
+						}
 						that.stopMedia();
 						// 跳转结果界面
 						uni.navigateTo({

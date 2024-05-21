@@ -1,5 +1,5 @@
 import App from './App'
-import store from './store/index.js'
+import pinia from './store/index.js'
 import wx from 'weixin-js-sdk'
 import {
 	msJsTicket
@@ -30,7 +30,7 @@ function getQueryString(name) {
 	if (r != null) return decodeURI(r[2]);
 	return null;
 }
-
+var code = getQueryString("code");
 var openid = getQueryString("openid");
 var isready = 0;
 var title = "中数健康检测"; //分享标题
@@ -38,7 +38,10 @@ var desc = "中数健康检测" // 分享描述默认是空
 var image = "https://sleep.zsyl.cc/sleeph5/share_img_not_delete.jpg";
 let shareurl =
 	'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.zsyl.cc/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-
+// 如果没有code，刷新获取
+if (!code) {
+	window.location.href = shareurl;
+}
 var shareContent = ['onMenuShareTimeline', 'onMenuShareAppMessage'];
 
 function isWeChat() { // 判断是否是微信浏览器
@@ -111,7 +114,7 @@ export function createApp() {
 	window.wx = {}
 	const app = createSSRApp(App)
 	// 引入vuex
-	app.use(store)
+	app.use(pinia)
 	return {
 		app
 	}
@@ -127,7 +130,7 @@ if (isWeChat()) {
 	var localUrl = window.location.href;
 	var postlocalurl = (localUrl.split("#")[0]);
 
-	shareurl = "https://sleep.zsyl.cc/sleeph5/router.html";
+	shareurl = "https://sleep.zsyl.cc/sleeph5/index.html";
 	msJsTicket({
 		url: encodeURIComponent(postlocalurl)
 	}).then((res) => {

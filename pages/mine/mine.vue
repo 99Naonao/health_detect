@@ -7,10 +7,10 @@
 					<view class="user_info">
 						<view class="top_info">
 							<view class="avatar_bg flex align-center just-align-center">
-								<image v-if="userInfo" class="avatar"
-									:src="userInfo.avatar || '/static/default-avatar.png'"></image>
-								<image v-else class="avatar"
-									:src="userInfo&&userInfo.avatar || '/static/default-avatar.png'"
+								<image v-if="userInfo.avatar" class="avatar"
+									:src="userInfo.avatar || '/static/default-avatar.png'">
+								</image>
+								<image v-else class="avatar" :src="avatar || '/static/default-avatar.png'"
 									@click="clickWxLogin">
 								</image>
 							</view>
@@ -104,12 +104,6 @@
 	import {
 		getHistoryData
 	} from '@/utils/h5app.js'
-	import {
-		mapActions,
-		mapState,
-		mapGetters,
-		mapMutations
-	} from 'vuex'
 
 	// #ifdef MP-WEIXIN
 
@@ -122,6 +116,10 @@
 		autoLogin,
 		getWxUserInfo
 	} from '@/utils/h5app.js'
+	import {
+		storeToRefs
+	} from 'pinia'
+	import userInfoStore from '../../store/user.js'
 	// #endif
 
 	export default {
@@ -142,8 +140,20 @@
 				score: 0,
 			}
 		},
-		computed: {
-			...mapGetters(['measureToken', 'userInfo'])
+		setup() {
+			const getUserInfo = userInfoStore()
+			const {
+				userInfo,
+				measureToken
+			} = storeToRefs(getUserInfo)
+			console.log('setupuserinfo:', userInfo)
+			const score = 1;
+			const avatar = '';
+			const nickName = '';
+			return {
+				userInfo,
+				measureToken
+			}
 		},
 		components: {
 			tabbar,
@@ -153,11 +163,9 @@
 			uni.hideTabBar()
 		},
 		onShow() {
-			// this.$login()
 			this.updateData(this.active + 1)
 		},
 		methods: {
-			...mapActions(['$login']),
 			measureHandler() {
 				uni.navigateTo({
 					url: '/pages/mine/history'
@@ -165,9 +173,6 @@
 			},
 			clickWxLogin() {
 				getWxUserInfo()
-				// autoLogin((res) => {
-				// 	console.log('success')
-				// })
 			},
 			go2Use() {
 
