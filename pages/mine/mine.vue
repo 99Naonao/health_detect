@@ -7,7 +7,7 @@
 					<view class="user_info">
 						<view class="top_info">
 							<view class="avatar_bg flex align-center just-align-center">
-								<image v-if="hasLogin" class="avatar"
+								<image v-if="userInfo" class="avatar"
 									:src="userInfo.avatar || '/static/default-avatar.png'"></image>
 								<image v-else class="avatar"
 									:src="userInfo&&userInfo.avatar || '/static/default-avatar.png'"
@@ -17,7 +17,7 @@
 							<view class="usernameInfo">
 								<view class="username">
 									<!-- <text class="username">{{ userInfo.nickName || '未知用户' }}</text> -->
-									<text>{{ '未知用户' }}</text>
+									<text>{{ userInfo.nickName?userInfo.nickName:'未知用户' }}</text>
 									<!-- <image src="../../static/icon/edit.png"></image> -->
 								</view>
 							</view>
@@ -419,8 +419,8 @@
 
 				.avatar {
 					flex-shrink: 0;
-					width: 87upx;
-					height: 87upx;
+					width: 114upx;
+					height: 114upx;
 					border-radius: 100%;
 					background-color: #FFF4EA;
 				}

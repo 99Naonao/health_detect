@@ -5,8 +5,8 @@
 			<view class='kv' ref="cccc">
 				<image class="kv-img" src='@/static/JK_02_Bg01.png' mode="widthFix"></image>
 			</view>
-			<view class="opt1 flex just-align-center" @click="checkHandler">
-				<view class="opt">
+			<view class="opt1 flex just-align-center">
+				<view class="opt" @click="checkHandler">
 					<text>开始测量</text>
 					<view class="">
 						<image mode="widthFix" class="icon" src="../../static/JK_02_IconJF1.png"></image><text

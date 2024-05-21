@@ -16,28 +16,47 @@ const api = {
 	add: '/ybUserHealthReport/add',
 	last: '/ybUserHealthReport/last',
 	history: '/ybUserHealthReport/static',
+	msJsTicket: '/ybJsTicket', // 获取jsticket
+}
+// 获取票据
+export function msJsTicket(parameter) {
+	return request_(base.baseUrl + api.msJsTicket, parameter)
 }
 
 export function getWxUserInfo() {
 	var that = this;
 	var lang = 'cn'
-	uni.getUserProfile({
-		lang: lang,
-		desc: '登录',
-		success: (res) => {
-			console.log(res.userInfo);
-			var city = res.userInfo.city
-			var country = res.userInfo.country
-			var nickName = res.userInfo.nickName
-			var province = res.userInfo.province
-			var avatarUrl = res.userInfo.avatarUrl
-			// that.city = city;
-			// that.country = country;
-			// that.nickName = nickName;
-			// that.province = province;
-		},
-		fail: (res) => {
-			console.log(res, "userinfo fail");
+
+	uni.login({
+
+		provider: "weixin",
+
+		success: (loginRes) => {
+			console.log('login success');
+			uni.getUserInfo({
+
+				provider: "weixin",
+
+				success: (userRes) => {
+					console.log(userRes.userInfo);
+					var city = userRes.userInfo.city
+					var country = userRes.userInfo.country
+					var nickName = userRes.userInfo.nickName
+					var province = userRes.userInfo.province
+					var avatarUrl = userRes.userInfo.avatarUrl
+					// this.userInfo = userRes.userInfo;
+
+					// this.isLogin = true;
+
+					// uni.setStorage({
+
+					// 	key: "userInfo",
+
+					// 	data: userRes.userInfo,
+
+					// });
+				}
+			})
 		}
 	})
 }
