@@ -196,6 +196,7 @@
 		padding-left: 50rpx;
 		padding-bottom: 20rpx;
 		line-height: 38rpx;
+		font-size: 24rpx;
 	}
 
 	.border-line {

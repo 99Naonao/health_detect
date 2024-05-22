@@ -5,13 +5,15 @@
 			<view class='kv' ref="cccc">
 				<image class="kv-img" src='@/static/JK_02_Bg01.png' mode="widthFix"></image>
 			</view>
+
+		</view>
+		<view class="opt-part">
 			<view class="opt1 flex just-align-center">
 				<view class="opt" @click="checkHandler">
 					<text>开始测量</text>
 					<view class="">
 						<image mode="widthFix" class="icon" src="../../static/JK_02_IconJF1.png"></image><text
-							class="cost-c">{{cost}}
-							积分/次</text>
+							class="cost-c">{{cost}}积分/次</text>
 					</view>
 				</view>
 			</view>
@@ -35,7 +37,6 @@
 				<view class="score">{{userInfo.score?userInfo.score:0}}</view>
 			</view>
 		</view>
-
 	</view>
 </template>
 
@@ -288,6 +289,7 @@
 
 		.main {
 			padding-bottom: 160rpx;
+			text-align: center;
 		}
 
 		.check-label {
@@ -333,13 +335,25 @@
 		}
 	}
 
+	.opt-part {
+		position: absolute;
+		padding-bottom: env(safe-area-inset-bottom);
+		padding-bottom: constant(safe-area-inset-bottom);
+		margin: 0 auto;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 180rpx;
+	}
+
 	.opt1 {
-		padding-top: 118rpx;
+		/* padding-top: 118rpx; */
+
 	}
 
 
 
 	.opt {
+		min-width: 200rpx;
 		background-color: rgba(90, 119, 149, 1);
 		box-shadow: 0px 5px 5px 5px #f2f8ff;
 		border-radius: 80rpx;
@@ -349,16 +363,19 @@
 		padding-left: 150rpx;
 		padding-right: 150rpx;
 		font-size: 32rpx;
+		word-break: keep-all;
 
 		.cost-c {
 			font-size: 24rpx;
 			padding-left: 14rpx;
 			line-height: 30rpx;
+			word-break: keep-all;
 		}
 
 		.icon {
 			width: 35rpx;
 			height: 25rpx;
+			display: inline-block;
 			/* padding-right: 20rpx; */
 		}
 	}
