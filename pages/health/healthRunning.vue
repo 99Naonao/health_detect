@@ -7,6 +7,7 @@
 			<view class="message">{{message}}</view>
 			<view class="tips">请将您的身体置于虚线内</view>
 			<view class="tips">检测大约需要30s，请在良好的光线环境内使用</view>
+			<view class="tips">请注意:本产品暂不适合未成年人的检测。</view>
 		</view>
 		<canvas id="canvas" class="canvas-c" :style="backBtnStyle" canvas-id="canvas"></canvas>
 

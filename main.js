@@ -42,6 +42,10 @@ let shareurl =
 if (!code) {
 	window.location.href = shareurl;
 }
+// if (!code) {
+// 	window.location.href = shareurl;
+// }
+
 var shareContent = ['onMenuShareTimeline', 'onMenuShareAppMessage'];
 
 function isWeChat() { // 判断是否是微信浏览器
@@ -139,3 +143,15 @@ if (isWeChat()) {
 		console.log('error:', res)
 	})
 }
+
+
+async function lock() {
+	// screen.orientation.unlock();
+	// 锁定竖屏方向
+	await screen.orientation
+		.lock('portrait')
+		.catch(e => {});
+}
+
+//锁定
+lock()
