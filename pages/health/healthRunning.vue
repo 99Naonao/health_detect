@@ -264,10 +264,14 @@
 							//TODO handle the exception
 						}
 						that.stopMedia();
-						// 跳转结果界面
-						uni.navigateTo({
-							url: '/pages/health/healthResult'
+
+						uni.switchTab({
+							url: "/pages/func/func"
 						})
+						// 跳转结果界面
+						// uni.navigateTo({
+						// 	url: '/pages/health/healthResult'
+						// })
 					})
 					// 停止
 				})

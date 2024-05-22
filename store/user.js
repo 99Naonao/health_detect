@@ -44,7 +44,7 @@ const userInfoStore = defineStore('userInfo', {
 			registerAt: "2024-04-26 15:00:28",
 			registerIp: null,
 			remain: 0,
-			score: 1000,
+			score: 0,
 			sex: "M",
 			smsCode: "",
 			statusFlag: 1,
