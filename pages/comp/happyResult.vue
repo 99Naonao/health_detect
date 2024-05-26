@@ -77,14 +77,14 @@
 			</view>
 			<!-- 攻击性 -->
 			<border-view :title="'攻击性'" :icon="'icon-attack'" :value="(aggressivityreport.data).toFixed(2)"
-				:ticks="[0,50,100,150]" :adv="aggressivityreport.explanation.advicesList[0].valuesList.join('')"
+				:ticks="[0,20,40,60,80,100]" :adv="aggressivityreport.explanation.advicesList[0].valuesList.join('')"
 				:aiDesc="aggressivityreport.explanation.introductionList.join('')"
 				:desc="aggressivityreport.explanation.detailsList[0].valuesList.join('')">
 			</border-view>
 
 			<!-- 焦虑度 -->
 			<border-view :title="'焦虑度'" :icon="'icon-jiaolv'" :value="(anxietyreport.data).toFixed(2)"
-				:ticks="[0,50,100,150]"
+				:ticks="[0,20,40,60,80,100]"
 				:adv="anxietyreport.explanation.advicesList[0]?anxietyreport.explanation.advicesList[0].valuesList.join(''):''"
 				:aiDesc="anxietyreport.explanation.introductionList.join('')"
 				:desc="anxietyreport.explanation.detailsList[0].valuesList.join('')">
@@ -92,28 +92,28 @@
 
 			<!-- 活力度 -->
 			<border-view :title="'活力度'" :icon="'icon-huoli'" :value="(vitalityreport.data).toFixed(2)"
-				:ticks="[0,50,100,150]" :adv="vitalityreport.explanation.advicesList[0].valuesList.join('')"
+				:ticks="[0,20,40,60,80,100]" :adv="vitalityreport.explanation.advicesList[0].valuesList.join('')"
 				:aiDesc="vitalityreport.explanation.introductionList.join('')"
 				:desc="vitalityreport.explanation.detailsList[0].valuesList.join('')">
 			</border-view>
 
 			<!-- 抑郁度 -->
 			<border-view :title="'抑郁度'" :icon="'icon-yiyu'" :value="(suppressionreport.data).toFixed(2)"
-				:ticks="[0,50,100,150]" :adv="suppressionreport.explanation.advicesList[0].valuesList.join('')"
+				:ticks="[0,20,40,60,80,100]" :adv="suppressionreport.explanation.advicesList[0].valuesList.join('')"
 				:aiDesc="suppressionreport.explanation.introductionList.join('')"
 				:desc="suppressionreport.explanation.detailsList[0].valuesList.join('')">
 			</border-view>
 
 			<!--疲劳度 -->
 			<border-view :title="'疲劳度'" :icon="'icon-pilao'" :value="(fatiguereport.data).toFixed(2)"
-				:ticks="[0,50,100,150]" :adv="fatiguereport.explanation.advicesList[0].valuesList.join('')"
+				:ticks="[0,20,40,60,80,100]" :adv="fatiguereport.explanation.advicesList[0].valuesList.join('')"
 				:aiDesc="fatiguereport.explanation.introductionList.join('')"
 				:desc="fatiguereport.explanation.detailsList[0].valuesList.join('')">
 			</border-view>
 
 			<!--压力度 -->
-			<border-view :title="'压力度'" :icon="'icon-yali'" :value="(msireport.data).toFixed(2)" :ticks="[0,50,100,150]"
-				:adv="msireport.explanation.advicesList[0].valuesList.join('')"
+			<border-view :title="'压力度'" :icon="'icon-yali'" :value="(msireport.data).toFixed(2)"
+				:ticks="[0,20,40,60,80,100]" :adv="msireport.explanation.advicesList[0].valuesList.join('')"
 				:aiDesc="msireport.explanation.introductionList.join('')"
 				:desc="msireport.explanation.detailsList[0].valuesList.join('')">
 			</border-view>
