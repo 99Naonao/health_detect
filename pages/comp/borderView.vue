@@ -5,7 +5,7 @@
 				class="valueNum">{{valuePercent?value+'%':value}}
 			</text>
 		</view>
-		<progress-bar :tick="value" :ticks="ticks"></progress-bar>
+		<progress-bar :tick="value" :ticks="ticks" :class_list="class_list"></progress-bar>
 		<view class="">
 			<image class="icon-ai" src="../../static/icon/JK_04_IconAI.png"></image><text
 				class="icon-title">AI专家解读</text>
@@ -56,6 +56,11 @@
 			ticks: {
 				type: Array,
 				default: [0, 30, 60, 90, 120, 150]
+			},
+			class_list: {
+				type: Array,
+				require: true,
+				default: ['fifth', 'forth', 'third', 'second', 'first']
 			},
 			title: {
 				type: String,

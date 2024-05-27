@@ -71,14 +71,14 @@
 						</view>
 					</view>
 				</view>
-				<view class="age">
+				<view class="age" v-if="false">
 					<image class="icon-age" src="../../static/icon/JK_04_IconTLR.png"></image>
 					<text class="icon-title">同龄人对比</text>
 				</view>
-				<view class="content">超越<text
+				<view class="content" v-if="false">超越<text
 						class="focusnum">{{(physiologyscorereport.explanation.ranking * 100).toFixed(2) + '%'}}</text>同龄人
 				</view>
-				<view class="border-line"></view>
+				<view class="border-line" v-if="false"></view>
 				<view class="title">
 					<image class="icon-add" src="../../static/icon/JK_04_IconJKJY.png"></image><text
 						class="icon-title">健康建议</text>
@@ -95,11 +95,13 @@
 			</view>
 			<!-- 皮肤年龄 -->
 			<border-view :title="'皮肤年龄'" :icon="'icon-skin'" :ticks="[1, 30, 60, 90, 120, 150]"
+				:class_list="['second','second','second','second','second']"
 				:adv="essentialreport.explanation.age.advicesList[0]?essentialreport.explanation.age.advicesList[0].valuesList.join(''):''"
 				:aiDesc="skinDesc" :desc="essentialreport.explanation.age.detailsList[0].valuesList.join('')"
 				:value="essentialreport.data.age" :essentialreport="essentialreport"></border-view>
 			<!-- 体重指数 -->
 			<border-view :title="'体重指数'" :icon="'icon-weight'" :ticks="[15, 18.5, 25, 30, 35, 40]"
+				:class_list="['first', 'third', 'third','forth', 'fifth']"
 				:adv="essentialreport.explanation.bmi.advicesList[0]?essentialreport.explanation.bmi.advicesList[0].valuesList.join(''):''"
 				:aiDesc="essentialreport.explanation.bmi.introductionList.join('')"
 				:desc="essentialreport.explanation.bmi.detailsList[0].valuesList.join('')"
@@ -107,13 +109,14 @@
 			</border-view>
 			<!-- 心率 -->
 			<border-view :title="'心率'" :icon="'icon-heart'" :value="hrreport.data.hrbpm" :ticks="[40, 60, 100, 160]"
+				:class_list="['third', 'first', 'third','third', 'third']"
 				:adv="hrreport.explanation.hrbpm.advicesList[0].valuesList.join('')"
 				:aiDesc="hrreport.explanation.hrbpm.introductionList.join('')"
 				:desc="hrreport.explanation.hrbpm.detailsList[0].valuesList.join('')">
 			</border-view>
 			<!-- 心率变异性 -->
 			<border-view :title="'心率变异性'" :icon="'icon-heart-change'" :valuePercent="true" :value="hrreport.data.hrv"
-				:ticks="[0,50,200,300]"
+				:ticks="[0,50,200,300]" :class_list="['third', 'first', 'third','third']"
 				:adv="hrreport.explanation.hrv.advicesList[0]?hrreport.explanation.hrv.advicesList[0].valuesList.join(''):'无'"
 				:aiDesc="hrreport.explanation.hrv.introductionList.join('')"
 				:desc="hrreport.explanation.hrv.detailsList[0].valuesList.join('')">
@@ -150,13 +153,15 @@
 			</view>
 			<!-- 舒张压 -->
 			<border-view :title="'舒张压'" :icon="'icon-press'" :value="bpreport.data.bpdiastolic"
-				:ticks="[50,60,80,90,100]" :adv="bpreport.explanation.bpdiastolic.advicesList[0].valuesList.join('')"
+				:class_list="['third', 'first', 'third', 'fifth']" :ticks="[50,60,80,90,100]"
+				:adv="bpreport.explanation.bpdiastolic.advicesList[0].valuesList.join('')"
 				:aiDesc="bpreport.explanation.bpdiastolic.introductionList.join('')"
 				:desc="bpreport.explanation.bpdiastolic.detailsList[0].valuesList.join('')">
 			</border-view>
 
 			<!-- 收缩压 -->
 			<border-view :title="'收缩压'" :icon="'icon-up'" :value="bpreport.data.bpsystolic" :ticks="[70,90,130,140,170]"
+				:class_list="['third', 'first', 'third', 'fifth']"
 				:adv="bpreport.explanation.bpsystolic.advicesList[0].valuesList.join('')"
 				:aiDesc="bpreport.explanation.bpsystolic.introductionList.join('')"
 				:desc="bpreport.explanation.bpsystolic.detailsList[0].valuesList.join('')">
@@ -164,7 +169,7 @@
 
 			<!-- 血氧饱和度 -->
 			<border-view :title="'血氧饱和度'" :icon="'icon-ox'" :valuePercent="true" :value="spo2hreport.data"
-				:ticks="[60,93,100]"
+				:class_list="['fifth', 'first']" :ticks="[60,93,100]"
 				:adv="spo2hreport.explanation.advicesList[0]?spo2hreport.explanation.advicesList[0].valuesList.join(''):'无'"
 				:aiDesc="spo2hreport.explanation.introductionList.join('')"
 				:desc="spo2hreport.explanation.detailsList[0].valuesList.join('')">
@@ -173,6 +178,7 @@
 			<!-- 心脏病风险 -->
 			<border-view :title="'心脏病风险'" :icon="'icon-risk'" :valuePercent="true"
 				:value="(riskreport.data.bpheartattack * 100).toFixed(2)" :ticks="[0,1.5,3,4.5,6,7.5]"
+				:class_list="['first', 'second', 'third','forth', 'fifth']"
 				:adv="riskreport.explanation.bpheartattack.advicesList[0]?riskreport.explanation.bpheartattack.advicesList[0].valuesList.join(''):'无'"
 				:aiDesc="riskreport.explanation.bpheartattack.introductionList.join('')"
 				:desc="riskreport.explanation.bpheartattack.detailsList[0].valuesList.join('')">
@@ -181,6 +187,7 @@
 			<!-- 中风风险 -->
 			<border-view :title="'中风风险'" :icon="'icon-zrisk'" :valuePercent="true"
 				:value="(riskreport.data.bpstroke * 100).toFixed(2)" :ticks="[0,1.5,3,4.5,6,7.5]"
+				:class_list="['first', 'second', 'third','forth', 'fifth']"
 				:adv="riskreport.explanation.bpstroke.advicesList[0]?riskreport.explanation.bpstroke.advicesList[0].valuesList.join(''):''"
 				:aiDesc="riskreport.explanation.bpstroke.introductionList.join('')"
 				:desc="riskreport.explanation.bpstroke.detailsList[0].valuesList.join('')">
@@ -189,6 +196,7 @@
 			<!-- 心血管病风险 -->
 			<border-view :title="'心血管病风险'" :icon="'icon-xxgrisk'" :valuePercent="true"
 				:value="(riskreport.data.bpcvd * 100).toFixed(2)" :ticks="[0,3,6,9,12,15]"
+				:class_list="['first', 'second', 'third','forth', 'fifth']"
 				:adv="riskreport.explanation.bpcvd.advicesList[0]?riskreport.explanation.bpcvd.advicesList[0].valuesList.join(''):'无'"
 				:aiDesc="riskreport.explanation.bpcvd.introductionList.join('')"
 				:desc="riskreport.explanation.bpcvd.detailsList[0].valuesList.join('')">
@@ -196,7 +204,7 @@
 
 			<!-- 心脏压力 -->
 			<border-view :title="'心脏压力'" :icon="'icon-xxylrisk'" :value="(riskreport.data.bppp).toFixed(2)"
-				:ticks="[3.5,3.9,4.1,4.2,4.5]"
+				:ticks="[3.5,3.9,4.1,4.2,4.5]" :class_list="['first', 'second', 'third','forth', 'fifth']"
 				:adv="riskreport.explanation.bppp.advicesList[0]?riskreport.explanation.bppp.advicesList[0].valuesList.join(''):'无'"
 				:aiDesc="riskreport.explanation.bppp.introductionList.join('')"
 				:desc="riskreport.explanation.bppp.detailsList[0].valuesList.join('')">
@@ -204,7 +212,7 @@
 
 			<!-- 血管功能 -->
 			<border-view :title="'血管功能'" :icon="'icon-xgrisk'" :value="(riskreport.data.bptau).toFixed(2)"
-				:ticks="[0,1.2,1.6,3.0]"
+				:ticks="[0,0.8,1.2,1.6,2.2,3.0]" :class_list="['first', 'second', 'third','forth', 'fifth']"
 				:adv="riskreport.explanation.bptau.advicesList[0]?riskreport.explanation.bptau.advicesList[0].valuesList.join(''):'无'"
 				:aiDesc="riskreport.explanation.bptau.introductionList.join('')"
 				:desc="riskreport.explanation.bptau.detailsList[0].valuesList.join('')">
@@ -338,13 +346,13 @@
 			if (riskValue >= 100) {
 				riskValue = 100
 				this.riskTips = '低风险'
-				this.riskColor = '#7cc4c8'
+				this.riskColor = '#acea6f'
 			} else if (riskValue >= 90) {
 				this.riskTips = '低风险'
-				this.riskColor = '#7cc4c8'
+				this.riskColor = '#acea6f'
 			} else if (riskValue >= 80) {
 				this.riskTips = '中低风险'
-				this.riskColor = '#acea6f'
+				this.riskColor = '#7cc4c8'
 			} else if (riskValue >= 70) {
 				this.riskTips = '中风险'
 				this.riskColor = '#e2c93e'

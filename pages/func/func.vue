@@ -78,22 +78,22 @@
 			// if (riskValue >= 100) {
 			// 	riskValue = 100
 			// 	this.riskTips = '低风险'
-			// 	this.riskColor = '#f26f29'
+			// 	this.riskColor = '#acea6f'
 			// } else if (riskValue >= 90) {
 			// 	this.riskTips = '低风险'
-			// 	this.riskColor = '#f26f29'
+			// 	this.riskColor = '#acea6f'
 			// } else if (riskValue >= 80) {
 			// 	this.riskTips = '中低风险'
-			// 	this.riskColor = '#f2b329'
+			// 	this.riskColor = '#7cc4c8'
 			// } else if (riskValue >= 70) {
 			// 	this.riskTips = '中风险'
 			// 	this.riskColor = '#e2c93e'
 			// } else if (riskValue >= 60) {
 			// 	this.riskTips = '中高风险'
-			// 	this.riskColor = '#acea6f'
+			// 	this.riskColor = '#f2b329'
 			// } else {
 			// 	this.riskTips = '高风险'
-			// 	this.riskColor = '#7cc4c8'
+			// 	this.riskColor = '#f26f29'
 			// }
 			// this.riskToopTipLeft = riskValue + '%'
 			// console.log('this.riskc:', this.riskColor)

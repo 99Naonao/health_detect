@@ -213,9 +213,9 @@
 				measurement.addEventListener("collected", sender => {
 					//停止采集视频帧
 					console.log('正常停止采集视频')
-					uni.showToast({
-						title: '采样结束'
-					})
+					// uni.showToast({
+					// 	title: '采样结束'
+					// })
 					// that.stopMedia()
 				})
 
