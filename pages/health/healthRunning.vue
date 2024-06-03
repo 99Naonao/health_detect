@@ -5,9 +5,10 @@
 		<view class="user-tip">
 			<image class="imgmask" src="../../static/JK_03_Mask00.png" mode="widthFix"></image>
 			<view class="message">{{message}}</view>
-			<view class="tips">请将您的身体置于虚线内</view>
-			<view class="tips">检测大约需要30s，请在良好的光线环境内使用</view>
-			<view class="tips">请注意:本产品暂不适合未成年人的检测。</view>
+			<view class="tips2">请将您的身体置于虚线内</view>
+			<view class="tips2">检测大约需要30s，请在良好的光线环境内使用</view>
+			<view class="tips2">请注意:本产品暂不适合未成年人的检测。</view>
+			<view class="tips2">测量数据与结果仅为身体指征参考信息。是为了助力您更好地了解自身健康，不能作为诊疗依据。建议您定期前往专业体检机构进行深度健康体检，呵护自己与家人。</view>
 		</view>
 		<canvas id="canvas" class="canvas-c" :style="backBtnStyle" canvas-id="canvas"></canvas>
 
@@ -383,7 +384,7 @@
 				this.$set(this.backBtnStyle, '--canvasWidth', (pageSize.width) + 'px')
 				this.$set(this.backBtnStyle, '--canvasHeight', (pageSize.width) + 'px')
 				this.$set(this.backBtnStyle, '--canvasLeft', '0px')
-				this.$set(this.backBtnStyle, '--canvasTop', '116rpx')
+				this.$set(this.backBtnStyle, '--canvasTop', '110rpx')
 				ctx.scale(-1, 1)
 				ctx.translate(-pageSize.width / deviceInfo.pixelRatio, 0);
 				// 截取一部分
@@ -524,6 +525,18 @@
 			top: 480rpx;
 		}
 
+		.tips2 {
+			padding-top: 5rpx;
+			text-align: center;
+			word-wrap: break-word;
+			word-break: break-all;
+			font-size: 24rpx;
+			line-height: 36rpx;
+			color: rgba(97, 97, 105, 1);
+			padding-left: 70rpx;
+			padding-right: 70rpx;
+		}
+
 		.imgmask {
 			width: 100%;
 		}
@@ -532,7 +545,7 @@
 			position: absolute;
 			z-index: 2;
 			left: 0;
-			top: 116rpx;
+			top: 106rpx;
 			width: 100%;
 
 			.message {
@@ -545,6 +558,8 @@
 
 			.tips {
 				text-align: center;
+				word-wrap: break-word;
+				word-break: break-all;
 			}
 		}
 

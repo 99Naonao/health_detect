@@ -5,7 +5,9 @@
 			<view class='kv' ref="cccc">
 				<image class="kv-img" src='@/static/JK_02_Bg01.png' mode="widthFix"></image>
 			</view>
-
+			<view class="tips">
+				我们会严格守护您的隐私，也请您务必注意保护个人隐私。拍照时保持良好光线并留意周边环境，独立的个人面部拍摄更有利于隐私保护与数据准确。
+			</view>
 		</view>
 		<view class="opt-part">
 			<view class="opt1 flex just-align-center">
@@ -283,6 +285,18 @@
 		width: 750rpx;
 	}
 
+	.tips {
+		padding-top: 5rpx;
+		text-align: center;
+		word-wrap: break-word;
+		word-break: break-all;
+		font-size: 24rpx;
+		line-height: 36rpx;
+		color: rgba(97, 97, 105, 1);
+		padding-left: 70rpx;
+		padding-right: 70rpx;
+	}
+
 	.container {
 		padding-bottom: env(safe-area-inset-bottom);
 		padding-bottom: constant(safe-area-inset-bottom);
@@ -298,7 +312,7 @@
 
 		.law {
 			text-align: center;
-			padding-top: 40rpx;
+			padding-top: 30rpx;
 			line-height: 30rpx;
 			font-size: 24rpx;
 
@@ -321,7 +335,7 @@
 			padding: 20rpx;
 			text-align: center;
 			line-height: 30rpx;
-			padding-top: 25rpx;
+			padding-top: 15rpx;
 			font-size: 24rpx;
 		}
 
@@ -342,7 +356,7 @@
 		margin: 0 auto;
 		left: 50%;
 		transform: translateX(-50%);
-		bottom: 180rpx;
+		bottom: 155rpx;
 	}
 
 	.opt1 {

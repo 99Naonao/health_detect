@@ -58,7 +58,7 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		height: 160rpx;
+		height: 150rpx;
 		background: rgba(90, 119, 149, 1);
 		display: flex;
 		z-index: 99;
