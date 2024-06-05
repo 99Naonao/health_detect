@@ -53,50 +53,50 @@
 			moreDesc
 		},
 		mounted() {
-			// this.data__ = data_
-			// const {
-			// 	physiologyscorereport, // 综合
-			// 	afreport,
-			// 	bpreport,
-			// 	essentialreport,
-			// 	healthScoreReport,
-			// 	hrreport,
-			// 	riskreport,
-			// 	spo2hreport,
-			// 	calculatedReport
-			// } = data_
-			// this.hrreport = hrreport
-			// this.afreport = afreport
-			// this.bpreport = bpreport
-			// this.spo2hreport = spo2hreport
-			// this.riskreport = riskreport
-			// this.essentialreport = essentialreport
-			// this.physiologyscorereport = physiologyscorereport
-			// this.showInfo = true;
+			this.data__ = data_
+			const {
+				physiologyscorereport, // 综合
+				afreport,
+				bpreport,
+				essentialreport,
+				healthScoreReport,
+				hrreport,
+				riskreport,
+				spo2hreport,
+				calculatedReport
+			} = data_
+			this.hrreport = hrreport
+			this.afreport = afreport
+			this.bpreport = bpreport
+			this.spo2hreport = spo2hreport
+			this.riskreport = riskreport
+			this.essentialreport = essentialreport
+			this.physiologyscorereport = physiologyscorereport
+			this.showInfo = true;
 
-			// let riskValue = this.physiologyscorereport.data
-			// if (riskValue >= 100) {
-			// 	riskValue = 100
-			// 	this.riskTips = '低风险'
-			// 	this.riskColor = '#acea6f'
-			// } else if (riskValue >= 90) {
-			// 	this.riskTips = '低风险'
-			// 	this.riskColor = '#acea6f'
-			// } else if (riskValue >= 80) {
-			// 	this.riskTips = '中低风险'
-			// 	this.riskColor = '#7cc4c8'
-			// } else if (riskValue >= 70) {
-			// 	this.riskTips = '中风险'
-			// 	this.riskColor = '#e2c93e'
-			// } else if (riskValue >= 60) {
-			// 	this.riskTips = '中高风险'
-			// 	this.riskColor = '#f2b329'
-			// } else {
-			// 	this.riskTips = '高风险'
-			// 	this.riskColor = '#f26f29'
-			// }
-			// this.riskToopTipLeft = riskValue + '%'
-			// console.log('this.riskc:', this.riskColor)
+			let riskValue = this.physiologyscorereport.data
+			if (riskValue >= 100) {
+				riskValue = 100
+				this.riskTips = '低风险'
+				this.riskColor = '#acea6f'
+			} else if (riskValue >= 90) {
+				this.riskTips = '低风险'
+				this.riskColor = '#acea6f'
+			} else if (riskValue >= 80) {
+				this.riskTips = '中低风险'
+				this.riskColor = '#7cc4c8'
+			} else if (riskValue >= 70) {
+				this.riskTips = '中风险'
+				this.riskColor = '#e2c93e'
+			} else if (riskValue >= 60) {
+				this.riskTips = '中高风险'
+				this.riskColor = '#f2b329'
+			} else {
+				this.riskTips = '高风险'
+				this.riskColor = '#f26f29'
+			}
+			this.riskToopTipLeft = riskValue + '%'
+			console.log('this.riskc:', this.riskColor)
 		},
 		data() {
 			return {
@@ -276,6 +276,12 @@
 
 		.result {
 			padding-bottom: 160rpx;
+			overflow: scroll;
+			position: absolute;
+			top: 150rpx;
+			bottom: 0;
+			left: 0;
+			right: 0;
 		}
 	}
 </style>

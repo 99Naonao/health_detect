@@ -47,6 +47,8 @@
 					this.option.series[0].data = this.ticks
 					this.option.yAxis.min = this.yAxis[0]
 					this.option.yAxis.max = this.yAxis[1]
+					// this.option.dataZoom.startValue = 93
+					// this.option.dataZoom.endValue = 100
 					this.chart.setOption(this.option);
 				}
 			},
@@ -129,8 +131,8 @@
 						show: true,
 						showDetail: false,
 						xAxisIndex: [0],
-						startValue: 0,
-						endValue: 7,
+						startValue: 93,
+						endValue: 100,
 						minSpan: 1,
 						preventDefaultMouseMove: false,
 						zoomOnMouseWheel: false,
