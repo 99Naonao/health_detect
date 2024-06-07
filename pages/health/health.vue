@@ -35,9 +35,9 @@
 				</view>
 				<view class="score">{{userInfo.score?userInfo.score:0}}</view>
 			</view>
-		</view>
-		<view class="tips">
-			我们会严格守护您的隐私，也请您务必注意保护个人隐私。拍照时保持良好光线并留意周边环境，独立的个人面部拍摄更有利于隐私保护与数据准确。
+			<view class="tips">
+				我们会严格守护您的隐私，也请您务必注意保护个人隐私。拍照时保持良好光线并留意周边环境，独立的个人面部拍摄更有利于隐私保护与数据准确。
+			</view>
 		</view>
 	</view>
 </template>
@@ -286,8 +286,8 @@
 	}
 
 	.tips {
-		position: absolute;
-		bottom: 155rpx;
+		/* position: absolute; */
+		/* bottom: 155rpx; */
 		/* padding-top: 5rpx; */
 		text-align: center;
 		word-wrap: break-word;
