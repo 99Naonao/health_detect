@@ -18,14 +18,14 @@
 					</view>
 				</view>
 			</view>
-			<view class="result" v-if="showInfo">
+			<div class="result" v-if="showInfo" ref="resultView">
 				<view class="" v-if="1==current">
 					<happy-result :result="data__"></happy-result>
 				</view>
 				<view class="" v-else>
 					<physical-result :result="data__"></physical-result>
 				</view>
-			</view>
+			</div>
 		</view>
 	</view>
 </template>
@@ -194,6 +194,12 @@
 		methods: {
 			swipeTab(index) {
 				this.current = index
+				this.$nextTick(() => {
+					this.$refs['resultView'].scrollTo({
+						top: 0,
+						behavior: 'smooth'
+					})
+				})
 			},
 			async initHappyData(data) {
 
