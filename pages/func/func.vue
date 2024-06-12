@@ -18,13 +18,21 @@
 					</view>
 				</view>
 			</view>
-			<div class="result" v-if="showInfo" ref="resultView">
-				<view class="" v-if="1==current">
-					<happy-result :result="data__"></happy-result>
-				</view>
-				<view class="" v-else>
-					<physical-result :result="data__"></physical-result>
-				</view>
+			<div class="result" v-if="showInfo">
+				<div class="conttt" ref="resultView" style="margin: 5rpx;">
+
+					<view class="result-item" v-if="1==current">
+						<happy-result :result="data__"></happy-result>
+					</view>
+					<view class="result-item" v-else>
+						<physical-result :result="data__"></physical-result>
+					</view>
+					<view class="tips">此报告已到底部</view>
+					<view class="switch-tab" @click="swipeTab(current == 0?1:0)">
+						<image class="nav-item" src="../../static/JK_04_butCLa.png"></image>
+						<div class="inner-tips">{{current == 0?'前往情绪检测报告':'前往生理检测报告'}}</div>
+					</view>
+				</div>
 			</div>
 		</view>
 	</view>
@@ -288,6 +296,50 @@
 			bottom: 0;
 			left: 0;
 			right: 0;
+			background-color: #f5f6f7;
+
+			.result-item {}
+
+			.conttt {
+				overflow: scroll;
+				padding-bottom: 160rpx;
+				position: absolute;
+				top: 8rpx;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
+
+			.tips {
+				text-align: center;
+				padding: 10rpx;
+				color: #46647d;
+				font-size: 25rpx;
+			}
+
+			.switch-tab {
+				position: relative;
+				width: 312rpx;
+				height: 70rpx;
+				left: 50%;
+				margin-left: -156rpx;
+				margin-top: 20rpx;
+			}
+
+			.inner-tips {
+				position: absolute;
+				left: 40rpx;
+				font-size: 24rpx;
+				top: 20rpx;
+			}
+
+			.nav-item {
+				width: 312rpx;
+				height: 70rpx;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
 		}
 	}
 </style>
