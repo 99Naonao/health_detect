@@ -45,6 +45,13 @@
 			}
 		},
 		{
+			"path": "pages/health/healthScoreMore",
+			"style": {
+				"navigationBarTitleText": "更多积分",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/mine/mine",
 			"style": {
 				"navigationBarTitleText": "我的数据",

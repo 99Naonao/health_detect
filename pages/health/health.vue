@@ -10,7 +10,7 @@
 			<view class="opt1 flex just-align-center">
 				<view class="opt" @click="checkHandler">
 					<text>开始测量</text>
-					<view class="">
+					<view class="flex align-items" style="margin-top: 10rpx;">
 						<image mode="widthFix" class="icon" src="../../static/JK_02_IconJF1.png"></image><text
 							class="cost-c">{{cost}}积分/次</text>
 					</view>
@@ -31,9 +31,11 @@
 				</view>
 			</view> -->
 			<view class="my-score flex just-align-center align-center">
-				<view>我的积分<image mode="widthFix" class="icon1" src="../../static/JK_02_IconJF2.png"></image>
+				<view class="flex align-items">我的积分<image mode="widthFix" class="icon1"
+						src="../../static/JK_02_IconJF2.png"></image>
 				</view>
 				<view class="score">{{userInfo.score?userInfo.score:0}}</view>
+				<view class="score-more" @click="navMoreLink">获取更多</view>
 			</view>
 			<view class="tips">
 				我们会严格守护您的隐私，也请您务必注意保护个人隐私。拍照时保持良好光线并留意周边环境，独立的个人面部拍摄更有利于隐私保护与数据准确。
@@ -173,6 +175,12 @@
 			login() {
 				autoLogin((res) => {
 					this.getMeasureToken()
+				})
+			},
+			// 获取更多
+			navMoreLink() {
+				uni.navigateTo({
+					url: '/pages/health/healthScoreMore'
 				})
 			},
 			navLink() {
@@ -325,8 +333,8 @@
 
 
 		.icon1 {
-			width: 44rpx;
-			height: 30rpx;
+			width: 38rpx;
+			height: 34rpx;
 			/* 			padding-right: 10rpx;
 			padding-left: 10rpx; */
 		}
@@ -336,7 +344,7 @@
 			margin: 0 auto;
 			padding: 20rpx;
 			text-align: center;
-			line-height: 30rpx;
+			line-height: 34rpx;
 			padding-top: 15rpx;
 			font-size: 24rpx;
 		}
@@ -348,6 +356,14 @@
 			margin-left: 14rpx;
 			border-radius: 20rpx;
 			font-size: 30rpx;
+		}
+
+		.score-more {
+			color: white;
+			background-color: #F77913;
+			padding: 10rpx 20rpx;
+			font-size: 24rpx;
+			border-radius: 30rpx;
 		}
 	}
 
@@ -389,8 +405,8 @@
 		}
 
 		.icon {
-			width: 35rpx;
-			height: 25rpx;
+			width: 38rpx;
+			height: 34rpx;
 			display: inline-block;
 			/* padding-right: 20rpx; */
 		}
