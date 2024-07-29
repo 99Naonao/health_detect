@@ -75,12 +75,11 @@
 				</view>
 				<more-desc :descValue="motionReport"></more-desc>
 			</view>
-			<!-- 攻击性 -->
-			<border-view :title="'攻击性'" :icon="'icon-attack'" :value="(aggressivityreport.data).toFixed(2)"
+			<!-- 进取性 -->
+			<border-view :title="'进取性'" :icon="'icon-attack'" :value="(aggressivityreport.data).toFixed(2)"
 				:class_list="['second', 'first', 'third','forth', 'fifth']" :ticks="[0,20,40,60,80,100]"
-				:adv="aggressivityreport.explanation.advicesList[0].valuesList.join('')"
-				:aiDesc="aggressivityreport.explanation.introductionList.join('')"
-				:desc="aggressivityreport.explanation.detailsList[0].valuesList.join('')">
+				:adv="aggressivityreportdesc" :aiDesc="aggressivityreport.explanation.introductionList.join('')"
+				:desc="aggressivityreportdesc">
 			</border-view>
 
 			<!-- 焦虑度 -->
@@ -141,6 +140,12 @@
 			result: {
 				type: Object,
 				default: {}
+			}
+		},
+		computed: {
+			aggressivityreportdesc() {
+				let desc = aggressivityreport.explanation.advicesList[0].valuesList.join('');
+				return desc.replace(new RegExp('攻击性', 'g'), '进取性')
 			}
 		},
 		data() {

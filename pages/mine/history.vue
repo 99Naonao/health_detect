@@ -25,7 +25,7 @@
 		<serious-echart :xAxis="xAxis" :ticks="source.bppp" :icon="'icon-xxylrisk'" :title="'心脏压力'"></serious-echart>
 		<serious-echart :xAxis="xAxis" :ticks="source.bptau" :icon="'icon-xgrisk'" :title="'血管功能'"></serious-echart>
 		<serious-echart :xAxis="xAxis" :ticks="source.aggressivityreport" :icon="'icon-attack'"
-			:title="'攻击性'"></serious-echart>
+			:title="'进取性'"></serious-echart>
 		<serious-echart :xAxis="xAxis" :ticks="source.anxietyreport" :icon="'icon-jiaolv'"
 			:title="'焦虑度'"></serious-echart>
 		<serious-echart :xAxis="xAxis" :ticks="source.vitalityreport" :icon="'icon-huoli'"
@@ -213,7 +213,7 @@
 				}
 
 				if (aggressivityreport) {
-					this.temp.aggressivityreport.push(aggressivityreport.data ? aggressivityreport.data : 0) // 攻击性
+					this.temp.aggressivityreport.push(aggressivityreport.data ? aggressivityreport.data : 0) // 进取性
 				}
 
 				if (anxietyreport) {
