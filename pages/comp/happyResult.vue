@@ -144,7 +144,7 @@
 		},
 		computed: {
 			aggressivityreportdesc() {
-				let desc = aggressivityreport.explanation.advicesList[0].valuesList.join('');
+				let desc = this.aggressivityreport.explanation.advicesList[0].valuesList.join('');
 				return desc.replace(new RegExp('攻击性', 'g'), '进取性')
 			}
 		},
