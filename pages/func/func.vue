@@ -328,9 +328,9 @@
 
 			.inner-tips {
 				position: absolute;
-				left: 40rpx;
+				left: 28rpx;
 				font-size: 24rpx;
-				top: 20rpx;
+				top: 18rpx;
 			}
 
 			.nav-item {
