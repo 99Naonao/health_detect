@@ -3,7 +3,7 @@
 		<tabbar current='0'></tabbar>
 		<view class="main">
 			<view class='kv' ref="cccc">
-				<image class="kv-img" src='@/static/JK_02_Bg01.png' mode="widthFix"></image>
+				<image class="kv-img" src='@/static/JK_02_Bg01.jpg' mode="widthFix"></image>
 			</view>
 		</view>
 		<view class="opt-part">
@@ -31,15 +31,32 @@
 				</view>
 			</view> -->
 			<view class="my-score flex just-align-center align-center">
-				<view class="flex align-items">我的积分<image mode="widthFix" class="icon1"
-						src="../../static/JK_02_IconJF2.png"></image>
+				<view class="my-left flex align-center">
+					<view class="flex align-items">我的积分<image mode="widthFix" class="icon1"
+							src="../../static/JK_02_IconJF2.png"></image>
+					</view>
+					<view class="score">{{userInfo.score?userInfo.score:0}}</view>
 				</view>
-				<view class="score">{{userInfo.score?userInfo.score:0}}</view>
 				<view class="score-more" @click="navMoreLink">获取更多</view>
 			</view>
 			<view class="tips">
 				我们会严格守护您的隐私，也请您务必注意保护个人隐私。拍照时保持良好光线并留意周边环境，独立的个人面部拍摄更有利于隐私保护与数据准确。
 			</view>
+
+		</view>
+		<view class="firs-blood" v-if="showFirstBlood">
+			<view class="not-enough-mask" @click="hideFirstBlood"></view>
+			<view class="first-blood-back">
+
+			</view>
+			<view class="not-button" @click="hideFirstBlood">收下</view>
+		</view>
+		<view class="not-enough" v-if="showEnouth">
+			<view class="not-enough-mask" @click="hideEnouth"></view>
+			<view class="not-enough-back">
+
+			</view>
+			<view class="not-button" style="margin-top: 70rpx;" @click="navMoreLink">获得积分</view>
 		</view>
 	</view>
 </template>
@@ -92,6 +109,8 @@
 		},
 		data() {
 			return {
+				showEnouth: false,
+				showFirstBlood: false,
 				cost: 20,
 				sure: false,
 				measureIns: null,
@@ -168,6 +187,12 @@
 			// }
 		},
 		methods: {
+			hideFirstBlood() {
+				this.showFirstBlood = false;
+			},
+			hideEnouth() {
+				this.showEnouth = false;
+			},
 			getMeasureToken() {
 				const getUserInfo = userInfoStore()
 				getUserInfo.$login()
@@ -260,10 +285,11 @@
 						url: '/pages/health/healthRunning'
 					})
 				} else {
-					uni.showToast({
-						title: '当前积分不够',
-						icon: 'error'
-					})
+					this.showEnouth = true;
+					// uni.showToast({
+					// 	title: '当前积分不够',
+					// 	icon: 'error'
+					// })
 				}
 			},
 			checkHandler() {
@@ -294,26 +320,74 @@
 	}
 
 	.tips {
-		/* position: absolute; */
-		/* bottom: 155rpx; */
-		/* padding-top: 5rpx; */
 		text-align: center;
 		word-wrap: break-word;
 		word-break: break-all;
 		font-size: 24rpx;
 		line-height: 36rpx;
-		color: rgba(97, 97, 105, 1);
+		color: white;
 		padding-left: 70rpx;
 		padding-right: 70rpx;
 	}
 
+	.not-enough-mask {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
+	.not-enough {}
+
+	.not-button {
+		background-color: rgb(21, 59, 112);
+		padding: 15rpx 95rpx 15rpx 95rpx;
+		color: white;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		top: 50%;
+		margin-top: 80rpx;
+		border-radius: 45rpx;
+		font-size: 42rpx;
+	}
+
+	.not-enough-back {
+		width: 489rpx;
+		height: 609rpx;
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		top: 25%;
+		background: url('../../static/JK_02_Panel02.png');
+		background-size: 100% 100%;
+	}
+
+	.first-blood-back {
+		width: 489rpx;
+		height: 617rpx;
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		top: 25%;
+		background: url('../../static/JK_02_Panel01.png');
+		background-size: 100% 100%;
+	}
+
 	.container {
+		color: white;
 		padding-bottom: env(safe-area-inset-bottom);
 		padding-bottom: constant(safe-area-inset-bottom);
 
 		.main {
 			padding-bottom: 10rpx;
 			text-align: center;
+			position: absolute;
+			left: 0px;
+			right: 0px;
+			top: 0px;
 		}
 
 		.check-label {
@@ -349,18 +423,24 @@
 			font-size: 24rpx;
 		}
 
+		.my-left {
+			background-color: rgba(21, 59, 112, 0.5);
+			padding: 1rpx 25rpx 1rpx 25rpx;
+			border-radius: 30rpx;
+		}
+
 		.score {
-			background-color: #EEE;
-			padding: 10rpx;
+			/* background-color: rgba(21, 59, 112, 0.5); */
+			padding: 10rpx 25rpx 10rpx 25rpx;
 			width: 200rpx;
 			margin-left: 14rpx;
-			border-radius: 20rpx;
+			border-radius: 30rpx;
 			font-size: 30rpx;
 		}
 
 		.score-more {
 			color: white;
-			background-color: #F77913;
+			background-color: rgba(21, 59, 112, 1);
 			padding: 10rpx 20rpx;
 			font-size: 24rpx;
 			border-radius: 30rpx;
@@ -368,26 +448,16 @@
 	}
 
 	.opt-part {
-		position: relative;
+		position: absolute;
 		padding-bottom: env(safe-area-inset-bottom);
 		padding-bottom: constant(safe-area-inset-bottom);
 		margin: 0 auto;
-		left: 50%;
-		transform: translateX(-50%);
-		/* bottom: 155rpx; */
+		bottom: 158rpx;
 	}
-
-	.opt1 {
-		/* padding-top: 118rpx; */
-
-	}
-
-
 
 	.opt {
 		min-width: 200rpx;
-		background-color: rgba(90, 119, 149, 1);
-		box-shadow: 0px 5px 5px 5px #f2f8ff;
+		background-color: rgba(21, 59, 112, 1);
 		border-radius: 80rpx;
 		text-align: center;
 		color: white;
@@ -408,7 +478,6 @@
 			width: 38rpx;
 			height: 34rpx;
 			display: inline-block;
-			/* padding-right: 20rpx; */
 		}
 	}
 </style>
