@@ -371,7 +371,7 @@
 		}
 
 		.item {
-			background-color: rgb(92, 138, 178);
+			background-color: rgb(60, 123, 178);
 			color: #fff;
 			font-size: 28rpx;
 			// padding: 20rpx;
@@ -385,7 +385,7 @@
 
 		.active {
 			background-color: #f2f2f2;
-			color: rgb(92, 138, 178);
+			color: rgba(21, 59, 112, 1);
 		}
 
 		.echart-part {
@@ -399,7 +399,7 @@
 
 		.info {
 			margin: 0 auto;
-			background-color: rgb(87, 119, 150);
+			background-color: rgba(21, 59, 112, 1);
 			// margin-top: 50rpx;
 			position: relative;
 			padding-top: 100rpx;
@@ -480,7 +480,7 @@
 					min-width: 200rpx;
 					letter-spacing: 2rpx;
 					height: 45rpx;
-					background-color: rgb(92, 138, 178);
+					background-color: rgb(60, 123, 178);
 				}
 
 				.icon {

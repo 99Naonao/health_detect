@@ -44,14 +44,14 @@
 			</view>
 
 		</view>
-		<view class="firs-blood" v-if="showFirstBlood">
+		<view class="firs-blood up-icon-effect" v-if="showFirstBlood">
 			<view class="not-enough-mask" @click="hideFirstBlood"></view>
 			<view class="first-blood-back">
 
 			</view>
 			<view class="not-button" @click="hideFirstBlood">收下</view>
 		</view>
-		<view class="not-enough" v-if="showEnouth">
+		<view class="not-enough up-icon-effect" v-if="showEnouth">
 			<view class="not-enough-mask" @click="hideEnouth"></view>
 			<view class="not-enough-back">
 
@@ -102,7 +102,10 @@
 			// uni.clearStorageSync('userInfo');
 			var code = window.getCode()
 			if (code) {
-				this.login()
+				this.login();
+				let firstBlood = uni.getStorageSync('firstBlood') ? false : true;
+				this.showFirstBlood = firstBlood;
+				uni.setStorageSync('firstBlood', true)
 			} else {
 				this.getMeasureToken()
 			}
@@ -111,7 +114,7 @@
 			return {
 				showEnouth: false,
 				showFirstBlood: false,
-				cost: 20,
+				cost: 60,
 				sure: false,
 				measureIns: null,
 				video: null,
@@ -119,76 +122,11 @@
 		},
 		onShow() {
 			this.sure = uni.getStorageSync('checkP') ? true : false
-			// this.login()
-
-			// let user = {
-			// 	address: "",
-			// 	authAt: null,
-			// 	avatar: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eop8EWu5X9uMZ8BErjVkjiagMpRKtkWczIMpIFSibrkHjA7icdgN6DJ93a7qcHiacZPQ27URnNBCicE8Bg/132",
-			// 	birthDay: "",
-			// 	code: "",
-			// 	createIp: null,
-			// 	createTime: "2024-04-26 15:00:28",
-			// 	createUser: "-1",
-			// 	fenxiaoId: "0",
-			// 	frozen: 0,
-			// 	identityCard: "",
-			// 	isAuth: 1,
-			// 	lastLoginAt: null,
-			// 	lastLoginIp: null,
-			// 	lastMobileToken: null,
-			// 	lastSignAt: null,
-			// 	lastSignTime: null,
-			// 	lev: 1,
-			// 	mobile: "",
-			// 	msgRead: 0,
-			// 	nickName: "大白牙",
-			// 	realName: "",
-			// 	recommendCode: "",
-			// 	registerAt: "2024-04-26 15:00:28",
-			// 	registerIp: null,
-			// 	remain: 0,
-			// 	score: 999,
-			// 	sex: "M",
-			// 	smsCode: "",
-			// 	statusFlag: 1,
-			// 	token: "eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjMyLCJhY2NvdW50Ijoib1d2Vno2Y19UTDhzWXJ0RWxLU18ycVM2UjFfdyIsInV1aWQiOiI5MzQ2NDY3MC0yZTYwLTRlNTktOWQxNS03ZTE4NDBmYzNkNTEiLCJyZW1lbWJlck1lIjp0cnVlLCJleHBpcmF0aW9uRGF0ZSI6MTcxNjg5OTE4ODg2OCwiY2FUb2tlbiI6bnVsbCwib3RoZXJzIjpudWxsLCJzdWIiOiIzMiIsImlhdCI6MTcxNjI5NDM4OCwiZXhwIjoxNzE2ODk5MTg4fQ.dUDUpVfSQCtR31fzXMO1s_rV7-UTMAZcFXV4BqhGbOslFM_qbUabQOezxzGi-UuzXLJ06JoAgUFFGDEhbhMurw",
-			// 	tokenExpireAt: "1716899188868",
-			// 	totalConsume: 0,
-			// 	tradingPassword: "",
-			// 	updateTime: "2024-05-21 20:26:28",
-			// 	updateUser: "-1",
-			// 	userId: "32",
-			// 	userName: "oWvVz6c_TL8sYrtElKS_2qS6R1_w",
-			// 	userPassword: "",
-			// 	userType: null,
-			// 	withdraw: 0,
-			// 	yongjin: 0,
-			// }
-
-
-
-			// setTimeout(() => {
-			// 	const teuserInfoStore = userInfoStore()
-			// 	teuserInfoStore.$patch({
-			// 		'userInfo': user
-			// 	})
-			// 	console.log('scor:', teuserInfoStore.userInfo)
-			// }, 3000)
-
-			// let userInfo = uni.getStorageSync('userInfo')
-			// if (!userInfo) {
-			// this.login()
-			// } else {
-			// 	console.log('登录2成功')
-			// 	this.$login().then((res) => {
-			// 		console.log('获取token2成功')
-			// 	})
-			// }
 		},
 		methods: {
 			hideFirstBlood() {
 				this.showFirstBlood = false;
+				uni.setStorageSync('firstBlood', true)
 			},
 			hideEnouth() {
 				this.showEnouth = false;
@@ -370,10 +308,30 @@
 		height: 617rpx;
 		position: absolute;
 		left: 50%;
-		transform: translate(-50%);
+		/* transform: translate(-50%); */
 		top: 25%;
 		background: url('../../static/JK_02_Panel01.png');
 		background-size: 100% 100%;
+		transform: scale(1) translate(-50%);
+	}
+
+	@keyframes upEffect {
+		0% {
+			opacity: 0.3;
+		}
+
+		50% {
+			opacity: 1;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	.up-icon-effect {
+		animation: 0.5s linear 0s 1 upEffect;
+		-webkit-animation: 0.5s linear 0s 1 upEffect;
 	}
 
 	.container {
@@ -453,6 +411,9 @@
 		padding-bottom: constant(safe-area-inset-bottom);
 		margin: 0 auto;
 		bottom: 158rpx;
+		width: 750rpx;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	.opt {

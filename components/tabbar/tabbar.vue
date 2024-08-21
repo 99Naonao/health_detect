@@ -59,7 +59,7 @@
 		left: 0;
 		right: 0;
 		height: 150rpx;
-		background: rgba(90, 119, 149, 1);
+		background: rgba(21, 59, 112, 1);
 		display: flex;
 		z-index: 99;
 		border-top-left-radius: 50rpx;
@@ -75,7 +75,7 @@
 		display: flex;
 
 		.info {
-			background-color: rgba(78, 113, 152, 1.0);
+			background-color: rgba(21, 59, 112, 1);
 			border-radius: 50rpx;
 			padding: 18rpx;
 			padding-left: 30rpx;

@@ -138,7 +138,7 @@
 		display: flex;
 		justify-content: flex-end;
 		text-decoration: underline;
-		color: #46647d;
+		color: rgba(21, 59, 112, 1);
 		font-size: 25rpx;
 		text-underline-offset: 5rpx;
 		margin: 20rpx;
@@ -155,7 +155,7 @@
 
 .tab {
 	padding-top: 18rpx;
-	background-color: #547896;
+	background-color: rgba(21, 59, 112, 1);
 
 	.tabitem {
 		text-align: center;
@@ -163,7 +163,7 @@
 		padding-top: 10rpx;
 		height: 88rpx;
 		color: #fff;
-		background-color: #5d92af;
+		background-color: rgba(21, 59, 112, 1);
 		border-top-right-radius: 36rpx;
 		border-top-left-radius: 36rpx;
 		line-height: 68rpx;
