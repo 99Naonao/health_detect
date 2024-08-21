@@ -396,7 +396,7 @@
 
 		.law {
 			text-align: center;
-			padding-top: 30rpx;
+			padding-top: 20rpx;
 			line-height: 30rpx;
 			font-size: 24rpx;
 
