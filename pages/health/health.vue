@@ -10,7 +10,7 @@
 			<view class="opt1 flex just-align-center">
 				<view class="opt" @click="checkHandler">
 					<text>开始测量</text>
-					<view class="flex align-items" style="margin-top: 10rpx;">
+					<view class="flex align-items" style="">
 						<image mode="widthFix" class="icon" src="../../static/JK_02_IconJF1.png"></image><text
 							class="cost-c">{{cost}}积分/次</text>
 					</view>
@@ -257,6 +257,11 @@
 		width: 750rpx;
 	}
 
+	.kv {
+		height: 100%;
+		overflow: hidden;
+	}
+
 	.tips {
 		text-align: center;
 		word-wrap: break-word;
@@ -337,7 +342,7 @@
 	.container {
 		color: white;
 		overflow: hidden;
-		height: 100%;
+		/* height: 100%; */
 
 		padding-bottom: env(safe-area-inset-bottom);
 		padding-bottom: constant(safe-area-inset-bottom);
@@ -349,6 +354,7 @@
 			left: 0px;
 			right: 0px;
 			top: 0px;
+			bottom: 0px;
 		}
 
 		.check-label {

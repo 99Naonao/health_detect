@@ -13,6 +13,12 @@
 </script>
 
 <style>
+	html,
+	body {
+		height: 100%;
+		overflow: scroll;
+	}
+
 	/*每个页面公共css */
 	.flex {
 		display: flex;
@@ -24,6 +30,7 @@
 		border: none !important;
 		color: #ffffff !important;
 	}
+
 	.just-align-center {
 		justify-content: center;
 	}
