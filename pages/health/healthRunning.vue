@@ -52,6 +52,7 @@
 		},
 		data() {
 			return {
+				finished: false,
 				gaugeData: [{
 					value: 0,
 					name: '',
@@ -147,6 +148,7 @@
 			this.startCamera()
 			this.message = ''
 			this.counting = 3
+			this.finished = false
 		},
 		onHide() {
 			this.stopMedia()
@@ -179,6 +181,7 @@
 						title: '不存在token'
 					})
 				}
+
 				const measurement = new Measurement(getUserInfo.measureToken, MeasurementCategory.ALL)
 				let that = this;
 				//监听启动测量事件
@@ -247,6 +250,7 @@
 					// 	spo2HReport,
 					// 	calculatedReport
 					// } = report
+					if (that.finished) return;
 					console.log('wholeReportGenerated', report)
 					// 上传报告
 					addReport({
@@ -274,6 +278,7 @@
 						// 	url: '/pages/health/healthResult'
 						// })
 					})
+					that.finished = true;
 					// 停止
 				})
 
