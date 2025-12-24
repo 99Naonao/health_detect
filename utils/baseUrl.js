@@ -33,7 +33,9 @@ if (process.env.NODE_ENV === 'development') {
 	
 	CsbaseUrl = "https://sleep.zsyl.cc/hmapi"
 	
+	//调用xinglu
 	CsTbaseUrl = "https://zhongshu.xinglu.shop"
+
 	// socketUrl = "ws://twin-ui.com:6001/";
 }
 const courtConfig = {
