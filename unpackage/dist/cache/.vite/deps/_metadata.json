@@ -1,0 +1,37 @@
+{
+  "hash": "9c350c20",
+  "configHash": "a74aba3c",
+  "lockfileHash": "7b5e6adb",
+  "browserHash": "7753fa55",
+  "optimized": {
+    "weixin-js-sdk": {
+      "src": "../../../../../node_modules/weixin-js-sdk/index.js",
+      "file": "weixin-js-sdk.js",
+      "fileHash": "89f86ffa",
+      "needsInterop": true
+    },
+    "xy-health-measurement": {
+      "src": "../../../../../node_modules/xy-health-measurement/index.js",
+      "file": "xy-health-measurement.js",
+      "fileHash": "e9ea6f33",
+      "needsInterop": true
+    },
+    "echarts": {
+      "src": "../../../../../node_modules/echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "a2a2c2bd",
+      "needsInterop": false
+    },
+    "marked": {
+      "src": "../../../../../node_modules/marked/lib/marked.esm.js",
+      "file": "marked.js",
+      "fileHash": "197c82be",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-25V3TAZK": {
+      "file": "chunk-25V3TAZK.js"
+    }
+  }
+}

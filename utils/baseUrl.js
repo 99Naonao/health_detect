@@ -1,4 +1,6 @@
 let baseUrl = "";
+let CsbaseUrl = "";
+let CsTbaseUrl = "";
 let socketUrl = "";
 let appId = 'wx76c212f7b90dae73'; // 眠加AI检测
 let monkUrl = ""; //模拟数据地址
@@ -28,6 +30,10 @@ if (process.env.NODE_ENV === 'development') {
 	// 生产环境
 	//baseUrl = "https://admin.yibianshoucang.com/api";
 	baseUrl = "https://sleep.zsyl.cc/api"
+	
+	CsbaseUrl = "https://sleep.zsyl.cc/hmapi"
+	
+	CsTbaseUrl = "https://zhongshu.xinglu.shop"
 	// socketUrl = "ws://twin-ui.com:6001/";
 }
 const courtConfig = {
@@ -35,6 +41,11 @@ const courtConfig = {
 	publicAppId: appId,
 	//请求接口
 	baseUrl: baseUrl,
+	//请求接口
+	CsbaseUrl: CsbaseUrl,
+	//请求接口
+	CsTbaseUrl: CsTbaseUrl,
+	
 	//模拟数据地址
 	monkUrl: monkUrl,
 	//webSocket地址

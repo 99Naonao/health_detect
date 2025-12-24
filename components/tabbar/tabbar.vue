@@ -1,14 +1,18 @@
 <template>
 	<view class="tabbar flex align-center">
-		<view class="tabbar-item" v-for="(item,index) in list" :key="index" @click="changeTab(index)">
+		<view class="tabbar-item" v-for="(item,index) in list" :key="index" @click="changeTab(index)" :class="{'tabbar-item-change':current== index}">
 			<view class="select" v-if="current== index">
-				<view class="info flex align-center">
-					<image class="img imgactive" :src="item.selectedIconPath" mode="widthFix"></image>
-					<text class="text">{{item.text}}</text>
+				<view class="info  align-center">
+					<image class="img imgactive" :src="item.selectedIconPathCH" mode="widthFix"></image>
+					<view class="text change">{{item.text}}</view>
 				</view>
 			</view>
 			<view class="" v-else>
-				<image class="img" :src="item.iconPath" mode="widthFix"></image>
+				<view class="info  align-center">
+					<image class="img imgactive" :src="item.selectedIconPath" mode="widthFix"></image>
+					<view class="text">{{item.text}}</view>
+				</view>
+				<!-- <image class="img" :src="item.iconPath" mode="widthFix"></image> -->
 			</view>
 		</view>
 	</view>
@@ -23,17 +27,20 @@
 				list: [{
 					"pagePath": "pages/health/health",
 					"iconPath": "/static/JK_02_but01bIcon.png",
-					"selectedIconPath": "/static/JK_02_but01bIcon.png",
+					"selectedIconPath": "/static/images/jianceXX.png",
+					"selectedIconPathCH": "/static/images/jiance.png",
 					"text": "健康检测"
 				}, {
 					"pagePath": "pages/func/func",
 					"iconPath": "/static/JK_02_but02Icon.png",
-					"selectedIconPath": "/static/JK_02_but02bIcon.png",
+					"selectedIconPath": "/static/images/csjlXX.png",
+					"selectedIconPathCH": "/static/images/csjl.png",
 					"text": "最近检测"
 				}, {
 					"pagePath": "pages/mine/mine",
 					"iconPath": "/static/JK_02_but03Icon.png",
-					"selectedIconPath": "/static/JK_02_but03bIcon.png",
+					"selectedIconPath": "/static/images/userXX.png",
+					"selectedIconPathCH": "/static/images/user.png",
 					"text": "我的数据"
 				}, ]
 			}
@@ -60,10 +67,11 @@
 		right: 0;
 		height: 150rpx;
 		background: rgba(21, 59, 112, 1);
+		// background:#fff;
 		display: flex;
 		z-index: 99;
-		border-top-left-radius: 50rpx;
-		border-top-right-radius: 50rpx;
+		// border-top-left-radius: 50rpx;
+		// border-top-right-radius: 50rpx;
 		padding-bottom: env(safe-area-inset-bottom);
 	}
 
@@ -75,7 +83,7 @@
 		display: flex;
 
 		.info {
-			background-color: rgba(21, 59, 112, 1);
+			// background-color: rgba(21, 59, 112, 1);
 			border-radius: 50rpx;
 			padding: 18rpx;
 			padding-left: 30rpx;
@@ -92,9 +100,18 @@
 
 		.text {
 			text-align: center;
-			color: #fff;
+			color: #999;
+			// color: #000;
 			padding: 15rpx;
 			font-size: 28rpx;
 		}
+	}
+	.change{
+		// color: #CCBA85 !important;
+		
+		color: #fff !important;
+	}
+	.tabbar-item-change{
+		background-color: #4d7093;
 	}
 </style>

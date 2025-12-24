@@ -10,9 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "echarts": "^5.5.0",
+    "marked": "^4.3.0",
     "pinia": "^2.1.7",
     "vconsole": "^3.15.1",
     "weixin-js-sdk": "^1.6.5",
+    "xiaoyang-health-measurement": "^2.2.0-beta1",
     "xy-health-measurement": "^2.0.2",
     "xy-health-measurement-wx": "^1.0.1"
   }

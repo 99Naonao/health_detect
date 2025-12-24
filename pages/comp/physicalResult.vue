@@ -1,5 +1,5 @@
 <template>
-	<view class="container" v-if="showInfo">
+	<view class="container" style="padding-bottom: 0px;" v-if="showInfo">
 		<view class="topkv">
 			<view class=" flex just-align-center">
 				<view>
@@ -211,8 +211,14 @@
 			</border-view>
 
 			<!-- 血管功能 -->
-			<border-view :title="'血管功能'" :icon="'icon-xgrisk'" :value="(riskreport.data.bptau).toFixed(2)"
+			<!-- <border-view :title="'血管功能'" :icon="'icon-xgrisk'" :value="(riskreport.data.bptau).toFixed(2)"
 				:ticks="[0,0.8,1.2,1.6,2.2,3.0]" :class_list="['first', 'second', 'third','forth', 'fifth']"
+				:adv="riskreport.explanation.bptau.advicesList[0]?riskreport.explanation.bptau.advicesList[0].valuesList.join(''):'无'"
+				:aiDesc="riskreport.explanation.bptau.introductionList.join('')"
+				:desc="riskreport.explanation.bptau.detailsList[0].valuesList.join('')">
+			</border-view> -->
+			<border-view :title="'血管功能'" :icon="'icon-xgrisk'" :value="(riskreport.data.bptau).toFixed(2)"
+				:ticks="[0,0.8,1.2,1.6,2.2,3.0]" :class_list="['fifth', 'forth', 'third','second', 'first']"
 				:adv="riskreport.explanation.bptau.advicesList[0]?riskreport.explanation.bptau.advicesList[0].valuesList.join(''):'无'"
 				:aiDesc="riskreport.explanation.bptau.introductionList.join('')"
 				:desc="riskreport.explanation.bptau.detailsList[0].valuesList.join('')">

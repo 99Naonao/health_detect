@@ -11,7 +11,9 @@ const userInfoStore = defineStore('userInfo', {
 		$login() {
 			getToken().then(res => {
 				console.log('$login:', res)
-				this.measureToken = res
+				console.log('this.userInfo:', this.userInfo)
+				this.measureToken = res.access_token
+				// this.measureToken = this.userInfo.token
 			})
 		}
 	},

@@ -17,6 +17,49 @@
 			}
 		},
 		{
+			"path": "pages/healthtest/conclusion",
+			"style": {
+				"navigationBarTitleText": "睡眠检测报告",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/healthtest/Newconclusion",
+			"style": {
+				"navigationBarTitleText": "睡眠检测报告",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/invite_poster/invite_poster",
+			"style": {
+				"navigationBarTitleText": "分享海报",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/invite_poster/index",
+			"style": {
+				"navigationBarTitleText": "分享海报",
+				"navigationStyle": "custom"
+			}
+		},
+		
+		{
+			"path": "pages/healthtest/conclusionAll",
+			"style": {
+				"navigationBarTitleText": "睡眠检测报告",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/healthtest/topic",
+			"style": {
+				"navigationBarTitleText": "睡眠检测",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/mine/history",
 			"style": {
 				"navigationBarTitleText": "历史检测记录",

@@ -22,25 +22,32 @@ app.$mount()
 function getQueryString(name) {
 
 	var url = window.location.search;
-
+	
 	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-
+	
 	var r = url.substr(1).match(reg);
-
+	
 	if (r != null) return decodeURI(r[2]);
 	return null;
 }
 var code = getQueryString("code");
 var openid = getQueryString("openid");
+var invite_code = getQueryString("u");
 var isready = 0;
 var title = "眠加活力健康检测"; //分享标题
 var desc = "中数（福建）医疗科技有限公司" // 分享描述默认是空
 var image = "https://sleep.zsyl.cc/sleeph5/share_img_not_delete.jpg";
 let shareurl =
-	'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.zsyl.cc/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+	'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.xinglu.shop/sleeph5&response_type=code&scope=snsapi_userinfo&state='+ invite_code +'#wechat_redirect';
+	// 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.xinglu.shop/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
 // 如果没有code，刷新获取
 if (!code) {
 	window.location.href = shareurl;
+}
+if(invite_code){
+	// 将invite_code存储到缓存
+	uni.setStorageSync('invite_code', invite_code)
+	console.log('存储的invite_code:', invite_code)
 }
 // if (!code) {
 // 	window.location.href = shareurl;
@@ -65,21 +72,25 @@ function isWeChat() { // 判断是否是微信浏览器
 // timestamp: "1716285379"
 
 function register(res) {
+	console.log("res,res::",res)
 	wx.config({
 		debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 		appId: res.appId, // 必填，公众号的唯一标识
 		timestamp: res.timestamp, // 必填，生成签名的时间戳
 		nonceStr: res.nonceStr, // 必填，生成签名的随机串
 		signature: res.signature, // 必填，签名
-		jsApiList: shareContent // 必填，需要使用的JS接口列表
+		jsApiList: shareContent, // 必填，需要使用的JS接口列表
+		openTagList: ['wx-open-launch-weapp']
 	})
-
+	console.log("res1,res1::",res)
 	wx.ready(() => { //需在用户可能点击分享按钮前就先调用
 		console.log('readyreadyreadyreadyreadyreadyreadyready')
 		isready = 1;
 		// console.log('$shareurlshareurlshareurl:', shareurl)
 		updateShareInfo(title, desc, shareurl, image);
 	});
+	
+	console.log("res2,res2::",res)
 	wx.error(() => { //需在用户可能点击分享按钮前就先调用
 		console.log('errorerrorerrorerrorerrorerrorerrorerror')
 	});
@@ -134,7 +145,9 @@ if (isWeChat()) {
 	var localUrl = window.location.href;
 	var postlocalurl = (localUrl.split("#")[0]);
 
-	shareurl = "https://sleep.zsyl.cc/sleeph5/index.html";
+	// shareurl = "https://sleep.zsyl.cc/sleeph5/index.html";
+	shareurl = "https://sleep.xinglu.shop/sleeph5/index.html";
+	
 	msJsTicket({
 		url: encodeURIComponent(postlocalurl)
 	}).then((res) => {

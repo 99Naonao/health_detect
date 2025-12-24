@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="/sleeph5/assets/uni.f424d862.css">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta charset="UTF-8" />
+		<script>
+			var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') ||
+				CSS.supports('top: constant(a)'))
+			document.write(
+				'<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
+				(coverSupport ? ', viewport-fit=cover' : '') + '" />')
+
+			// #ifdef H5
+			function getCode() {
+				var url = window.location.search;
+				var code = ''
+				if (url.indexOf("?") != -1) {
+					var str = url.substr(1);
+					var strs = str.split("&");
+					for (var i = 0; i < strs.length; i++) {
+						if (strs[i].split("=")[0] == "code") {
+							code = strs[i].split("=")[1];
+						}
+					}
+				}
+				return code
+			}
+
+			window.getCode = getCode
+			// #endif
+		</script>
+		<title>健康检测</title>
+		<!-- 		<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+		<script>
+			// VConsole will be exported to `window.VConsole` by default.
+			var vConsole = new window.VConsole();
+		</script> -->
+		<!--preload-links-->
+		<!--app-context-->
+		<script type="module" crossorigin src="/sleeph5/assets/index-BNfv6lMe.js"></script>
+		<link rel="stylesheet" crossorigin href="/sleeph5/assets/index-Pb-yV_Sx.css">
+	</head>
+	<body>
+		<div id="app"><!--app-html--></div>
+		<!-- 创建一个video标签用来播放摄像头的视屏流 -->
+		<!-- <video id="video" autoplay="autoplay" muted width="200px" height="200px"></video> -->
+		<video id="video" preload="auto" :muted=false loop="false" x5-video-player-type="h5" playsinline="true"
+			webkit-playsinline="true" x-webkit-airplay="true" x5-video-orientation="portraint"
+			x5-video-player-fullscreen="true"></video>
+	</body>
+	<style>
+		#video {
+			/* width: 100%; */
+			display: block;
+			position: absolute;
+			/* width: 80%; */
+			left: -9999px;
+			top: 0;
+			/* height: 100%; */
+		}
+	</style>
+</html>

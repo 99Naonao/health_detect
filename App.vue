@@ -8,6 +8,21 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
+		},
+		/**
+		 * from（触发返回行为的来源）:
+		 *    'backbutton': 左上角导航栏按钮及安卓返回键；
+		 *    'navigateBack': uni.navigateBack()方法；
+		 *     支付宝小程序端不支持返回此字段。
+		 */
+		onBackPress(options) {
+			console.log(options.from)
+			if (true) {
+				window.history.go(-2);
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 </script>

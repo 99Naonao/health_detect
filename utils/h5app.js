@@ -1,5 +1,6 @@
 // #ifdef H5
 import base from '@/utils/baseUrl';
+// import CsbaseUrl from '@/utils/baseUrl';
 import userInfoStore from '@/store/user.js';
 
 const api = {
@@ -13,15 +14,106 @@ const api = {
 	qrCode: '/getWxQrCode',
 	fenxiaoRule: '/ybDictFenxiao/detail',
 	withDrawListApi: '/user/fenxiao/yongjin/detail/page',
-	token: '/ybHealthAccessToken',
-	add: '/ybUserHealthReport/add',
+	// token: '/ybHealthAccessToken',
+	// add: '/ybUserHealthReport/add',
 	last: '/ybUserHealthReport/last',
-	history: '/ybUserHealthReport/static',
-	msJsTicket: '/ybJsTicket', // 获取jsticket
+	// history: '/ybUserHealthReport/static',
+	// msJsTicket: '/ybJsTicket', // 获取jsticket
+	msJsTicket: '/shopapi/Detection/ybJsTicket', // 获取jsticket
+	getOpenid:'/app/getOpenid',
+	// scaledetail:'/app/user-scale-detail',
+	scaledetail:'/shopapi/Detection/userScaleAdd ',
+	Cslogin:'/shopapi/login/codeUrl',
+	oaLogin:'/shopapi/login/oaLogin',
+	usercentre:'/shopapi/user/centre',
+	// deepseekchat:'/app/deepseek/chat',
+	deepseekchat:'/shopapi/Detection/chat',
+	deduct:'/shopapi/Detection/deduct',
+	gift:'/shopapi/Detection/gift',
+	contactqrcode:'/app/wechat/contact-qrcode',
+	Detectionsection:'/shopapi/Detection/section',
+	add: '/shopapi/Detection/resultAdd',
+	resultLists: '/shopapi/Detection/resultLists',
+	userScaleUpdate: '/shopapi/Detection/userScaleUpdate',
+	history: '/shopapi/Detection/resultSelect',
+	token: '/shopapi/Detection/token',
+	confgn: '/shopapi/Detection/config',
+	userScaleLists: '/shopapi/Detection/userScaleLists',
+	createContactQrCode: '/shopapi/Detection/createContactQrCode',
+	
+	
 }
 // 获取票据
 export function msJsTicket(parameter) {
-	return request_(base.baseUrl + api.msJsTicket, parameter)
+	// return request_(base.baseUrl + api.msJsTicket, parameter)
+	return request_(base.CsTbaseUrl + api.msJsTicket, parameter)
+}
+
+// 获取Openid
+export function getOpenid(parameter) {
+	return request_(base.CsbaseUrl + api.getOpenid, parameter)
+}
+
+// 企业微信渠道二维码
+export function getcontactqrcode(parameter) {
+	return request_(base.CsbaseUrl + api.contactqrcode, parameter)
+}
+
+
+// 获取getdeepseekchat
+export function getdeepseekchat(parameter) {
+	return requestT_(base.CsTbaseUrl + api.deepseekchat, parameter)
+}
+
+
+// 获取首次检测赠送积分
+export function getgift(parameter) {
+	return request_(base.CsTbaseUrl + api.gift, parameter)
+}
+
+// 获取配置
+export function getconfgn(parameter) {
+	return request_(base.CsTbaseUrl + api.confgn, parameter)
+}
+
+
+
+// 检测扣除积分
+export function getdeduct(parameter) {
+	return requestT_(base.CsTbaseUrl + api.deduct, parameter)
+}
+
+// 检测扣除积分
+export function getDetectionsection(parameter) {
+	return request_(base.CsTbaseUrl + api.Detectionsection, parameter)
+}
+
+// 测试记录
+export function getresultLists(parameter) {
+	return request_(base.CsTbaseUrl + api.resultLists, parameter)
+}
+
+
+// 更新测试记录
+export function getuserScaleUpdate(parameter) {
+	return requestT_(base.CsTbaseUrl + api.userScaleUpdate, parameter)
+}
+
+// 测试记录列表
+export function getuserScaleLists(parameter) {
+	return request_(base.CsTbaseUrl + api.userScaleLists, parameter)
+}
+
+// 二维码
+export function getcreateContactQrCode(parameter) {
+	return request_(base.CsTbaseUrl + api.createContactQrCode, parameter)
+}
+
+
+
+// 用户量表明细
+export function Userscaledetail(parameter) {
+	return requestT_(base.CsTbaseUrl + api.scaledetail, parameter)
 }
 
 export function getWxUserInfo() {
@@ -65,7 +157,8 @@ export function getWxUserInfo() {
  * 保存结果
  **/
 export function addReport(desc) {
-	return request_(base.baseUrl + api.add, desc)
+	// return request_(base.baseUrl + api.add, desc)
+	return request_(base.CsTbaseUrl + api.add, desc)
 }
 /**
  * 获取最近一条测量记录
@@ -79,12 +172,16 @@ export function lastReport() {
 export function autoLogin(callback) {
 	var code = window.getCode()
 	console.log('onGetcode:', code)
-	let data = {
-		'code': code,
-		'appId': 'wx1ac2da77b1e55f42', // 眠加家居
-		'userName': code
-	}
-	h5Login(data).then((res) => {
+	const inviteCode = uni.getStorageSync('invite_code')
+	// let data = {
+	// 	'code': code,
+	// 	'appId': 'wx1ac2da77b1e55f42', // 眠加家居
+	// 	'userName': code
+	// }
+	h5Login({
+		code:code,
+		invite_code:inviteCode
+	}).then((res) => {
 		uni.showToast({
 			title: "登录成功"
 		});
@@ -95,15 +192,6 @@ export function autoLogin(callback) {
 			'userInfo': userInfo
 		})
 		setUserInfo(userInfo);
-		// uni.showToast({
-		// 	title: '登录成功',
-		// 	duration: 2000,
-		// 	success() {
-
-		// 		if (callback)
-		// 			callback()
-		// 	}
-		// });
 
 		//更新用户信息
 		uni.showToast({
@@ -131,8 +219,10 @@ function setUserInfo(userInfo) {
  */
 export function getToken(data) {
 	// api/user/fenxiao/yongjin/detail/page?mtrlNo=&mtrlName=&mtrlStatus=&pageNo=1&pageSize=15&userId=26
-	return get_(base.baseUrl + api.token, data);
+	// return get_(base.baseUrl + api.token, data);
+	return get_(base.CsTbaseUrl + api.token, data);
 }
+
 /** 获取登录code**/
 export async function onGetCode() {
 	return new Promise((resolve, reject) => {
@@ -163,7 +253,16 @@ export async function onGetCode() {
 export function h5Login(data) {
 	// const fromId = store.getters.fromUid
 	// data.fromId = fromId
-	return request_(base.baseUrl + api.login, data)
+	// return request_(base.baseUrl + api.login, data)
+	// return request_(base.CsTbaseUrl + api.Cslogin, data)
+	// return get_(base.CsTbaseUrl + api.Cslogin)
+	return request_(base.CsTbaseUrl + api.oaLogin, data)
+	
+}
+
+export function getUsercentre(data) {
+	// api/user/fenxiao/yongjin/detail/page?mtrlNo=&mtrlName=&mtrlStatus=&pageNo=1&pageSize=15&userId=26
+	return get_(base.CsTbaseUrl + api.usercentre, data);
 }
 /** 列表**/
 export function cardList() {
@@ -175,7 +274,9 @@ export function getSeperateQRCode(data) {
 }
 /**获取历史记录*/
 export function getHistoryData(data) {
-	return request_(base.baseUrl + api.history, data);
+	// return request_(base.baseUrl + api.history, data);
+	return request_(base.CsTbaseUrl + api.history, data);
+	
 }
 
 /** 列表**/
@@ -266,12 +367,29 @@ function get_(url) {
 	return new Promise((resolve, reject) => {
 		console.log('====== url ======')
 		console.log(url)
+		//请求前加入token
+		let storeUserInfo = uni.getStorageSync("userInfo");
+		console.log('storeUserInfo', storeUserInfo)
+		let header = {
+			'Content-Type': 'application/json;charset=UTF-8',
+			'version':1
+		}
+		
+		// let token =
+		// 	"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjMyLCJhY2NvdW50Ijoib1d2Vno2Y19UTDhzWXJ0RWxLU18ycVM2UjFfdyIsInV1aWQiOiI4ODY5OThjMC03ZDgyLTQwMDgtYjM5Yy1kZDc5MjZiMzg1NDUiLCJyZW1lbWJlck1lIjp0cnVlLCJleHBpcmF0aW9uRGF0ZSI6MTcxNjA5MzM5NzYzMSwiY2FUb2tlbiI6bnVsbCwib3RoZXJzIjpudWxsLCJzdWIiOiIzMiIsImlhdCI6MTcxNTQ4ODU5NywiZXhwIjoxNzE2MDkzMzk3fQ.dc4QTPBT_MV6ZUPidFFjkuZRWVZiAKbbvCgivjgIB0L9y3Zw9050VZfLRy2IAN3tYJnpGwQ8aZRDjQzJgd99rw"
+		
+		// console.log("token", token)
+		if (storeUserInfo && storeUserInfo.token) {
+			// header['Authorization'] = storeUserInfo.token;
+			header['token'] = storeUserInfo.token;
+			// options.header['Cookie'] = '';  
+		} else {
+			// header['Authorization'] = token;
+		}
 		uni.request({
 			url: url,
 			method: 'GET',
-			header: {
-				'Content-Type': 'application/json;charset=UTF-8'
-			},
+			header:header,
 			success: res => {
 				console.log('====== result ======')
 				console.log(res.data)
@@ -289,7 +407,7 @@ function get_(url) {
 				// }
 			},
 			fail: err => {
-				reject(err)
+				// reject(err)
 			}
 		})
 		// uni.request({
@@ -358,7 +476,8 @@ function request_(url, sortData) {
 		let storeUserInfo = uni.getStorageSync("userInfo");
 		console.log('storeUserInfo', storeUserInfo)
 		let header = {
-			'Content-Type': 'application/json;charset=UTF-8'
+			'Content-Type': 'application/json;charset=UTF-8',
+			'version':1
 		}
 
 		// let token =
@@ -367,6 +486,7 @@ function request_(url, sortData) {
 		// console.log("token", token)
 		if (storeUserInfo && storeUserInfo.token) {
 			header['Authorization'] = storeUserInfo.token;
+			header['token'] = storeUserInfo.token;
 			// options.header['Cookie'] = '';  
 		} else {
 			// header['Authorization'] = token;
@@ -396,16 +516,16 @@ function request_(url, sortData) {
 				if ([601, 40098].includes(code)) {
 					return resolve(code)
 				}
-				if (['A10019', 'B0301'].includes(code)) {
-					uni.showToast({
-						title: message
-					})
-					uni.clearStorageSync('userInfo')
-					//重新登录刷新网页
-					window.location.href =
-						'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.zsyl.cc/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
-					return reject(code)
-				}
+				// if (['A10019', 'B0301'].includes(code)) {
+				// 	uni.showToast({
+				// 		title: message
+				// 	})
+				// 	uni.clearStorageSync('userInfo')
+				// 	//重新登录刷新网页
+				// 	window.location.href =
+				// 		'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.xinglu.shop/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+				// 	return reject(code)
+				// }
 				// if ([200].includes(code)) {
 				return resolve(data)
 				// }
@@ -471,6 +591,69 @@ function request_(url, sortData) {
 		// })
 	})
 }
+
+
+function requestT_(url, sortData) {
+	return new Promise((resolve, reject) => {
+		console.log('====== url ======')
+		console.log(url)
+
+		//请求前加入token
+		let storeUserInfo = uni.getStorageSync("userInfo");
+		console.log('storeUserInfo', storeUserInfo)
+		let header = {
+			'Content-Type': 'application/json;charset=UTF-8',
+			'version':1
+		}
+		if (storeUserInfo && storeUserInfo.token) {
+			header['Authorization'] = storeUserInfo.token;
+			header['token'] = storeUserInfo.token;
+		} else {
+		}
+		console.log('header', header)
+		// uni.showLoading({
+		// 	title: '加载中'
+		// })
+		uni.request({
+			url: url,
+			method: 'POST',
+			header: header,
+			data: sortData,
+			success: res => {
+				uni.hideLoading()
+				console.log('====== resultT ======')
+				console.log(res.data)
+				const {
+					code,
+					data,
+					message
+				} = res.data
+
+				if ([601, 40098].includes(code)) {
+					return resolve(code)
+				}
+				// if (['A10019', 'B0301'].includes(code)) {
+				// 	uni.showToast({
+				// 		title: message
+				// 	})
+				// 	uni.clearStorageSync('userInfo')
+				// 	//重新登录刷新网页
+				// 	window.location.href =
+				// 		'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.xinglu.shop/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+				// 	return reject(code)
+				// }
+				// if ([200].includes(code)) {
+				return resolve(res.data)
+				// }
+			},
+			fail: err => {
+				uni.hideLoading()
+				reject(err)
+			}
+		})
+	})
+}
+
 
 // 获取用户信息
 function requestGetUserInfo() {

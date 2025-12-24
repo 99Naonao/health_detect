@@ -17,7 +17,7 @@
 							<view class="usernameInfo">
 								<view class="username">
 									<!-- <text class="username">{{ userInfo.nickName || '未知用户' }}</text> -->
-									<text>{{ userInfo.nickName?userInfo.nickName:'未知用户' }}</text>
+									<text>{{ userInfoT.nickname?userInfo.nickname:'未知用户' }}</text>
 									<!-- <image src="../../static/icon/edit.png"></image> -->
 								</view>
 							</view>
@@ -31,7 +31,7 @@
 									</image>
 								</view>
 							</view>
-							<view class="score_txt">{{userInfo.score?userInfo.score:0}}</view>
+							<view class="score_txt">{{userInfoT.user_integral?userInfoT.user_integral:0}}</view>
 						</view>
 					</view>
 					<view class="switch-list">
@@ -114,7 +114,8 @@
 	// #ifdef H5
 	import {
 		autoLogin,
-		getWxUserInfo
+		getWxUserInfo,
+		getUsercentre
 	} from '@/utils/h5app.js'
 	import {
 		storeToRefs
@@ -138,6 +139,7 @@
 				measurement: '',
 				measurementId: 0,
 				score: 0,
+				userInfoT:{}
 			}
 		},
 		setup() {
@@ -164,8 +166,16 @@
 		},
 		onShow() {
 			this.updateData(this.active + 1)
+			this.Usercentre()
 		},
 		methods: {
+			Usercentre(){
+				
+				getUsercentre({}).then(res => {
+					console.log("res.999",res)
+					this.userInfoT = res
+				})
+			},
 			measureHandler() {
 				uni.navigateTo({
 					url: '/pages/mine/history'

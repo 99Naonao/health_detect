@@ -79,7 +79,7 @@
 			<border-view :title="'进取性'" :icon="'icon-attack'" :value="(aggressivityreport.data).toFixed(2)"
 				:class_list="['second', 'first', 'third','forth', 'fifth']" :ticks="[0,20,40,60,80,100]"
 				:adv="aggressivityreportdesc" :aiDesc="aggressivityreport.explanation.introductionList.join('')"
-				:desc="aggressivityreportdesc">
+				:desc="aggressivityreportdescT">
 			</border-view>
 
 			<!-- 焦虑度 -->
@@ -145,6 +145,10 @@
 		computed: {
 			aggressivityreportdesc() {
 				let desc = this.aggressivityreport.explanation.advicesList[0].valuesList.join('');
+				return desc.replace(new RegExp('攻击性', 'g'), '进取性')
+			},
+			aggressivityreportdescT() {
+				let desc = this.aggressivityreport.explanation.detailsList[0].valuesList.join('');
 				return desc.replace(new RegExp('攻击性', 'g'), '进取性')
 			}
 		},
