@@ -62,7 +62,7 @@
 
 					<wx-open-launch-weapp id="launch-btn"
 						style="width: 685rpx;height: 70rpx;position: relative;left: 50%;margin-left: -343rpx;margin-top: 30rpx;"
-						appid="wxadc17399e1b28d8b" username='gh_e511f8f79ddd'>
+						appid="wx041bde7c633d4ec0" username='gh_e511f8f79ddd'>
 						<component :is="'script'" type="text/wxtag-template">
 							<style>
 								.jump {

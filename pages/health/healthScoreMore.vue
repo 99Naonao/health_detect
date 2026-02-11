@@ -13,69 +13,79 @@
 			</view>
 		</view>
 		<view class="bottom-part flex align-items">
-			<wx-open-launch-weapp id="launch-btn" style="width: 100%;" appid="wxadc17399e1b28d8b"
-				username='gh_e511f8f79ddd'>
-				<component :is="'script'" type="text/wxtag-template">
-					<style>
-						.jump {
-							color: white;
-							background-color: #F77913;
-							padding: 10rpx 20rpx;
-							font-size: 32rpx;
-							border-radius: 30rpx;
-							justify-content: center;
-							display: flex;
-							width: 485rpx;
-							height: 60rpx;
-							margin: 0 auto;
-							text-align: center;
-							box-shadow: 0rpx 0rpx 35rpx 35rpx rgba(0, 0, 0, 0.1);
+			<!-- 仅在微信内置浏览器（非小程序、非 web-view）内使用开放标签；其余环境用按钮 + API 跳转 -->
+			<template v-if="showLaunchTag">
+				<wx-open-launch-weapp id="launch-btn" style="width: 100%;" appid="wx041bde7c633d4ec0"
+					username='gh_e2eb98762ddf'>
+					<component :is="'script'" type="text/wxtag-template">
+						<style>
+							.jump {
+								color: white;
+								background-color: #F77913;
+								padding: 10rpx 20rpx;
+								font-size: 32rpx;
+								border-radius: 30rpx;
+								justify-content: center;
+								display: flex;
+								width: 485rpx;
+								height: 60rpx;
+								margin: 0 auto;
+								text-align: center;
+								box-shadow: 0rpx 0rpx 35rpx 35rpx rgba(0, 0, 0, 0.1);
 
 
-							.txt {
-								line-height: 60rpx;
+								.txt {
+									line-height: 60rpx;
+								}
+
+								.icon {
+									width: 68rpx;
+									height: 68rpx;
+									margin-right: 10rpx;
+									margin-top: -5rpx;
+								}
 							}
-
-							.icon {
-								width: 68rpx;
-								height: 68rpx;
-								margin-right: 10rpx;
-								margin-top: -5rpx;
-							}
-						}
-					</style>
-					<view class="jump" style="color: white;
-							background-color: #F77913;
-							padding: 10rpx 20rpx;
-							font-size: 32rpx;
-							border-radius: 30rpx;
-							justify-content: center;
-							display: flex;
-							width: 485rpx;
-							height: 60rpx;
-							margin: 0 auto;
-							text-align: center;
-							">
-						<img style="width: 68rpx;
-								height: 68rpx;
-								margin-right: 10rpx;
-								margin-top: -5rpx;" src="https://sleep.zsyl.cc/sleeph5/assets/JK_08_butSCIcon-BFn7SZmL.png" />
-						<!-- <image mode="widthFix" class="icon" style="width: 68rpx;
-								height: 68rpx;
-								margin-right: 10rpx;
-								margin-top: -5rpx;" src="https://sleep.zsyl.cc/sleeph5/assets/JK_08_butSCIcon-BFn7SZmL.png"></image> -->
-						<text class="txt" style="line-height: 60rpx;">眠加商城</text>
-					</view>
-				</component>
-			</wx-open-launch-weapp>
+						</style>
+						<view class="jump" style="color: white;
+								background-color: #F77913;
+								padding: 10rpx 20rpx;
+								font-size: 32rpx;
+								border-radius: 30rpx;
+								justify-content: center;
+								display: flex;
+								width: 485rpx;
+								height: 60rpx;
+								margin: 0 auto;
+								text-align: center;
+								">
+							<img style="width: 68rpx;
+									height: 68rpx;
+									margin-right: 10rpx;
+									margin-top: -5rpx;" src="https://sleep.zsyl.cc/sleeph5/assets/JK_08_butSCIcon-BFn7SZmL.png" />
+							<!-- <image mode="widthFix" class="icon" style="width: 68rpx;
+									height: 68rpx;
+									margin-right: 10rpx;
+									margin-top: -5rpx;" src="https://sleep.zsyl.cc/sleeph5/assets/JK_08_butSCIcon-BFn7SZmL.png"></image> -->
+							<text class="txt" style="line-height: 60rpx;">眠加商城</text>
+						</view>
+					</component>
+				</wx-open-launch-weapp>
+			</template>
+			<view v-else class="jump jump-btn" @click="goToMall">
+				<image class="icon" src="https://sleep.zsyl.cc/sleeph5/assets/JK_08_butSCIcon-BFn7SZmL.png" mode="widthFix"></image>
+				<text class="txt">眠加商城</text>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import { canUseLaunchWeappTag, goToMall as goToMallFn } from '@/utils/launchMall.js'
+
 	export default {
 		data() {
 			return {
+				showLaunchTag: true,
 				desc: `      会员积分是眠加小程序商城针对会员购物、参加会员活动等情况而给予的奖励，积分可在“眠加小程序商城”和“眠加活力健康检测”中使用。您可在眠加会员中心（ 我的>
 会员中心>
 积分）查看所获得的积分。具体的积分获取、使用规则详见如文规定。
@@ -112,12 +122,12 @@
 
 			}
 		},
+		mounted() {
+			this.showLaunchTag = canUseLaunchWeappTag()
+		},
 		methods: {
-			jumpHandler() {
-				// wxadc17399e1b28d8b
-				// uni.navigateToMiniProgram({
-				// 	appId: 'wxadc17399e1b28d8b'
-				// })
+			goToMall() {
+				goToMallFn()
 			}
 		}
 	}
@@ -173,6 +183,12 @@
 			margin-top: -5rpx;
 			// display: block;
 		}
+	}
+
+	.jump-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 

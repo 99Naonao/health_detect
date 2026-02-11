@@ -53,7 +53,7 @@ if(invite_code){
 // 	window.location.href = shareurl;
 // }
 
-var shareContent = ['onMenuShareTimeline', 'onMenuShareAppMessage'];
+var shareContent = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'launchMiniProgram'];
 
 function isWeChat() { // 判断是否是微信浏览器
 	//window.navigator.userAgent属性包含了浏览器类型、版本、操作系统类型、浏览器引擎类型等信息，这个属性可以用来判断浏览器类型

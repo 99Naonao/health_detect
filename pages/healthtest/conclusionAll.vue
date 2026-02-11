@@ -47,7 +47,7 @@
       <text class="section-title">推荐产品</text>
       <view class="product-list">
         <view class="product-item" v-for="(item, index) in recommendedProducts" :key="index">
-			  <wx-open-launch-weapp id="launch-btn" class="conclusion-img" style="" appid="wxadc17399e1b28d8b"
+			  <wx-open-launch-weapp id="launch-btn" class="conclusion-img" style="" appid="wx041bde7c633d4ec0"
 			    	username='gh_e511f8f79ddd' :path="'/pages/goods_detail/goods_detail?scene=invite_code%3D'+ getInviteCode() +'%26id%3D' + item.id">
 			  	<component :is="'script'" type="text/wxtag-template">
 					<img style="width: 290rpx;
@@ -56,7 +56,7 @@
 							" :src="item.image" />
 			  	</component>
 			  </wx-open-launch-weapp>
-		 <wx-open-launch-weapp id="launch-btn" class="conclusion-textTT" style="width: 150px;height: 90px;" appid="wxadc17399e1b28d8b"
+		 <wx-open-launch-weapp id="launch-btn" class="conclusion-textTT" style="width: 150px;height: 90px;" appid="wx041bde7c633d4ec0"
 		  	username='gh_e511f8f79ddd' :path="'/pages/goods_detail/goods_detail?scene=invite_code%3D'+ getInviteCode() +'%26id%3D' + item.id">
 			<component :is="'script'" type="text/wxtag-template">
           <view class="product-info">
@@ -71,7 +71,7 @@
 
     <!-- 底部悬浮按钮 -->
     <view class="footer-btn-wrapper bottom-part flex align-items">
-		<wx-open-launch-weapp id="launch-btn" style="width: 100%;" appid="wxadc17399e1b28d8b"
+		<wx-open-launch-weapp id="launch-btn" style="width: 100%;" appid="wx041bde7c633d4ec0"
 			username='gh_e511f8f79ddd'>
 			<component :is="'script'" type="text/wxtag-template">
 				<style>
@@ -487,7 +487,7 @@ export default {
 		if (window.wx) {
 			// 使用微信JSSDK的launchMiniProgram方法
 			window.wx.launchMiniProgram({
-				appId: 'wxadc17399e1b28d8b', // 要打开的小程序 appId
+				appId: 'wx041bde7c633d4ec0', // 要打开的小程序 appId
 				path: '/pages/goods_detail/goods_detail?scene=invite_code%3D'+ inviteCode +'%26id%3D' + ids, // 打开的页面路径
 				success: function(res) {
 					console.log('跳转成功', res)

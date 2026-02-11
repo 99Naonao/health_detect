@@ -1,7 +1,13 @@
 {
     "name" : "sleepHealth",
-    "appid" : "__UNI__B9888D0",
+    "appid" : "__UNI__C096E82",
     "description" : "健康检测",
+	//   // 新增以下编译配置
+	//   "compile": {
+	// 	"ignore": [
+	// 	  "node_modules/**/*" // 忽略所有node_modules文件的条件编译检查
+	// 	]
+	// },
     "versionName" : "1.0.0",
     "versionCode" : 10,
     "transformPx" : false,
