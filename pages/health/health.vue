@@ -55,8 +55,6 @@
 					<view class="score-more" @click="navMoreLink">获取积分</view>
 					<!-- <view class="score-more" @click="navMoreLinkTo">报告</view> -->
 					<!-- <view class="score-more" @click="navMoreLinkToT">报告2</view> -->
-					
-					
 				</view>
 				<view class="tips" style="text-align: left;font-weight: bold;font-size: 12px;padding-bottom: 60px;">
 					人脸拍摄仅用于您的健康检测，我们将对您的隐私信息采取严格保密措施。为保障检测效果并保护您的隐私，请您在拍照时注意：在光线良好的私密环境下独立完成面部拍摄。
@@ -105,7 +103,6 @@
 		MeasurementCategory
 	} from 'xy-health-measurement'
 	// #ifdef H5
-
 	import {
 		autoLogin,
 		getToken,
@@ -157,7 +154,7 @@
 			} else {
 				// const url =
 				// 	'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.zsyl.cc/sleeph5&response_type=code&scope=snsapi_base&state=STATE';
-
+			
 				// window.location.href = url
 				// this.getMeasureToken()
 			}
@@ -190,7 +187,7 @@
 						image:'https://oss.zsyl.cc/uploads/images/20250718/20250718170003b7b597850.png'
 					}
 				],
-				 pupIndex: 0,
+				pupIndex: 0
 			}
 		},
 		onShow() {

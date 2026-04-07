@@ -53,4 +53,19 @@
 	.align-center {
 		align-items: center;
 	}
+
+	/* #ifdef H5 */
+	/**
+	 * uni.showModal 需高于页面内 fixed 弹窗（如 z-index:2000）。
+	 * 切勿对「所有」.uni-mask 统一提层级：picker 时间/日期选择也会用 .uni-mask，
+	 * 若蒙层高于滚轮区域会导致无法点选（见睡眠问卷 topic 页）。
+	 * 仅当遮罩后紧跟 .uni-modal 时，才是 showModal 的配对遮罩。
+	 */
+	.uni-modal {
+		z-index: 10051 !important;
+	}
+	.uni-mask:has(+ .uni-modal) {
+		z-index: 10050 !important;
+	}
+	/* #endif */
 </style>

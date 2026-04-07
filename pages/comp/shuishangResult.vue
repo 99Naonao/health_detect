@@ -40,7 +40,9 @@
 				<view class="unlock-desc">
 					<view>
 						<view class="conclusion-textT" style="line-height: 1.8;" v-html="conclusionText"></view>
+						<!-- 原“查看更多”按钮（保留注释，按需求暂不展示）
 						<view class="more-btn" @click="showIntro = true">查看更多</view>
+						-->
 					</view>
 				</view>
 			</view>
@@ -283,7 +285,8 @@
 				try {
 					const { userInfo, userScaleConclusionDto = {}, userScaleDetailDtos = [] } = this.result;
 					this.LBnumb = Number(userScaleConclusionDto.score) || 0;
-					this.Totalscore = Number(100 - this.LBnumb * 5) || 0;
+					// 睡商分数：满分 100 分，每 1 分问卷分数扣 5 分，最低不低于 0
+					this.Totalscore = Math.max(0, Number(100 - this.LBnumb * 5) || 0);
 					this.conclusionText = userScaleConclusionDto.deepseek_conclusion || '暂无详细报告内容';
 
 					// 获取检测分段数据
@@ -801,12 +804,14 @@
 		color: #333;
 		line-height: 1.6;
 		text-align: left;
+		/* 原截断样式（保留注释，按需求展示全文）
 		height: 120px;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
 		-webkit-line-clamp: 5;
 		-webkit-box-orient: vertical;
+		*/
 		padding-right: 10px;
 	}
 

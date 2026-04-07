@@ -80,7 +80,7 @@
 </template>
 
 <script>
-	import { canUseLaunchWeappTag, goToMall as goToMallFn } from '@/utils/launchMall.js'
+	import { isWechatMiniProgramWebview, isInMiniProgramWebView, goToMall as goToMallFn } from '@/utils/launchMall.js'
 
 	export default {
 		data() {
@@ -123,7 +123,9 @@
 			}
 		},
 		mounted() {
-			this.showLaunchTag = canUseLaunchWeappTag()
+			// 在微信小程序 WebView 里：不用开放标签，使用普通按钮跳转
+			// 在微信内置浏览器 H5：使用开放标签
+			this.showLaunchTag = !(isWechatMiniProgramWebview() || isInMiniProgramWebView())
 		},
 		methods: {
 			goToMall() {

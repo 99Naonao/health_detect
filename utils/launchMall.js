@@ -8,6 +8,12 @@
 const MALL_APPID = 'wx041bde7c633d4ec0'
 
 /**
+ * H5：即将弹出「进商城引导」showModal 前在 window 上派发，业务页可关闭自建弹层（如推荐弹窗），
+ * 避免页面 fixed 层级高于系统 Modal。事件名需与监听方一致。
+ */
+export const MALL_GUIDE_PREPARE_EVENT = 'mall-guide-prepare-open'
+
+/**
  * 是否在「小程序 web-view 内」打开的 H5（此时开放标签不可用）
  * 仅 H5 环境有效，需在 wx.ready 之后或延迟判断
  */
@@ -20,8 +26,29 @@ export function isInMiniProgramWebView() {
 }
 
 /**
+ * 是否在微信小程序 WebView 內（基于 UA + __wxjs_environment）
+ *  仅 H5 环境有效：
+ * - true  => 微信小程序 WebView 內
+ * - false => 非微信 / 微信內普通 H5
+ */
+export function isWechatMiniProgramWebview() {
+  // #ifdef H5
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return false
+  }
+  const ua = navigator.userAgent.toLowerCase()
+  const isWechat = ua.includes('micromessenger')
+  if (!isWechat) return false
+  // 小程序 WebView 會暴露 window.__wxjs_environment = 'miniprogram'
+  return window.__wxjs_environment === 'miniprogram'
+  // #endif
+
+  return false
+}
+
+/**
  * 是否可以使用 wx-open-launch-weapp 开放标签
- * 仅当：H5 + 微信内置浏览器 + 非 web-view 内 时为 true
+ * 仅当：H5 + 微信内置浏览器 + 非 web-view 内时为 true
  */
 export function canUseLaunchWeappTag() {
   // #ifdef MP-WEIXIN
@@ -66,7 +93,8 @@ export function goToMall(options = {}) {
   // #endif
 
   // #ifdef H5
-  if (isInMiniProgramWebView()) {
+  // 在 H5 环境下，只要是“小程序 web-view”场景（无论通过 wx.miniProgram 还是 __wxjs_environment 判断），都走 web-view 逻辑
+  if (isInMiniProgramWebView() || isWechatMiniProgramWebview()) {
     // H5 在小程序 web-view 内：无法直接打开其他小程序，通过 postMessage 通知宿主
     // 宿主小程序需在 web-view 的 bindmessage 中处理 action: 'navigateToMall' 并调用 wx.navigateToMiniProgram
     if (window.wx && window.wx.miniProgram && window.wx.miniProgram.postMessage) {
@@ -78,11 +106,31 @@ export function goToMall(options = {}) {
         }
       })
     }
-    uni.showToast({
-      title: '请点击右上角···在浏览器中打开本页后即可跳转商城',
-      icon: 'none',
-      duration: 3000
-    })
+    // 分步说明：showModal 的 content 用 \n 换行；仅纯文本（不支持富文本）
+    const returnToMiniProgramSteps = [
+      '说明：当前网页无法直接打开其他小程序，请按下面步骤操作。',
+      '',
+      '1. 快速连续点击左上角「返回」箭头回到小程序。',
+      '2. 进入商城后再浏览商品即可。'
+    ].join('\n')
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent(MALL_GUIDE_PREPARE_EVENT))
+    }
+    // 先让页面关闭自建高 z-index 弹层，再打开系统 Modal，避免被盖住或双蒙层
+    const openGuide = () => {
+      uni.showModal({
+        title: '如何进入商城',
+        content: returnToMiniProgramSteps,
+        showCancel: false,
+        confirmText: '我知道了'
+      })
+    }
+    if (typeof uni !== 'undefined' && typeof uni.nextTick === 'function') {
+      uni.nextTick(openGuide)
+    } else {
+      setTimeout(openGuide, 0)
+    }
     return
   }
 
@@ -92,3 +140,38 @@ export function goToMall(options = {}) {
 }
 
 export { MALL_APPID }
+
+/**
+ * 通用：向宿主小程序发送 postMessage
+ * @param {Object} payload - 要发送的数据，会放在 data 数组的第一个元素中
+ * 约定结构示例：
+ *   { action: 'backFromH5' }
+ *   { action: 'navigate', target: 'xxx', extra: {...} }
+ */
+export function postMessageToMiniProgram(payload = {}) {
+  if (typeof window === 'undefined') return
+  if (!(window.wx && window.wx.miniProgram && window.wx.miniProgram.postMessage)) {
+    console.warn('[postMessageToMiniProgram] wx.miniProgram.postMessage 不可用', window.wx)
+    return
+  }
+  try {
+    window.wx.miniProgram.postMessage({ data: [payload] })
+  } catch (e) {
+    console.error('[postMessageToMiniProgram] 调用失败', e)
+  }
+}
+
+/**
+ * 通用：通知小程序“从 H5 返回”
+ * 小程序侧可在 web-view 的 bindmessage 中监听 action === 'backFromH5'
+ * 示例（小程序页面 js）：
+ *  onWebViewMessage(e) {
+ *    const msg = (e.detail && e.detail.data && e.detail.data[0]) || {}
+ *    if (msg.action === 'backFromH5') {
+ *      wx.navigateBack()
+ *    }
+ *  }
+ */
+export function backToMiniProgram() {
+  postMessageToMiniProgram({ action: 'backFromH5' })
+}

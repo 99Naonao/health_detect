@@ -40,7 +40,7 @@ const api = {
 	confgn: '/shopapi/Detection/config',
 	userScaleLists: '/shopapi/Detection/userScaleLists',
 	createContactQrCode: '/shopapi/Detection/createContactQrCode',
-	
+	getAllGoodlists:'/shopapi/Detection/getGoodsLists'
 	
 }
 // 获取票据
@@ -108,7 +108,6 @@ export function getuserScaleLists(parameter) {
 export function getcreateContactQrCode(parameter) {
 	return request_(base.CsTbaseUrl + api.createContactQrCode, parameter)
 }
-
 
 
 // 用户量表明细
@@ -268,6 +267,11 @@ export function getUsercentre(data) {
 export function cardList() {
 	return get_(base.baseUrl + api.cardList)
 }
+
+export function getAllGoodlists(param){
+	return get_(base.CsTbaseUrl + api.getAllGoodlists,param);
+}
+
 /**二维码生成接口**/
 export function getSeperateQRCode(data) {
 	return request_(base.baseUrl + api.qrCode, data);
@@ -375,10 +379,7 @@ function get_(url) {
 			'version':1
 		}
 		
-		// let token =
-		// 	"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjMyLCJhY2NvdW50Ijoib1d2Vno2Y19UTDhzWXJ0RWxLU18ycVM2UjFfdyIsInV1aWQiOiI4ODY5OThjMC03ZDgyLTQwMDgtYjM5Yy1kZDc5MjZiMzg1NDUiLCJyZW1lbWJlck1lIjp0cnVlLCJleHBpcmF0aW9uRGF0ZSI6MTcxNjA5MzM5NzYzMSwiY2FUb2tlbiI6bnVsbCwib3RoZXJzIjpudWxsLCJzdWIiOiIzMiIsImlhdCI6MTcxNTQ4ODU5NywiZXhwIjoxNzE2MDkzMzk3fQ.dc4QTPBT_MV6ZUPidFFjkuZRWVZiAKbbvCgivjgIB0L9y3Zw9050VZfLRy2IAN3tYJnpGwQ8aZRDjQzJgd99rw"
-		
-		// console.log("token", token)
+
 		if (storeUserInfo && storeUserInfo.token) {
 			// header['Authorization'] = storeUserInfo.token;
 			header['token'] = storeUserInfo.token;
@@ -410,60 +411,7 @@ function get_(url) {
 				// reject(err)
 			}
 		})
-		// uni.request({
-		// 	url,
-		// 	method,
-		// 	{
-		// 		'Content-Type': 'application/json;charset=UTF-8',
-		// 		// 'project_token': base.projectToken, //项目token（可删除）
-		// 	},
-		// 	data: sortData,
-		// 	success: res => {
-		// 		console.log('====== params ======')
-		// 		console.log(sortData)
-		// 		console.log('====== result ======')
-		// 		console.log(res.data)
 
-		// 		const {
-		// 			code,
-		// 			data,
-		// 			message
-		// 		} = res.data
-
-		// 		/**
-		// 		 * 200 - 成功
-		// 		 * 401 - 未登录
-		// 		 * 400012 - 仅限公众号新粉丝参与
-		// 		 * 40013 - 未注册
-		// 		 * 40092 - 新人抽奖未中奖
-		// 		 * 40098 - 新人抽奖无抽奖次数
-		// 		 * 601 - 抽奖团前置校验未关注公众号
-		// 		 */
-		// 		if ([200, 40013, 40092].includes(code)) {
-		// 			return resolve(wholeData ? res.data : data)
-		// 		}
-		// 		if ([601, 40098].includes(code)) {
-		// 			return resolve(code)
-		// 		}
-		// 		// 仅限公众号新粉丝参与错误弹窗提示
-		// 		if (code === 400012) {
-		// 			return reject(res.data)
-		// 		}
-
-		// 		if (code === 401) { // 未登录清除用户信息
-		// 			store.commit('LOGOUT')
-		// 		}
-
-		// 		!noToast && uni.showToast({
-		// 			icon: 'none',
-		// 			title: msg || '服务繁忙'
-		// 		})
-		// 		reject(res.data)
-		// 	},
-		// 	fail: err => {
-		// 		reject(err)
-		// 	}
-		// })
 	})
 }
 
@@ -516,79 +464,16 @@ function request_(url, sortData) {
 				if ([601, 40098].includes(code)) {
 					return resolve(code)
 				}
-				// if (['A10019', 'B0301'].includes(code)) {
-				// 	uni.showToast({
-				// 		title: message
-				// 	})
-				// 	uni.clearStorageSync('userInfo')
-				// 	//重新登录刷新网页
-				// 	window.location.href =
-				// 		'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1ac2da77b1e55f42&redirect_uri=https://sleep.xinglu.shop/sleeph5&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
-				// 	return reject(code)
-				// }
-				// if ([200].includes(code)) {
+
 				return resolve(data)
-				// }
+
 			},
 			fail: err => {
 				uni.hideLoading()
 				reject(err)
 			}
 		})
-		// uni.request({
-		// 	url,
-		// 	method,
-		// 	{
-		// 		'Content-Type': 'application/json;charset=UTF-8',
-		// 		// 'project_token': base.projectToken, //项目token（可删除）
-		// 	},
-		// 	data: sortData,
-		// 	success: res => {
-		// 		console.log('====== params ======')
-		// 		console.log(sortData)
-		// 		console.log('====== result ======')
-		// 		console.log(res.data)
 
-		// 		const {
-		// 			code,
-		// 			data,
-		// 			message
-		// 		} = res.data
-
-		// 		/**
-		// 		 * 200 - 成功
-		// 		 * 401 - 未登录
-		// 		 * 400012 - 仅限公众号新粉丝参与
-		// 		 * 40013 - 未注册
-		// 		 * 40092 - 新人抽奖未中奖
-		// 		 * 40098 - 新人抽奖无抽奖次数
-		// 		 * 601 - 抽奖团前置校验未关注公众号
-		// 		 */
-		// 		if ([200, 40013, 40092].includes(code)) {
-		// 			return resolve(wholeData ? res.data : data)
-		// 		}
-		// 		if ([601, 40098].includes(code)) {
-		// 			return resolve(code)
-		// 		}
-		// 		// 仅限公众号新粉丝参与错误弹窗提示
-		// 		if (code === 400012) {
-		// 			return reject(res.data)
-		// 		}
-
-		// 		if (code === 401) { // 未登录清除用户信息
-		// 			store.commit('LOGOUT')
-		// 		}
-
-		// 		!noToast && uni.showToast({
-		// 			icon: 'none',
-		// 			title: msg || '服务繁忙'
-		// 		})
-		// 		reject(res.data)
-		// 	},
-		// 	fail: err => {
-		// 		reject(err)
-		// 	}
-		// })
 	})
 }
 

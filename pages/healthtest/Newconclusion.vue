@@ -46,7 +46,9 @@
 					</view>
 					<view v-else>
 					  <view class="conclusion-textT" style="line-height: 1.8;" v-html="conclusionText"></view>
+					  <!-- 原“查看更多”按钮（保留注释，按需求暂不展示）
 					  <view class="more-btn" @click="showFullConclusion">查看更多</view>
+					  -->
 					</view>
 				</view>
 			</view>
@@ -60,65 +62,91 @@
 			</view>
 		</view>
 		<view style="color: #333;font-size: 12px;padding: 0 20px;">!!本报告仅作健康参考,不用于医学诊断治疗,如有睡眠问题请遵医嘱就医。</view>
+		<!-- 环境调试信息，仅 H5 有值时显示 -->
+		<view v-if="envText" style="color: #999;font-size: 10px;padding: 4px 20px 0 20px;text-align: center;">
+			{{ envText }}
+		</view>
 		<!-- 底部按钮 -->
 		<view class="bottom-btns">
 			<view>
-				<wx-open-launch-weapp id="launch-btn" style="" appid="wx041bde7c633d4ec0"
-					username='gh_e2eb98762ddf'>
-					<component :is="'script'" type="text/wxtag-template">
-						<style>
-							.jump {
-								color: white;
-								background-color: #1a2a5c;
-								padding: 10rpx 20rpx;
-								font-size: 32rpx;
-								border-radius: 50rpx;
-								justify-content: center;
-								display: flex;
-								width: 300rpx;
-								margin: 0 auto;
-								text-align: center;
-								box-shadow: 0rpx 0rpx 35rpx 35rpx rgba(0, 0, 0, 0.1);
-				
-				
-								.txt {
-									line-height: 60rpx;
+				<!-- 微信内置浏览器（非小程序 webview）：使用开放标签；其它环境统一用 view -->
+				<template v-if="isWechat && !isMiniProgramWebview">
+					<!-- id 必须全局唯一，勿与下方推荐商品多个开放标签重复 -->
+					<wx-open-launch-weapp id="launch-btn-mall-bottom" style="" appid="wx041bde7c633d4ec0"
+						username='gh_e2eb98762ddf'>
+						<component :is="'script'" type="text/wxtag-template">
+							<style>
+								.jump {
+									color: white;
+									background-color: #1a2a5c;
+									padding: 10rpx 20rpx;
+									font-size: 32rpx;
+									border-radius: 50rpx;
+									justify-content: center;
+									display: flex;
+									width: 300rpx;
+									margin: 0 auto;
+									text-align: center;
+									box-shadow: 0rpx 0rpx 35rpx 35rpx rgba(0, 0, 0, 0.1);
+
+
+									.txt {
+										line-height: 60rpx;
+									}
+
+									.icon {
+										width: 34rpx;
+										height: 34rpx;
+										margin-right: 10rpx;
+										margin-top: -5rpx;
+									}
 								}
-				
-								.icon {
-									width: 34rpx;
-									height: 34rpx;
-									margin-right: 10rpx;
-									margin-top: -5rpx;
-								}
-							}
-						</style>
-						<view class="jump" style="color: white;
-								background-color: #1a2a5c;
-								padding: 20rpx 40rpx;
-								font-size: 32rpx;
-								border-radius: 50rpx;
-								justify-content: center;
-								display: flex;
-								width: 300rpx;
-								margin: 0 auto;
-								text-align: center;
-								">
-							<img style="width: 16px;
-									height: 16px;
-									margin-right: 10rpx;
-									margin-top: 5px;" src="https://oss.zsyl.cc/uploads/images/20250613/202506131138540a4916404.png" />
-							<text class="txt" style="line-height: 60rpx;color: #fff;">去商城看看</text>
-						</view>
-					</component>
-				</wx-open-launch-weapp>
+							</style>
+							<view class="jump" style="color: white;
+									background-color: #1a2a5c;
+									padding: 20rpx 40rpx;
+									font-size: 32rpx;
+									border-radius: 50rpx;
+									justify-content: center;
+									display: flex;
+									width: 300rpx;
+									margin: 0 auto;
+									text-align: center;
+									">
+								<img style="width: 16px;
+										height: 16px;
+										margin-right: 10rpx;
+										margin-top: 5px;" src="https://oss.zsyl.cc/uploads/images/20250613/202506131138540a4916404.png" />
+								<text class="txt" style="line-height: 60rpx;color: #fff;">去商城看看</text>
+							</view>
+						</component>
+					</wx-open-launch-weapp>
+				</template>
+				<view v-else class="jump-btn" @click="goToMall">
+					<view class="jump" style="color: white;
+							background-color: #1a2a5c;
+							padding: 20rpx 40rpx;
+							font-size: 32rpx;
+							border-radius: 50rpx;
+							justify-content: center;
+							display: flex;
+							width: 300rpx;
+							margin: 0 auto;
+							text-align: center;
+							box-shadow: 0rpx 0rpx 35rpx 35rpx rgba(0, 0, 0, 0.1);">
+						<image style="width: 16px;
+								height: 16px;
+								margin-right: 10rpx;
+								margin-top: 5px;" src="https://oss.zsyl.cc/uploads/images/20250613/202506131138540a4916404.png" mode="widthFix" />
+						<text class="txt" style="line-height: 60rpx;color: #fff;">去商城看看</text>
+					</view>
+				</view>
 			</view>
 			<!-- <button class="main-btn shop-btn">去商城看看</button> -->
 			<view style="min-width: 48%;">
 				<button class="main-btn share-btn" style="display: flex;justify-content: center;align-items: center;" @click="handleShare">
 					<image src="https://oss.zsyl.cc/uploads/images/20250613/202506131138547ab320995.png" style="width: 16px;height: 16px;margin-right: 8px;"></image>
 					<view>分享海报得积分</view>
-					
 				</button>
 			</view>
 			
@@ -183,24 +211,49 @@
 		  <text class="section-title">推荐产品</text>
 		  <view class="product-list">
 		    <view class="product-item" v-for="(item, index) in recommendedProducts" :key="index">
-				  <wx-open-launch-weapp id="launch-btn" class="conclusion-img" style="" appid="wx041bde7c633d4ec0"
-				    	username='gh_e2eb98762ddf' :path="'/pages/goods_detail/goods_detail?scene=invite_code%3D'+ getInviteCode() +'%26id%3D' + item.id">
-				  	<component :is="'script'" type="text/wxtag-template">
-						<img style="width: 290rpx;
-								height: 300rpx;
-								margin-right: 10rpx;
-								" :src="item.image" />
-				  	</component>
-				  </wx-open-launch-weapp>
-			 <wx-open-launch-weapp id="launch-btn" class="conclusion-textTT" style="width: 150px;height: 90px;" appid="wx041bde7c633d4ec0"
-			  	username='gh_e2eb98762ddf' :path="'/pages/goods_detail/goods_detail?scene=invite_code%3D'+ getInviteCode() +'%26id%3D' + item.id">
-				<component :is="'script'" type="text/wxtag-template">
-		      <view class="product-info">
-			  		  <text class="product-name" style="font-size: 12px;">{{item.name}}</text>
-		      </view>
-				
-				</component>
-			</wx-open-launch-weapp>
+					<!-- 微信内置浏览器（非小程序 webview）：使用开放标签；其它环境统一用 view -->
+					<template v-if="isWechat && !isMiniProgramWebview">
+						<wx-open-launch-weapp
+							:id="'launch-reco-img-' + index"
+							class="conclusion-img"
+							style=""
+							appid="wx041bde7c633d4ec0"
+							username="gh_e2eb98762ddf"
+							:path="'/pages/goods_detail/goods_detail?scene=invite_code%3D'+ getInviteCode() +'%26id%3D' + item.id"
+						>
+							<component :is="'script'" type="text/wxtag-template">
+								<img style="width: 290rpx;
+										height: 300rpx;
+										margin-right: 10rpx;
+										" :src="item.image" />
+							</component>
+						</wx-open-launch-weapp>
+						<wx-open-launch-weapp
+							:id="'launch-reco-text-' + index"
+							class="conclusion-textTT"
+							style="width: 150px;height: 90px;"
+							appid="wx041bde7c633d4ec0"
+							username="gh_e2eb98762ddf"
+							:path="'/pages/goods_detail/goods_detail?scene=invite_code%3D'+ getInviteCode() +'%26id%3D' + item.id"
+						>
+							<component :is="'script'" type="text/wxtag-template">
+								<view class="product-info">
+									<text class="product-name" style="font-size: 12px;">{{item.name}}</text>
+								</view>
+							</component>
+						</wx-open-launch-weapp>
+					</template>
+					<template v-else>
+						<!-- 统一使用 view 跳转商品详情 -->
+						<view class="conclusion-img" @click="goToMallProduct(item)">
+							<image :src="item.image" style="width: 290rpx;height: 300rpx;margin-right: 10rpx;" mode="widthFix" />
+						</view>
+						<view class="conclusion-textTT" style="width: 150px;height: 90px;" @click="goToMallProduct(item)">
+							<view class="product-info">
+								<text class="product-name" style="font-size: 12px;">{{item.name}}</text>
+							</view>
+						</view>
+					</template>
 		    </view>
 		  </view>
 		</view>
@@ -230,6 +283,7 @@
 		getuserScaleUpdate,
 		getuserScaleLists
 	} from '../../utils/h5app.js'
+	import { isWechatMiniProgramWebview, isInMiniProgramWebView, goToMall as goToMallFn } from '@/utils/launchMall.js'
 	// #endif
 
 	export default {
@@ -237,6 +291,9 @@
 		data() {
 			return {
 				loading: true,
+				envText: '',
+				isWechat: false,
+				isMiniProgramWebview: false,
 				recommendedProducts: [],
 				gaugeData: [{
 					value: 60,
@@ -342,13 +399,20 @@
 				previewImageRealWidth: 0
 			}
 		},
+		mounted() {
+			if (typeof window !== 'undefined') {
+				this.isWechat = !!window.__IS_WECHAT__
+				this.isMiniProgramWebview = !!window.__IS_MINIPROGRAM_WEBVIEW__
+			}
+		},
 		
 		onLoad(option) {
 			if(option.numtolt == undefined){
 				option.numtolt = 0
 			}
 			this.userScaleUpdate()
-			this.Totalscore = Number(100 - option.numtolt*5) 
+			// 睡商分数：满分 100 分，每 1 分问卷分数扣 5 分，最低不低于 0
+			this.Totalscore = Math.max(0, Number(100 - option.numtolt * 5))
 			
 			
 			this.LBnumb = option.numtolt
@@ -437,6 +501,8 @@
 					}
 			  	})
 			  },
+			  
+	
 			  deepseekchat(report){
 				  
 				  let hrvtext = ""
@@ -556,6 +622,17 @@
 		      title: '跳转商城开发中',
 		      icon: 'none'
 		    })
+		  },
+		  // H5 小程序 WebView 场景：通过工具函数跳转商城
+		  goToMall() {
+			  // 不传参数时，goToMallFn 内部会按默认路径处理
+			  goToMallFn()
+		  },
+		  goToMallProduct(item) {
+			  goToMallFn({
+				  inviteCode: this.getInviteCode(),
+				  goodsId: item.id
+			  })
 		  },
 		  showFullConclusion() {
 				this.showIntro = true
@@ -1077,12 +1154,14 @@
 	  color: #333;
 	  line-height: 1.6;
 	  text-align: left;
-	  height: 120px; /* 固定高度，约5行文字 */
+	  /* 原截断样式（保留注释，按需求展示全文）
+	  height: 120px;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
 	  display: -webkit-box;
-	  -webkit-line-clamp: 5; /* 限制5行 */
+	  -webkit-line-clamp: 5;
 	  -webkit-box-orient: vertical;
+	  */
 	  padding-right: 10px;
 	}
 	.loading-wrapper {

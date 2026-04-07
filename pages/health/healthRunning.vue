@@ -210,7 +210,7 @@
 					})
 				}
 				this.text1 = getUserInfo.measureToken
-				
+				// console.log('进入到渲染页面获取到的token：',text1)
 				const measurement = new Measurement(getUserInfo.measureToken, MeasurementCategory.ALL)
 				this.text2 = MeasurementCategory.ALL
 				this.text3 = measurement
@@ -337,25 +337,30 @@
 				console.log('measurement:', measurement)
 
 				setTimeout(() => {
+					this.text1 = 111
 					this.takePhoto()
+					
 				}, 100)
-
 				setTimeout(() => {
+					this.text1 = 133
 					this.counting = 2
 				}, 1000)
 
 				setTimeout(() => {
+					this.text1 = 144
 					this.counting = 1
 				}, 2000)
 
 				// 3秒后开始
 				setTimeout(() => {
+					this.text1 = 155
 					this.counting = 0
 					this.StartMeasurementTime = Date.now()
 					let result = measurement.start(this.canvas)
 					this.initCharts()
 					// console.log('takephoto result!', result)
 				}, 3000)
+
 			},
 			equenId(measurement, timestamp) {
 				// console.log('this.MeasureTime >= this.MaxMeasureTime', this.MeasureTime, this.MaxMeasureTime)

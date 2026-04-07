@@ -55,6 +55,22 @@ if(invite_code){
 
 var shareContent = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'launchMiniProgram'];
 
+// 全局环境标记：是否在微信 / 是否在微信小程序 webview（仅浏览器环境有效）
+;(function initGlobalEnvFlags() {
+	if (typeof window === 'undefined') return
+
+	var ua = (window.navigator && window.navigator.userAgent ? window.navigator.userAgent : '').toLowerCase()
+	var isWechat = ua.indexOf('micromessenger') !== -1
+	// 小程序 webview 场景通常会有 __wxjs_environment = 'miniprogram'，或存在 wx.miniProgram
+	var isMiniProgramWebview =
+		(window.__wxjs_environment === 'miniprogram') ||
+		!!(window.wx && window.wx.miniProgram)
+
+	window.__IS_WECHAT__ = isWechat
+	window.__IS_MINIPROGRAM_WEBVIEW__ = isMiniProgramWebview
+	console.log('[env] __IS_WECHAT__ =', window.__IS_WECHAT__, ', __IS_MINIPROGRAM_WEBVIEW__ =', window.__IS_MINIPROGRAM_WEBVIEW__)
+})();
+
 function isWeChat() { // 判断是否是微信浏览器
 	//window.navigator.userAgent属性包含了浏览器类型、版本、操作系统类型、浏览器引擎类型等信息，这个属性可以用来判断浏览器类型
 	var ua = window.navigator.userAgent.toLowerCase();

@@ -1,0 +1,361 @@
+{
+    "code": 1,
+    "show": 0,
+    "msg": "获取成功",
+    "data": {
+        "lists": [
+            {
+                "id": 10019,
+                "name": "【野橘】 单方精油 5ml扩香套装 天然芳香 舒缓 放松 提神 纯植物 室内车载扩香油",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/202512311317429bd468894.jpg",
+                "description": "提振精神、舒缓抑郁、 愉悦心情、提升积极情绪",
+                "title_text": "【野橘】",
+                "describe_text": " 单方精油 5ml扩香套装 天然芳香 舒缓 放松 提神 纯植物 室内车载扩香油"
+            },
+            {
+                "id": 10020,
+                "name": "【安然】 复方精油10ml 提高睡眠 居家 薰衣草 香薰 舒缓精神 植物香扩香",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231132715712387456.jpg",
+                "description": "安神放松 释放压力 平衡情绪",
+                "title_text": "【安然】",
+                "describe_text": " 复方精油10ml 提高睡眠 居家 薰衣草 香薰 舒缓精神 植物香扩香"
+            },
+            {
+                "id": 10021,
+                "name": "【野橘】 提振精神 愉悦心情 舒缓紧绷心绪",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231134150448500314.jpg",
+                "description": "提振精神、舒缓抑郁、 愉悦心情、提升积极情绪",
+                "title_text": "【野橘】",
+                "describe_text": " 提振精神 愉悦心情 舒缓紧绷心绪"
+            },
+            {
+                "id": 10022,
+                "name": "【倾心】 复方精油10ml 有机天然 居家静心 失眠舒缓 快速入眠 植物扩香",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/202512311350545a4df4644.jpg",
+                "description": "有静心养神、平和心绪、去烦除躁的作用",
+                "title_text": "【倾心】",
+                "describe_text": " 复方精油10ml 有机天然 居家静心 失眠舒缓 快速入眠 植物扩香"
+            },
+            {
+                "id": 10023,
+                "name": "【甘霖】 复方精油10ml 有机天然 居家 薰衣草 香薰舒缓 快速入眠",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231140920a42a57320.jpg",
+                "description": "针对肝淤体质，具有疏肝解郁、理气去火作用",
+                "title_text": "【甘霖】",
+                "describe_text": " 复方精油10ml 有机天然 居家 薰衣草 香薰舒缓 快速入眠"
+            },
+            {
+                "id": 10024,
+                "name": "【时光契约】日夜经典扩香礼盒 送礼佳品【赠等香木+绒布袋】野橘 安然",
+                "image": "https://oss.zsyl.cc/uploads/images/20250605/20250605094151994cd8435.jpg",
+                "description": "覆盖情绪调节的全场景需求，既能提振低落状态，又能安抚紧绷神经，实现「提神 - 安神」的双向平衡",
+                "title_text": "【时光契约】",
+                "describe_text": "日夜经典扩香礼盒 送礼佳品【赠等香木+绒布袋】野橘 安然"
+            },
+            {
+                "id": 10025,
+                "name": "【木眠花开】 日夜舒肝扩香礼盒 送礼佳品【赠等香木+绒布袋】野橘 甘霖",
+                "image": "https://oss.zsyl.cc/uploads/images/20250605/20250605094324682b51556.jpeg",
+                "description": "协同调节情绪状态，兼顾提神焕活与疏肝舒缓，帮助维持愉悦平稳的身心状态",
+                "title_text": "【木眠花开】",
+                "describe_text": " 日夜舒肝扩香礼盒 送礼佳品【赠等香木+绒布袋】野橘 甘霖"
+            },
+            {
+                "id": 10026,
+                "name": "【忘我之境】 提升专注力扩香礼盒 送礼佳品【赠等香木+绒布袋】野橘 倾心",
+                "image": "https://oss.zsyl.cc/uploads/images/20250605/20250605093811f5eee4092.jpeg",
+                "description": "双向调节情绪状态，兼顾提振焕活与静心安神，帮助平衡身心、维持愉悦平和的心境",
+                "title_text": "【忘我之境】",
+                "describe_text": " 提升专注力扩香礼盒 送礼佳品【赠等香木+绒布袋】野橘 倾心"
+            },
+            {
+                "id": 10027,
+                "name": "【等香木】天然黑胡桃扩香木 搭配精油扩香 无火香薰摆件",
+                "image": "https://oss.zsyl.cc/uploads/images/20250427/202504271053459abdb8037.jpg",
+                "description": "",
+                "title_text": "【等香木】",
+                "describe_text": "天然黑胡桃扩香木 搭配精油扩香 无火香薰摆件"
+            },
+            {
+                "id": 10028,
+                "name": "【甜睡组合装】倾心丨甘霖丨安然丨野橘 精油 睡眠 4瓶10ml超值组合 送礼佳品【赠等香木+绒布袋】",
+                "image": "https://oss.zsyl.cc/uploads/images/20250605/20250605100104a84a17578.jpeg",
+                "description": "",
+                "title_text": "【甜睡组合装】",
+                "describe_text": "倾心丨甘霖丨安然丨野橘 精油 睡眠 4瓶10ml超值组合 送礼佳品【赠等香木+绒布袋】"
+            },
+            {
+                "id": 10029,
+                "name": "【安·纳悦】 复方精油10ml 提高睡眠 居家 薰衣草 香薰 舒缓精神 植物香扩香",
+                "image": "https://oss.zsyl.cc/uploads/images/20250605/2025060509052863a974209.jpeg",
+                "description": "安神放松 释放压力 平衡情绪",
+                "title_text": "【安·纳悦】",
+                "describe_text": " 复方精油10ml 提高睡眠 居家 薰衣草 香薰 舒缓精神 植物香扩香"
+            },
+            {
+                "id": 10055,
+                "name": "【翼合枕】 护颈 高度可调 慢回弹 记忆棉 提高睡眠 深睡 颈椎 家用枕头",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/2025123115324571d8c2430.jpg",
+                "description": "人体生理弯曲与人体工程学设计 一枕三高度 解锁四种使用感受",
+                "title_text": "【翼合枕】",
+                "describe_text": " 护颈 高度可调 慢回弹 记忆棉 提高睡眠 深睡 颈椎 家用枕头"
+            },
+            {
+                "id": 10056,
+                "name": "【甜睡贴】 舒眠体验 晚安贴 快速 古法植物配方",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/2025123115051595b510099.jpg",
+                "description": "宁心安神，舒缓身心，助力快速入睡，提升睡眠深度，改善整体睡眠质量",
+                "title_text": "【甜睡贴】",
+                "describe_text": " 舒眠体验 晚安贴 快速 古法植物配方"
+            },
+            {
+                "id": 10057,
+                "name": "【安然】 复方睡眠精油（2ml·体验装） 改善 安抚 舒缓芳香 放松 入睡好眠 体验装",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231142505045bd1884.png",
+                "description": "安神放松 释放压力 平衡情绪",
+                "title_text": "【安然】",
+                "describe_text": " 复方睡眠精油（2ml·体验装） 改善 安抚 舒缓芳香 放松 入睡好眠 体验装"
+            },
+            {
+                "id": 10061,
+                "name": "【扶正固本泡浴包】 天然草本 四季皆宜 全家可用 熏蒸 足浴 泡澡 洗澡",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/2025123116484667d894773.jpg",
+                "description": "活血排毒清热，改善皮炎湿疹、风湿疼痛，调理失眠便秘及老年慢病",
+                "title_text": "【扶正固本泡浴包】",
+                "describe_text": " 天然草本 四季皆宜 全家可用 熏蒸 足浴 泡澡 洗澡"
+            },
+            {
+                "id": 10062,
+                "name": "【葆春蜂王浆】新鲜 蜜蜂 蜂王 营养食品 顺丰冷链",
+                "image": "https://oss.zsyl.cc/uploads/images/20250818/2025081809234361c092689.jpg",
+                "description": "提供高营养支持 辅助改善睡眠",
+                "title_text": "【葆春蜂王浆】",
+                "describe_text": "新鲜 蜜蜂 蜂王 营养食品 顺丰冷链"
+            },
+            {
+                "id": 10063,
+                "name": "【舒眠枕音播放器】轻巧 长续航 骨传导 蓝牙 音箱 不扰人 音乐睡眠 全家可用",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231164521e8d0f2345.jpg",
+                "description": "骨传导白噪音，物理传音舒缓身心，快速助眠、平复情绪",
+                "title_text": "【舒眠枕音播放器】",
+                "describe_text": "轻巧 长续航 骨传导 蓝牙 音箱 不扰人 音乐睡眠 全家可用"
+            },
+            {
+                "id": 10064,
+                "name": "【砭石揉腹仪】 腹部 热敷 砭石 智能按摩 睡眠 轻盈",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/202512311741255687f1121.jpg",
+                "description": "促进血液循环和新陈代谢、改善消化功能、缓解肌肉紧张疼痛并助力心理放松",
+                "title_text": "【砭石揉腹仪】",
+                "describe_text": " 腹部 热敷 砭石 智能按摩 睡眠 轻盈"
+            },
+            {
+                "id": 10065,
+                "name": "【火焰香熏机】香氛 静音 精油 雾化 仿真火焰 七彩灯光  断电保护",
+                "image": "https://oss.zsyl.cc/uploads/images/20250818/20250818092737169f55053.jpg",
+                "description": "",
+                "title_text": "【火焰香熏机】",
+                "describe_text": "香氛 静音 精油 雾化 仿真火焰 七彩灯光  断电保护"
+            },
+            {
+                "id": 10066,
+                "name": "【万俞林氏远红外舒筋活血贴】 远红外技术 天然原料 亲肤透气 适用于颈椎病 肩周炎 腰椎间盘突出 骨性关节炎 骨质增生 跌打",
+                "image": "https://oss.zsyl.cc/uploads/images/20260227/202602271509515741b8624.jpg",
+                "description": "远红外技术加持 有效缓解颈肩腰关节疼痛 适用于多种骨骼肌肉损伤的物理调理",
+                "title_text": "【万俞林氏远红外舒筋活血贴】",
+                "describe_text": " 远红外技术 天然原料 亲肤透气 适用于颈椎病 肩周炎 腰椎间盘突出 骨性关节炎 骨质增生 跌打"
+            },
+            {
+                "id": 10067,
+                "name": "【香熏按摩眼罩】护眼 按摩 睡眠 精油 冰敷 热敷  遮光 电动 亲肤 香氛",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/2025123117373406f084098.jpg",
+                "description": "振动按摩舒缓眼疲劳，小巧便携还能搭配香薰，随时随地享受护眼 SPA",
+                "title_text": "【香熏按摩眼罩】",
+                "describe_text": "护眼 按摩 睡眠 精油 冰敷 热敷  遮光 电动 亲肤 香氛"
+            },
+            {
+                "id": 10068,
+                "name": "【智动暖膝宝】护膝仪 膝盖 劳损 保暖 按摩 石墨烯 热灸 热敷 大屏 定时",
+                "image": "https://oss.zsyl.cc/uploads/images/20250724/20250724163141a75b81519.jpg",
+                "description": "融合石墨烯加热与多维振动按摩功能，通过精准控温和个性化护理，缓解膝盖不适、放松身心并提升睡眠质量",
+                "title_text": "【智动暖膝宝】",
+                "describe_text": "护膝仪 膝盖 劳损 保暖 按摩 石墨烯 热灸 热敷 大屏 定时"
+            },
+            {
+                "id": 10069,
+                "name": "【观心枕】 护颈 椎枕 实时 测心率呼吸 智能 记忆棉 老年人专用睡觉枕头",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231153945ac6849772.jpg",
+                "description": "智能睡眠监测枕，集成生物雷达、压感传感器，专利算法精准监测生命体征、分析睡眠状态",
+                "title_text": "【观心枕】",
+                "describe_text": " 护颈 椎枕 实时 测心率呼吸 智能 记忆棉 老年人专用睡觉枕头"
+            },
+            {
+                "id": 10070,
+                "name": "【智眠氢氧机】氢气 氧气 制氢 制氧 睡眠 脉冲 大屏 呼吸（不带血氧检测）",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231163930c28746952.jpg",
+                "description": "舒缓疲劳、助眠、舒缓情绪、美容养颜等多重功效，助力用户放松安眠",
+                "title_text": "【智眠氢氧机】",
+                "describe_text": "氢气 氧气 制氢 制氧 睡眠 脉冲 大屏 呼吸（不带血氧检测）"
+            },
+            {
+                "id": 10071,
+                "name": "(预售）【AI智合枕】枕头 AI 人工智能 定制枕 自动量体 自动升降 静音 睡姿感应 精准调节 90D 记忆棉",
+                "image": "https://oss.zsyl.cc/uploads/images/20250818/202508180919315b8454567.jpg",
+                "description": "AI 拍照量体 + 双气囊调节，毫米级精准适配头肩颈，静音护颈，定制深睡体验",
+                "title_text": "(预售）【AI智合枕】",
+                "describe_text": "枕头 AI 人工智能 定制枕 自动量体 自动升降 静音 睡姿感应 精准调节 90D 记忆棉"
+            },
+            {
+                "id": 10073,
+                "name": "(预售）【古法舒睡仪】中医 智能 非遗 机械波 古法 浅针 振动 睡眠",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231182119188c37155.jpg",
+                "description": "AI 化中医浅针手法的机械波助眠仪，精准穴位振动刺激助眠，标准化施治、数据可溯，家庭康养优选",
+                "title_text": "(预售）【古法舒睡仪】",
+                "describe_text": "中医 智能 非遗 机械波 古法 浅针 振动 睡眠"
+            },
+            {
+                "id": 10074,
+                "name": "【万俞林氏温经养络保健膏】 武医结合 天然 草本 经络 筋骨 疼痛",
+                "image": "https://oss.zsyl.cc/uploads/images/20260227/202602271509085c60f4800.jpg",
+                "description": "温经养络，适宜于风寒湿邪、劳损引起的颈肩腰腿及关节疼痛不适的亚健康人群",
+                "title_text": "【万俞林氏温经养络保健膏】",
+                "describe_text": " 武医结合 天然 草本 经络 筋骨 疼痛"
+            },
+            {
+                "id": 10075,
+                "name": "【睡商检测积分】AI 睡商 睡眠 失眠 主题 检测 健康 活力 积分 匹兹堡",
+                "image": "https://oss.zsyl.cc/uploads/images/20260320/2026032009214178a4d2031.jpg",
+                "description": "",
+                "title_text": "【睡商检测积分】",
+                "describe_text": "AI 睡商 睡眠 失眠 主题 检测 健康 活力 积分 匹兹堡"
+            },
+            {
+                "id": 10076,
+                "name": "【红橘老姜舒润按摩油】 腹部护理 精油 揉腹 紧致全身 天然 护理油",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231143140779030770.jpg",
+                "description": "以植物精粹为核心成分，精准润泽肌底，改善干燥起皮问题，温和呵护肌肤屏障",
+                "title_text": "【红橘老姜舒润按摩油】",
+                "describe_text": " 腹部护理 精油 揉腹 紧致全身 天然 护理油"
+            },
+            {
+                "id": 10078,
+                "name": "【翼合枕枕套】枕头 枕套 换洗  透气  云翼 蝶型枕 枕头套",
+                "image": "https://oss.zsyl.cc/uploads/images/20251224/20251224101200629e51029.jpg",
+                "description": "【翼合枕】枕头 枕套 换洗  透气  云翼 蝶型枕",
+                "title_text": "【翼合枕枕套】",
+                "describe_text": "枕头 枕套 换洗  透气  云翼 蝶型枕 枕头套"
+            },
+            {
+                "id": 10079,
+                "name": "【翼合枕礼盒款】 护颈 高度可调 慢回弹 记忆棉 提高睡眠 成人深睡 颈椎 家用枕头 长辈 送礼",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/2025123115324571d8c2430.jpg",
+                "description": "依据人体生理弯曲与人体工程学设计 一枕三高度，解锁四种使用感受",
+                "title_text": "【翼合枕礼盒款】",
+                "describe_text": " 护颈 高度可调 慢回弹 记忆棉 提高睡眠 成人深睡 颈椎 家用枕头 长辈 送礼"
+            },
+            {
+                "id": 10080,
+                "name": "【AB双面款】【床垫】睡感舒适 AB 面轻松换 冰丝层 天丝层 动感棉定制 可拆洗 独袋弹簧",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/202512311925080b4fd1009.jpg",
+                "description": "双面双感、四季适配、 高端面料系统、革新性内芯材料、专业支撑系统",
+                "title_text": "【AB双面款】",
+                "describe_text": "【床垫】睡感舒适 AB 面轻松换 冰丝层 天丝层 动感棉定制 可拆洗 独袋弹簧"
+            },
+            {
+                "id": 10081,
+                "name": "【护脊款】【床垫】 护脊 3D透气 X-90中空结构 可拆洗 独袋弹簧",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231191052066852949.jpg",
+                "description": "专业护脊支撑、理想主义3D透气系统、环保健康设计、静音抗干扰",
+                "title_text": "【护脊款】",
+                "describe_text": "【床垫】 护脊 3D透气 X-90中空结构 可拆洗 独袋弹簧"
+            },
+            {
+                "id": 10082,
+                "name": "【柔享款】【床垫】 呼吸感 柔软 睡感升级 舒压棉 分区支撑 可调节 可拆洗 防螨 独袋弹簧",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231193059f4d2b5787.jpg",
+                "description": "极致柔软体验、科学分层结构、健康守护系统、贴心设计",
+                "title_text": "【柔享款】",
+                "describe_text": "【床垫】 呼吸感 柔软 睡感升级 舒压棉 分区支撑 可调节 可拆洗 防螨 独袋弹簧"
+            },
+            {
+                "id": 10083,
+                "name": "【酸枣仁玫瑰百合茶】养生茶包 独立小包 酸枣仁百合玫瑰配方 温润口感 熬夜常备 便携冲泡",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231184929b4c243994.jpg",
+                "description": "",
+                "title_text": "【酸枣仁玫瑰百合茶】",
+                "describe_text": "养生茶包 独立小包 酸枣仁百合玫瑰配方 温润口感 熬夜常备 便携冲泡"
+            },
+            {
+                "id": 10084,
+                "name": "【AI智能眠宝】智能语音交互 语音陪伴玩偶 聊天对话 毛绒玩具",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231185426e3a821440.jpg",
+                "description": "",
+                "title_text": "【AI智能眠宝】",
+                "describe_text": "智能语音交互 语音陪伴玩偶 聊天对话 毛绒玩具"
+            },
+            {
+                "id": 10085,
+                "name": "【眠加聚乳丝（短）三护被】聚乳酸纤维 母婴A类标准 亲肤柔和 弱酸 抑菌 吸湿透气 干爽不闷 多色可选 四季通用 冬被 SGS安全检测",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231200617a13620782.jpg",
+                "description": "",
+                "title_text": "【眠加聚乳丝（短）三护被】",
+                "describe_text": "聚乳酸纤维 母婴A类标准 亲肤柔和 弱酸 抑菌 吸湿透气 干爽不闷 多色可选 四季通用 冬被 SGS安全检测"
+            },
+            {
+                "id": 10086,
+                "name": "【眠加聚乳丝（长）三护被】聚乳酸纤维 母婴A类标准 亲肤柔和 弱酸 抑菌 吸湿透气 干爽不闷 多色可选 四季通用 冬被 SGS安全检测",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231195947a2ff13202.jpg",
+                "description": "",
+                "title_text": "【眠加聚乳丝（长）三护被】",
+                "describe_text": "聚乳酸纤维 母婴A类标准 亲肤柔和 弱酸 抑菌 吸湿透气 干爽不闷 多色可选 四季通用 冬被 SGS安全检测"
+            },
+            {
+                "id": 10088,
+                "name": "【眠加防尘护肺健康枕】 聚乳酸 特耐姆熔喷 防尘抑螨 科学分区 护颈释压 母婴A类 SGS国际认证 睡眠 干爽舒适",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/202512311952531adad9585.jpg",
+                "description": "",
+                "title_text": "【眠加防尘护肺健康枕】",
+                "describe_text": " 聚乳酸 特耐姆熔喷 防尘抑螨 科学分区 护颈释压 母婴A类 SGS国际认证 睡眠 干爽舒适"
+            },
+            {
+                "id": 10089,
+                "name": "【眠加净息枕芯罩】特耐姆熔喷 中科抗菌 防尘抑螨 可水洗 母婴适用 健康睡眠",
+                "image": "https://oss.zsyl.cc/uploads/images/20260122/2026012209581102cf87317.jpg",
+                "description": "",
+                "title_text": "【眠加净息枕芯罩】",
+                "describe_text": "特耐姆熔喷 中科抗菌 防尘抑螨 可水洗 母婴适用 健康睡眠"
+            },
+            {
+                "id": 10090,
+                "name": "【甜睡贴体验装】 舒眠体验 晚安贴 快速 古法植物配方",
+                "image": "https://oss.zsyl.cc/uploads/images/20251231/20251231150205b55622123.jpg",
+                "description": "宁心安神，舒缓身心，助力快速入睡，提升睡眠深度，改善整体睡眠质量",
+                "title_text": "【甜睡贴体验装】",
+                "describe_text": " 舒眠体验 晚安贴 快速 古法植物配方"
+            },
+            {
+                "id": 10091,
+                "name": "【深睡房】【基础款】 睡眠场景 舒适卧室 家居套餐 全屋床品 居家睡眠 负氧离子墙布",
+                "image": "https://oss.zsyl.cc/uploads/images/20260105/20260105104954153447407.jpg",
+                "description": "",
+                "title_text": "【深睡房】",
+                "describe_text": "【基础款】 睡眠场景 舒适卧室 家居套餐 全屋床品 居家睡眠 负氧离子墙布"
+            },
+            {
+                "id": 10092,
+                "name": "【深睡房】【升级款】 睡眠场景 舒适卧室 家居套餐 全屋床品 居家睡眠 负氧离子墙布",
+                "image": "https://oss.zsyl.cc/uploads/images/20260105/20260105104954153447407.jpg",
+                "description": "",
+                "title_text": "【深睡房】",
+                "describe_text": "【升级款】 睡眠场景 舒适卧室 家居套餐 全屋床品 居家睡眠 负氧离子墙布"
+            },
+            {
+                "id": 10093,
+                "name": "【深睡房】【尊享款】 睡眠场景 舒适卧室 家居套餐 全屋床品 居家睡眠 负氧离子墙布",
+                "image": "https://oss.zsyl.cc/uploads/images/20260105/20260105104954153447407.jpg",
+                "description": "",
+                "title_text": "【深睡房】",
+                "describe_text": "【尊享款】 睡眠场景 舒适卧室 家居套餐 全屋床品 居家睡眠 负氧离子墙布"
+            }
+        ]
+    }
+}
