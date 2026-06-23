@@ -23,6 +23,11 @@
 			</view>
 			<view class="opt-part">
 				<view class="opt1 flex just-align-center">
+					<view class="opt" @click="openMeasureModal">
+						<text>开始测量</text>
+					</view>
+				</view>
+			<!-- 	<view class="opt1 flex just-align-center">
 					<view class="opt" @click="checkHandler">
 						<text>开始测量</text>
 						<view class="flex align-items" style="">
@@ -30,7 +35,7 @@
 								class="cost-c">{{config.detection_deduct}}积分/次</text>
 						</view>
 					</view>
-				</view>
+				</view> -->
 				<view class="law flex just-align-center align-center">
 					<checkbox-group ref="ggg" @change="groupChange">
 						<view class="flex just-align-center align-center">
@@ -86,6 +91,39 @@
 			
 				</view>
 				<view class="not-button" style="margin-top: 70rpx;" @click="navMoreLink">获得积分</view>
+			</view>
+			<view class="measure-modal" v-if="showMeasureModal">
+				<view class="measure-modal-mask" @click="closeMeasureModal"></view>
+				<view class="measure-modal-content">
+					<view class="measure-modal-btn" @click="onMeasure2">
+						<view class="measure-modal-btn-head">
+							<text class="measure-modal-btn-icon">⚡</text>
+							<text class="measure-modal-btn-title">快速健康检测</text>
+						</view>
+						<text class="measure-modal-btn-points"><text class="measure-modal-btn-points-num">{{config.detection_deduct}}</text> 积分/次</text>
+						<text class="measure-modal-btn-desc">仅30秒，快速出健康报告</text>
+					</view>
+					<view class="measure-modal-btn measure-modal-btn-primary" @click="onMeasure3">
+						<view class="measure-modal-btn-head">
+							<text class="measure-modal-btn-icon">📝</text>
+							<text class="measure-modal-btn-title">睡眠问卷检测</text>
+						</view>
+						<text class="measure-modal-btn-points"><text class="measure-modal-btn-points-num">30</text> 积分/次</text>
+						<text class="measure-modal-btn-desc">1分钟完成，了解睡眠习惯</text>
+					</view>
+					<view class="measure-modal-btn" @click="onMeasure1">
+						<view class="measure-modal-btn-head">
+							<text class="measure-modal-btn-icon">🧾</text>
+							<text class="measure-modal-btn-title">健康检测+睡眠问卷检测</text>
+						</view>
+						<view style="display: flex;color: #6f7f98;justify-content: center;">
+							<view class="measure-modal-btn-desc">全流程检测，输出完整健康报告 </view>
+							（
+							<view class="measure-modal-btn-points" style="margin-top: 0rpx;"><text class="measure-modal-btn-points-num">{{config.detection_deduct}}</text> 积分/次</view>
+							）
+						</view>
+					</view>
+				</view>
 			</view>
 		</view>
 		
@@ -176,6 +214,7 @@
 				userInfoT:{},
 				config:{},
 				puposhow:false,
+				showMeasureModal: false,
 				pupimage:[
 					{
 						image:'https://oss.zsyl.cc/uploads/images/20250718/202507181700036aaef5320.png'
@@ -407,6 +446,28 @@
 					});
 				}
 			},
+			openMeasureModal() {
+				this.showMeasureModal = true
+			},
+			closeMeasureModal() {
+				this.showMeasureModal = false
+			},
+			onMeasure1() {
+				this.closeMeasureModal()
+				this.checkHandler()
+			},
+			onMeasure2() {
+				this.closeMeasureModal()
+				uni.navigateTo({
+					url: '/pages/health/healthRunning?cstype=1'
+				})
+			},
+			onMeasure3() {
+				this.closeMeasureModal()
+				uni.navigateTo({
+					url: '/pages/healthtest/topic?cstype=2'
+				})
+			},
 			nextPupImage() {
 			    if (this.pupIndex < this.pupimage.length - 1) {
 			      this.pupIndex++;
@@ -452,8 +513,6 @@
 		bottom: 0;
 		background-color: rgba(0, 0, 0, 0.5);
 	}
-
-	.not-enough {}
 
 	.not-button {
 		background-color: rgb(21, 59, 112);
@@ -657,5 +716,102 @@
 	  font-weight: bold;
 	  /* box-shadow: 0 2px 8px rgba(21,59,112,0.08); */
 	  z-index: 10000;
+	}
+
+	.measure-modal {
+		position: fixed;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 10001;
+	}
+
+	.measure-modal-mask {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.5);
+	}
+
+	.measure-modal-content {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 690rpx;
+		background: #0f4f97;
+		border-radius: 22rpx;
+		padding: 18rpx;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14rpx;
+	}
+
+	.measure-modal-btn {
+		width: calc(50% - 7rpx);
+		min-height: 120rpx;
+		background: linear-gradient(180deg, #f8fbff 0%, #e6edf7 100%);
+		border-radius: 20rpx;
+		padding: 16rpx 14rpx;
+		text-align: center;
+		box-sizing: border-box;
+	}
+
+	.measure-modal-btn-primary {
+		background: linear-gradient(180deg, #2f8fe8 0%, #205ea6 100%);
+	}
+
+	.measure-modal-btn-title {
+		font-size: 30rpx;
+		line-height: 1.2;
+		font-weight: 700;
+		color: #2d4c73;
+		word-break: keep-all;
+	}
+
+	.measure-modal-btn-head {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.measure-modal-btn-icon {
+		font-size: 30rpx;
+		margin-right: 8rpx;
+		line-height: 1;
+	}
+
+	.measure-modal-btn-points {
+		display: block;
+		margin-top: 8rpx;
+		font-size: 24rpx;
+		line-height: 1.2;
+		color: #4a678e;
+	}
+
+	.measure-modal-btn-points-num {
+		font-size: 36rpx;
+		font-weight: 700;
+	}
+
+	.measure-modal-btn-desc {
+		display: block;
+		margin-top: 10rpx;
+		font-size: 26rpx;
+		line-height: 1.3;
+		color: #6f7f98;
+	}
+
+	.measure-modal-btn-primary .measure-modal-btn-title,
+	.measure-modal-btn-primary .measure-modal-btn-desc,
+	.measure-modal-btn-primary .measure-modal-btn-points {
+		color: #ffffff;
+	}
+
+	.measure-modal-btn:last-child {
+		width: 100%;
 	}
 </style>

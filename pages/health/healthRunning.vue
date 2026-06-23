@@ -62,6 +62,7 @@
 				text1: '',
 				text2: '',
 				text3: '',
+				cstype:'',
 				finished: false,
 				gaugeData: [{
 					value: 0,
@@ -155,6 +156,9 @@
 			}
 		},
 		computed: {},
+		onLoad(options) {
+			this.cstype = options?.cstype || ''
+		},
 		onShow() {
 			this.startCamera()
 			this.confgn()
@@ -175,7 +179,7 @@
 			deduct(){
 				getdeduct({}).then(res => {
 					uni.navigateTo({
-						url: '/pages/health/healthResult'
+						url: '/pages/health/healthResult?cstype=' + this.cstype
 					})
 					// uni.switchTab({
 					// 	url: "/pages/func/func"

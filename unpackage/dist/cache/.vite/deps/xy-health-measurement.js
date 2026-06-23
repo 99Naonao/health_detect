@@ -1,10 +1,10 @@
 import {
   __commonJS
-} from "./chunk-25V3TAZK.js";
+} from "./chunk-P2LSHJDD.js";
 
-// ../../../../project/mianjia_jiangkan/node_modules/xy-health-measurement/lib/index.js
+// ../../../../project/mianjia_jianche/health_detect/node_modules/xy-health-measurement/lib/index.js
 var require_lib = __commonJS({
-  "../../../../project/mianjia_jiangkan/node_modules/xy-health-measurement/lib/index.js"(exports, module) {
+  "../../../../project/mianjia_jianche/health_detect/node_modules/xy-health-measurement/lib/index.js"(exports, module) {
     (function webpackUniversalModuleDefinition(root, factory) {
       if (typeof exports === "object" && typeof module === "object")
         module.exports = factory();
@@ -15664,9 +15664,9 @@ var require_lib = __commonJS({
   }
 });
 
-// ../../../../project/mianjia_jiangkan/node_modules/xy-health-measurement/index.js
+// ../../../../project/mianjia_jianche/health_detect/node_modules/xy-health-measurement/index.js
 var require_xy_health_measurement = __commonJS({
-  "../../../../project/mianjia_jiangkan/node_modules/xy-health-measurement/index.js"(exports2, module2) {
+  "../../../../project/mianjia_jianche/health_detect/node_modules/xy-health-measurement/index.js"(exports2, module2) {
     if (false) {
       module2.exports = null;
     } else {

@@ -35,7 +35,7 @@
 			<div class="conttt" ref="resultView" @scroll="handleResultScroll">
 				<view class="" v-if="1==current">
 					<happy-result :result="data__"></happy-result>
-					<view class="" style="letter-spacing: 9px;box-shadow: none;background: none;margin: 30rpx;border-radius: 40rpx;" >
+					<view class="" v-if="cstype != 1" style="letter-spacing: 9px;box-shadow: none;background: none;margin: 30rpx;border-radius: 40rpx;" >
 						<view style="width: 100%;margin: 0 auto;" v-if="showIntro">
 							<view style="width: 100%;">
 								<image src="https://oss.zsyl.cc/uploads/images/20250630/202506301447555072a5144.png" style="width: 100%;height: 100%;" mode="widthFix"> 
@@ -47,7 +47,7 @@
 						<view class="float-btn"  style="bottom: 70px;width: 49%;" @click="goToSave">
 								放弃评估，保存结果
 						</view>
-						<view class="float-btn"  style="bottom: 70px;width: 49%;margin-left: auto;" @click="goToScale">
+						<view class="float-btn" v-if="cstype != 1"  style="bottom: 70px;width: 49%;margin-left: auto;" @click="goToScale">
 								填写匹兹堡睡眠质量问卷
 						</view>
 					</view>
@@ -55,7 +55,7 @@
 				</view>
 				<view class="" style="" v-else>
 					<physical-result :result="data__"></physical-result>
-					<view class="" style="letter-spacing: 9px;box-shadow: none;background: none;margin: 30rpx;border-radius: 40rpx;" >
+					<view class="" v-if="cstype != 1" style="letter-spacing: 9px;box-shadow: none;background: none;margin: 30rpx;border-radius: 40rpx;" >
 						<view style="width: 100%;margin: 0 auto;" @click.stop="current = 1" v-if="showIntro">
 							<view style="width: 100%;height: 400rpx;">
 								<image src="https://oss.zsyl.cc/uploads/images/20250623/20250623105209307d16280.png" style="width: 100%;height: 100%;" mode="widthFix"> 
@@ -93,7 +93,8 @@
 						<view class="recommend-card">
 							<image class="recommend-img" :src="g.image" mode="aspectFill"></image>
 							<view class="recommend-name-wrap">
-								<text class="recommend-name">{{ g.description }}</text>
+								<text class="recommend-name" v-if="cstype != 1">{{ g.description }}</text>
+								<text class="recommend-name" v-else>{{ g.name }}</text>
 							</view>
 							<view class="recommend-card-actions">
 								<template v-if="isWechat && !isMiniProgramWebview">
@@ -154,7 +155,8 @@
 		addReport,
 		getJsonResult,
 		getresultLists,
-		getAllGoodlists
+		getAllGoodlists,
+		getDetectionsection
 	} from '@/utils/h5app.js'
 	import { isWechatMiniProgramWebview, isInMiniProgramWebView, goToMall as goToMallFn, MALL_GUIDE_PREPARE_EVENT } from '@/utils/launchMall.js'
 	import { buildDualReportRecommendSelection, pickFirstAvailableGoodsExcluding } from '@/utils/recommendReportPick.js'
@@ -254,6 +256,7 @@
 				},
 				text:'',
 				text2:'',
+				cstype:'',
 				showIntro: true, // 控制介绍弹窗显示
 				showFloatBtn: false,
 				showRightBtn:true,
@@ -280,6 +283,9 @@
 					this.recommendGoods.length > 0
 				)
 			}
+		},
+		onLoad(options) {
+			this.cstype = options?.cstype || ''
 		},
 		onShow() {
 			uni.showLoading({
@@ -458,7 +464,19 @@
 							description: String(g.description != null ? g.description : '').trim()
 						})
 					}
-					this.recommendGoods = pickedGoods
+					
+					if(this.cstype == 1){
+						let test_id = uni.getStorageSync("test_id");
+						getDetectionsection({
+							result_id:test_id
+						}).then(res => {
+							this.recommendGoods = Array.isArray(res?.goods_lists) ? res.goods_lists.slice(0, 3) : []
+						}).catch(() => {
+							this.recommendGoods = []
+						})
+					}else{
+						this.recommendGoods = pickedGoods
+					}
 					this.recommendMetricCards = selection.displayMetrics
 
 					const topLabel = selection.displayMetrics.map(m => m.key).join('、') || '状态'

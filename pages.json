@@ -107,6 +107,13 @@
 				"navigationBarTitleText": "最近检测",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/healthtest/surveyResults",
+			"style": {
+				"navigationBarTitleText": "问卷结论",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

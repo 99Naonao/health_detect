@@ -107,13 +107,15 @@
 		getToken,
 		addReport,
 		Userscaledetail,
-		getUsercentre
+		getUsercentre,
+		getReportSubmit
 	} from '../../utils/h5app.js'
 	// #endif
 export default {
   data() {
     return {
 		userInfoT:{},
+	  cstype: '',
       showIntro: true, // 控制介绍弹窗显示
       // 题目数据
       questions: [
@@ -339,10 +341,170 @@ export default {
       }).length;
     },
   },
-  onLoad() {
+  onLoad(options) {
+	this.cstype = options?.cstype || ''
   	this.Usercentre()
   },
   methods: {
+    calculatePsqiResult() {
+      const toNumber = (value) => {
+        const num = Number(value)
+        return Number.isNaN(num) ? null : num
+      }
+      const choiceScore = (value) => {
+        if (value === 0 || value === 1 || value === 2 || value === 3) return value
+        return null
+      }
+      const mapRangeScore = (sum) => {
+        if (sum === 0) return 0
+        if (sum >= 1 && sum <= 2) return 1
+        if (sum >= 3 && sum <= 4) return 2
+        if (sum >= 5 && sum <= 6) return 3
+        return 0
+      }
+      const timeStrToHour = (str) => {
+        if (!str) return null
+        const parts = String(str).split(':')
+        if (parts.length < 2) return null
+        const h = parseInt(parts[0], 10)
+        const m = parseInt(parts[1], 10)
+        if (Number.isNaN(h) || Number.isNaN(m)) return null
+        return h + m / 60
+      }
+
+      const q2Minutes = toNumber(this.answers[2])
+      const q4Hours = toNumber(this.answers[4])
+      const q5aScore = choiceScore(this.answers[5])
+      const q6Score = choiceScore(this.answers[15])
+      const q7Score = choiceScore(this.answers[16])
+      const q8Score = choiceScore(this.answers[17])
+      const q9Score = choiceScore(this.answers[18])
+
+      let dimensionA = q6Score ?? 0
+
+      let q2Score = 0
+      if (q2Minutes !== null) {
+        if (q2Minutes <= 15) q2Score = 0
+        else if (q2Minutes <= 30) q2Score = 1
+        else if (q2Minutes <= 60) q2Score = 2
+        else q2Score = 3
+      }
+      let dimensionB = mapRangeScore(q2Score + (q5aScore ?? 0))
+
+      let dimensionC = 0
+      if (q4Hours !== null) {
+        if (q4Hours > 7) dimensionC = 0
+        else if (q4Hours >= 6) dimensionC = 1
+        else if (q4Hours >= 5) dimensionC = 2
+        else dimensionC = 3
+      }
+
+      let dimensionD = 0
+      const bedTime = timeStrToHour(this.answers[1])
+      const upTime = timeStrToHour(this.answers[3])
+      if (bedTime !== null && upTime !== null && q4Hours !== null) {
+        let inBedHours = upTime - bedTime
+        if (inBedHours <= 0) inBedHours += 24
+        if (inBedHours > 0) {
+          const efficiency = (q4Hours / inBedHours) * 100
+          if (efficiency > 85) dimensionD = 0
+          else if (efficiency >= 75) dimensionD = 1
+          else if (efficiency >= 65) dimensionD = 2
+          else dimensionD = 3
+        }
+      }
+
+      let disorderSum = 0
+      for (let i = 6; i <= 14; i += 1) {
+        disorderSum += choiceScore(this.answers[i]) ?? 0
+      }
+      let dimensionE = 0
+      if (disorderSum === 0) dimensionE = 0
+      else if (disorderSum <= 9) dimensionE = 1
+      else if (disorderSum <= 18) dimensionE = 2
+      else dimensionE = 3
+
+      let dimensionF = q7Score ?? 0
+      let dimensionG = mapRangeScore((q8Score ?? 0) + (q9Score ?? 0))
+
+      const partScores = [
+        { name: '主观睡眠质量', score: dimensionA },
+        { name: '入睡时间', score: dimensionB },
+        { name: '睡眠时间', score: dimensionC },
+        { name: '睡眠效率', score: dimensionD },
+        { name: '睡眠障碍', score: dimensionE },
+        { name: '催眠药物', score: dimensionF },
+        { name: '日间功能障碍', score: dimensionG }
+      ]
+
+      const totalScore = partScores.reduce((sum, item) => sum + item.score, 0)
+      let scoreDesc = '睡眠较差'
+      let suggestionTitle = '您的睡眠质量较差'
+      let suggestionText = '您的 PSQI 总分较高，提示存在较明显的睡眠问题，建议尽快调整作息并在必要时寻求专业帮助。'
+
+      if (totalScore <= 5) {
+        scoreDesc = '睡眠很好'
+        suggestionTitle = '您的睡眠质量很好'
+        suggestionText = '您的 PSQI 总分处于较低水平，说明当前睡眠状况良好。建议继续保持规律作息和健康的睡眠习惯。'
+      } else if (totalScore <= 10) {
+        scoreDesc = '睡眠较好'
+        suggestionTitle = '您的睡眠质量较好'
+        suggestionText = '您的 PSQI 总分提示整体睡眠情况较好，但仍可关注作息规律、入睡环境和压力管理，进一步提升睡眠质量。'
+      } else if (totalScore <= 15) {
+        scoreDesc = '睡眠一般'
+        suggestionTitle = '您的睡眠质量一般'
+        suggestionText = '您的 PSQI 总分提示已出现一定程度的睡眠困扰，建议关注入睡时长、夜间觉醒和白天精神状态，及时进行调整。'
+      }
+
+      // 题目+答案字符串（给 result 字段存储）
+      const buildResultString = () => {
+        if (!Array.isArray(this.questions) || this.questions.length === 0) return ''
+        const lines = this.questions.map((q) => {
+          const qIndex = q.index ?? q.id
+          const qTitle = q.questionContent ?? ''
+
+          // submit() 中会把 choice/input 的最终答案写回 question.answer，这里优先取它
+          let ans = q.answer
+          if (ans === undefined || ans === null || String(ans).trim() === '') {
+            const raw = this.answers?.[q.id]
+            if (
+              q.type === 'choice' &&
+              Array.isArray(q.options) &&
+              raw !== undefined &&
+              raw !== null &&
+              raw !== ''
+            ) {
+              const idx = Number(raw)
+              ans = !Number.isNaN(idx) && idx >= 0 && idx < q.options.length ? q.options[idx] : raw
+            } else {
+              ans = raw
+            }
+          }
+
+          if (ans === undefined || ans === null || String(ans).trim() === '') ans = '未作答'
+
+          // 第14题是“其他影响睡眠的事情”，如果有补充说明，拼到答案里
+          if (q.id === 14) {
+            const extra = String(this.otherSleepDesc || '').trim()
+            if (extra) ans = `${ans}（补充：${extra}）`
+          }
+
+          return `第${qIndex}题：${qTitle}；答案：${ans}`
+        })
+        return lines.join('\n')
+      }
+
+      return {
+        date: new Date().toISOString().slice(0, 10),
+        version: '匹兹堡质量调查问卷（PSQI）',
+        totalScore,
+        scoreDesc,
+        suggestionTitle,
+        suggestionText,
+        partScores,
+        result: buildResultString()
+      }
+    },
     startTest() {
       this.showIntro = false
     },
@@ -440,31 +602,60 @@ export default {
       }
       this.userScaleConclusionDto.userId = this.userInfoT.id
       this.userScaleConclusionDto.score = this.psqiTotalScore
-      
-      // 去除id字段
-      const questionsWithoutId = this.questions.map(({ id, ...rest }) => rest)
-      let test_id = uni.getStorageSync("test_id");
 	  
-	  this.userScaleConclusionDto.result_id = test_id
-      Userscaledetail({
-        userScaleDetailDtos: questionsWithoutId,
-        userScaleConclusionDto: this.userScaleConclusionDto,
-      }).then((res) => {
-        console.log("res.res:11",res)
-        if(res){
-          // uni.navigateTo({
-          //   url: '/pages/healthtest/conclusion?numb='+ this.psqiTotalScore + '&conclusionid=' + res.data.id
-          // })
-		  uni.navigateTo({
-		    url: '/pages/healthtest/Newconclusion?numtolt='+ this.psqiTotalScore + '&conclusionid=' + res.data.id
-		  })
-        }else{
-          uni.showToast({
-            title: res.msg || '请重试',
-            icon: 'none'
-          })
-        }
-      })
+	  if(this.cstype == 2){
+		  const surveyResult = this.calculatePsqiResult()
+		  getReportSubmit({
+		    score: surveyResult.totalScore,
+			score_desc: surveyResult.scoreDesc,
+			suggestion_title: surveyResult.suggestionTitle,
+			suggestion_text: surveyResult.suggestionText,
+			part_scores: surveyResult.partScores,
+		    result: surveyResult.result,
+		  }).then((res) => {
+		    console.log("res.res:99",res)
+		    if(res){
+				uni.setStorageSync('surveyResultData', surveyResult)
+				uni.navigateTo({
+					url: '/pages/healthtest/surveyResults?reportid=' + res.id
+				})
+		    }else{
+		      uni.showToast({
+		        title: res.msg || '请重试',
+		        icon: 'none'
+		      })
+		    }
+		  })  
+		  return
+		  // uni.setStorageSync('surveyResultData', surveyResult)
+		  // uni.navigateTo({
+		  // 	url: '/pages/healthtest/surveyResults'
+		  // })
+	  }else{
+		// 去除id字段
+		const questionsWithoutId = this.questions.map(({ id, ...rest }) => rest)
+		let test_id = uni.getStorageSync("test_id");
+		this.userScaleConclusionDto.result_id = test_id
+		Userscaledetail({
+		  userScaleDetailDtos: questionsWithoutId,
+		  userScaleConclusionDto: this.userScaleConclusionDto,
+		}).then((res) => {
+		  console.log("res.res:11",res)
+		  if(res){
+		    // uni.navigateTo({
+		    //   url: '/pages/healthtest/conclusion?numb='+ this.psqiTotalScore + '&conclusionid=' + res.data.id
+		    // })
+				  uni.navigateTo({
+				    url: '/pages/healthtest/Newconclusion?numtolt='+ this.psqiTotalScore + '&conclusionid=' + res.data.id
+				  })
+		  }else{
+		    uni.showToast({
+		      title: res.msg || '请重试',
+		      icon: 'none'
+		    })
+		  }
+		})  
+	  }
       // console.log("questions with answers:", this.questions)
       // console.log("userScaleConclusionDto:", this.userScaleConclusionDto)
     },

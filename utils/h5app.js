@@ -40,7 +40,9 @@ const api = {
 	confgn: '/shopapi/Detection/config',
 	userScaleLists: '/shopapi/Detection/userScaleLists',
 	createContactQrCode: '/shopapi/Detection/createContactQrCode',
-	getAllGoodlists:'/shopapi/Detection/getGoodsLists'
+	getAllGoodlists:'/shopapi/Detection/getGoodsLists',
+	GetReportSubmit:'/shopapi/Detection/reportSubmit',
+	GetReportDetail:'/shopapi/Detection/reportDetail',
 	
 }
 // 获取票据
@@ -87,6 +89,17 @@ export function getdeduct(parameter) {
 export function getDetectionsection(parameter) {
 	return request_(base.CsTbaseUrl + api.Detectionsection, parameter)
 }
+
+export function getReportSubmit(parameter) {
+	return request_(base.CsTbaseUrl + api.GetReportSubmit, parameter)
+}
+
+export function getReportDetail(parameter) {
+	return request_(base.CsTbaseUrl + api.GetReportDetail, parameter)
+}
+
+
+
 
 // 测试记录
 export function getresultLists(parameter) {
@@ -441,7 +454,7 @@ function request_(url, sortData) {
 		}
 		console.log('header', header)
 		uni.showLoading({
-			title: '加载中'
+			title: 'AI分析中'
 		})
 		uni.request({
 			url: url,

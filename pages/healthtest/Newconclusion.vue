@@ -481,8 +481,10 @@
 			  },
 			  
 			  Detectionsection(){
+				  let test_id = uni.getStorageSync("test_id");
 			  	getDetectionsection({
-					score:this.LBnumb
+					score:this.LBnumb,
+					result_id:test_id
 				}).then(res => {
 					this.recommendedProducts = res.goods_lists
 					this.conclusion = res.detail.remarks

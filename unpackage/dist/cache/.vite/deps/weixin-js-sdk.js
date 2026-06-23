@@ -1,10 +1,10 @@
 import {
   __commonJS
-} from "./chunk-25V3TAZK.js";
+} from "./chunk-P2LSHJDD.js";
 
-// ../../../../project/mianjia_jiangkan/node_modules/weixin-js-sdk/index.js
+// ../../../../project/mianjia_jianche/health_detect/node_modules/weixin-js-sdk/index.js
 var require_weixin_js_sdk = __commonJS({
-  "../../../../project/mianjia_jiangkan/node_modules/weixin-js-sdk/index.js"(exports, module) {
+  "../../../../project/mianjia_jianche/health_detect/node_modules/weixin-js-sdk/index.js"(exports, module) {
     !function(e, n) {
       module.exports = n(e);
     }(typeof window === "object" && window, function(r, e) {
